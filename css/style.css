@@ -1,0 +1,437 @@
+/* Import DM Sans font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+:root {
+    /* Colors */
+    --primary: #003399;    /* Official EU Blue */
+    --secondary: #004494;  /* Slightly lighter shade */
+    --background: #ffffff;
+    --text: #333333;
+    --card-bg: #f5f5f5;
+    
+    /* Typography */
+    --font-primary: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+    
+    /* Font sizes */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 2rem;
+    --text-4xl: 2.5rem;
+    
+    /* Line heights */
+    --leading-tight: 1.2;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 2;
+}
+
+[data-theme="dark"] {
+    --primary: #004494;
+    --secondary: #003399;
+    --background: #1a1a1a;
+    --text: #ffffff;
+    --card-bg: #2d2d2d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-regular);
+    background-color: var(--background);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    line-height: var(--leading-normal);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    flex: 1;
+}
+
+header {
+    background-color: var(--primary);
+    padding: 20px 0;
+    color: white;
+}
+
+nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.logo {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.02em;
+}
+
+.top-controls {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.language-selector {
+    position: relative;
+    margin-left: 20px;
+}
+
+.lang-toggle {
+    background: transparent;
+    border: none;
+    color: white;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.lang-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.globe-icon {
+    opacity: 0.9;
+}
+
+.current-lang {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.arrow-icon {
+    margin-left: 2px;
+    transition: transform 0.2s ease;
+}
+
+/* Dropdown styles */
+.lang-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease;
+    min-width: 160px;
+    overflow: hidden;
+}
+
+.language-selector.active .lang-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.language-selector.active .arrow-icon {
+    transform: rotate(180deg);
+}
+
+.lang-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    color: var(--text);
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.lang-option:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.lang-option.active {
+    background-color: rgba(0, 51, 153, 0.05);
+    color: var(--primary);
+}
+
+.lang-name {
+    font-size: 14px;
+}
+
+.lang-code {
+    font-size: 12px;
+    opacity: 0.5;
+    font-weight: 500;
+}
+
+/* Dark theme adjustments */
+[data-theme="dark"] .lang-dropdown {
+    background: #2d2d2d;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .lang-option:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .lang-option.active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.lang-btn {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: var(--font-weight-medium);
+    font-size: var(--text-sm);
+    transition: all 0.2s ease;
+}
+
+.lang-btn.active {
+    background: white;
+    color: var(--primary);
+}
+
+/* Theme Toggle Styles */
+#themeToggle {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+#themeToggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Icon paths */
+.theme-icon .sun,
+.theme-icon .moon {
+    transition: opacity 0.2s ease, transform 0.3s ease;
+    transform-origin: center;
+}
+
+/* Light theme state */
+.theme-icon .sun {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.theme-icon .moon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Dark theme state */
+[data-theme="dark"] .theme-icon .sun {
+    opacity: 1;
+    transform: scale(1);
+}
+
+[data-theme="dark"] .theme-icon .moon {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    font-size: var(--text-base);
+    transition: opacity 0.2s ease;
+}
+
+.nav-links a:hover {
+    opacity: 0.8;
+}
+
+.hero {
+    text-align: center;
+    padding: 80px 20px;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    margin-bottom: 40px;
+}
+
+.hero h1 {
+    font-size: var(--text-4xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+    color: var(--primary);
+    line-height: var(--leading-tight);
+}
+
+.hero p {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-regular);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: var(--leading-relaxed);
+    opacity: 0.9;
+}
+
+.blog-posts {
+    display: grid;
+    gap: 30px;
+}
+
+.blog-post {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blog-post:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.blog-post h2 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.02em;
+    line-height: var(--leading-tight);
+}
+
+.blog-post p {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+}
+
+.tags {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+    flex-wrap: wrap;
+}
+
+.tag {
+    background-color: var(--secondary);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+footer {
+    background-color: var(--primary);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-regular);
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .top-controls {
+        justify-content: space-between;
+    }
+
+    .hero h1 {
+        font-size: var(--text-3xl);
+    }
+
+    .hero p {
+        font-size: var(--text-base);
+    }
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.nav-right {
+    margin-left: auto; /* Pushes language selector to the right */
+}
+
+/* Theme toggle button */
+.theme-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--primary);
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease;
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.05);
+}
+
+/* Ensure language dropdown appears above other elements */
+.language-selector {
+    position: relative;
+    z-index: 100;
+}

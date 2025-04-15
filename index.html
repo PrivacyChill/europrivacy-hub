@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EuroPrivacy Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">EuroPrivacy Hub</div>
+            <ul class="nav-links">
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <!-- Moved language selector to right -->
+            <div class="nav-right">
+                <div class="language-selector">
+                    <button class="lang-toggle" aria-label="Select language">
+                        <svg class="globe-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                            <path d="M2 12h20"/>
+                        </svg>
+                        <span class="current-lang">EN</span>
+                        <svg class="arrow-icon" width="10" height="6" viewBox="0 0 10 6" fill="none">
+                            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </button>
+                    <div class="lang-dropdown">
+                        <a href="#" data-lang="en" class="lang-option active">
+                            <span class="lang-name">English</span>
+                            <span class="lang-code">EN</span>
+                        </a>
+                        <a href="#" data-lang="it" class="lang-option">
+                            <span class="lang-name">Italiano</span>
+                            <span class="lang-code">IT</span>
+                        </a>
+                        <a href="#" data-lang="de" class="lang-option">
+                            <span class="lang-name">Deutsch</span>
+                            <span class="lang-code">DE</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section class="hero">
+            <h1 id="mainTitle">Welcome to EuroPrivacy Hub</h1>
+            <p id="mainDesc">Your trusted source for privacy law and data protection resources</p>
+        </section>
+
+        <section id="blog-posts" class="blog-posts">
+            <!-- Blog posts will be dynamically inserted here -->
+        </section>
+    </div>
+
+    <!-- Fixed position theme toggle button -->
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path class="sun" d="M12 3V4M12 20V21M21 12H20M4 12H3M18.364 18.364L17.657 17.657M6.343 6.343L5.636 5.636M18.364 5.636L17.657 6.343M6.343 17.657L5.636 18.364M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12Z"/>
+            <path class="moon" d="M9 6C9 10.9706 13.0294 15 18 15C18.9093 15 19.787 14.8655 20.6144 14.6147C19.4943 18.3103 16.0613 20.9999 12 20.9999C7.02944 20.9999 3 16.9705 3 12C3 7.94867 5.68961 4.51575 9.38525 3.39557C9.13444 4.22304 9 5.10074 9 6Z"/>
+        </svg>
+    </button>
+
+    <footer>
+        <p>© 2025 EuroPrivacy Hub</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
