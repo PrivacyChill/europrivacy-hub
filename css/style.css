@@ -1,837 +1,1099 @@
 /*
-==============================================================================
-GLOBAL STYLES & VARIABLES
-------------------------------------------------------------------------------
-This section defines foundational styles for the entire website,
-including color variables, font imports, and basic element styling (like body,
-headings, links, buttons).
+  EuroPrivacy Hub Stylesheet
 
-Feel free to adjust:
-- Color palette: Modify the --primary-color, --secondary-color, etc.
-- Fonts: Change the font-family properties and the @import URL.
-- Base sizes: Adjust --space-* for spacing and --font-* for font sizes.
-==============================================================================
+  This stylesheet provides the core visual design for the EuroPrivacy Hub website,
+  including typography, layout, colors, and a responsive minimal dark mode.
 */
 
-/* Import Google Fonts */
-/* DM Sans for body text and general elements */
-/* Playfair Display for headings and prominent text */
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700&display=swap');
-
-/* CSS Variables for easy theme customization */
-:root {
-    /* Color Palette */
-    /* Primary color: Main branding color (e.g., EU Blue) */
-    --primary-color: #003399;
-    /* Secondary color: Used for accents or hover states */
-    --secondary-color: #4a76c9; /* Lighter blue */
-    /* Accent color: Highlights elements like buttons or links */
-    --accent-color: #f0c14a; /* Gold/Yellow */
-    /* Default text color */
-    --text-color: #333333; /* Dark grey */
-    /* Text color for dark backgrounds */
-    --light-text: #ffffff; /* White */
-    /* Background color for dark sections */
-    --dark-bg: #1e293b; /* Dark blue/grey */
-    /* Background color for light sections */
-    --light-bg: #f8f9fa; /* Very light grey */
-    /* Background color for alternating sections or components */
-    --grey-bg: #e9ecef; /* Light grey */
-    /* Color for borders and dividers */
-    --border-color: #dddddd; /* Light grey border */
-
-    /* Spacing Variables */
-    /* Consistent spacing for elements and sections */
-    --space-xs: 0.25rem;   /* 4px */
-    --space-sm: 0.5rem;    /* 8px */
-    --space-md: 1rem;      /* 16px */
-    --space-lg: 2rem;      /* 32px */
-    --space-xl: 4rem;      /* 64px */
-    --space-xxl: 6rem;     /* 96px */
-
-    /* Font Size Variables */
-    /* Define a typographic scale */
-    --font-sm: 0.875rem;   /* 14px */
-    --font-base: 1rem;     /* 16px (base) */
-    --font-md: 1.125rem;   /* 18px */
-    --font-lg: 1.5rem;     /* 24px */
-    --font-xl: 2rem;       /* 32px */
-    --font-xxl: 3rem;      /* 48px */
-    --font-heading-main: var(--font-xxl); /* Main page title */
-    --font-heading-section: var(--font-xl); /* Section titles */
-}
-
-/* Box sizing border-box makes padding and border included in the element's total width and height */
-*, *::before, *::after {
+/* --- 1. Basic Reset and Box-Sizing --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-/* Base styles for the body */
+/* --- 2. Font Import and Global Typography --- */
+/* Importing a clean, readable font - Lato from Google Fonts */
+/* Ensure you link this font in your HTML head tag:
+   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+*/
 body {
-    font-family: 'DM Sans', sans-serif; /* Apply body font */
-    color: var(--text-color); /* Apply default text color */
-    line-height: 1.6; /* Improve readability */
-    background-color: var(--light-bg); /* Set a light background */
-    -webkit-font-smoothing: antialiased; /* Improve font rendering on some browsers */
-    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Lato', sans-serif;
+    line-height: 1.6; /* Improved readability */
+    min-height: 100vh; /* Ensure body takes at least viewport height */
+    display: flex;
+    flex-direction: column; /* Stack content and footer vertically */
 }
 
-/* Styles for headings (h1 to h4) */
-h1, h2, h3, h4 {
-    font-family: 'Playfair Display', serif; /* Apply heading font */
-    font-weight: 700; /* Bold font weight for headings */
+main {
+    flex: 1; /* Allow main content to grow and push footer down */
+    width: 100%; /* Ensure main takes full width */
+}
+
+
+/* --- 3. CSS Variables for Themes --- */
+:root {
+    /* Light Mode Colors */
+    --background-color: #ffffff;
+    --text-color: #333333;
+    --link-color: #007bff; /* Standard blue for links */
+    --link-hover-color: #0056b3;
+    --header-background: #f8f9fa; /* Light header background */
+    --footer-background: #343a40; /* Dark footer background in light mode */
+    --footer-text-color: #e9ecef;
+    --button-background: #007bff;
+    --button-text-color: #ffffff;
+    --button-hover-background: #0056b3;
+    --border-color: #dddddd;
+    --card-background: #ffffff;
+    --heading-color: #212529; /* Dark headings */
+    --placeholder-color: #6c757d; /* Muted text for placeholders/meta */
+    --section-separator-color: #eeeeee;
+}
+
+/* Dark Mode Colors (Activated when body has class="dark-mode") */
+body.dark-mode {
+    --background-color: #121212; /* Rich Dark Background */
+    --text-color: #e0e0e0; /* Light Text Color */
+    --link-color: #bb86fc; /* Accent color for links (e.g., from Material Design dark theme) */
+    --link-hover-color: #a070d8;
+    --header-background: #1e1e1e; /* Slightly lighter dark for header */
+    --footer-background: #0a0a0a; /* Slightly darker dark for footer */
+    --footer-text-color: #b0b0b0;
+    --button-background: #bb86fc; /* Accent color for buttons */
+    --button-text-color: #121212; /* Dark text on accent buttons */
+    --button-hover-background: #a070d8;
+    --border-color: #3a3a3a; /* Darker borders */
+    --card-background: #1e1e1e; /* Card background matches header */
+    --heading-color: #ffffff; /* White headings in dark mode */
+    --placeholder-color: #a0a0a0; /* Lighter muted text */
+     --section-separator-color: #2a2a2a;
+}
+
+/* Apply theme variables to body */
+body {
+    color: var(--text-color);
+    background-color: var(--background-color);
+    transition: background-color 0.5s ease, color 0.5s ease; /* Smooth theme transition */
+}
+
+/* --- 4. Global Element Styling using Variables --- */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
     line-height: 1.2;
-    margin-bottom: var(--space-md); /* Spacing below headings */
-    color: var(--dark-bg); /* Slightly darker color for headings */
 }
 
-h1 { font-size: var(--font-heading-main); }
-h2 { font-size: var(--font-heading-section); }
-h3 { font-size: var(--font-lg); margin-bottom: var(--space-sm); }
-h4 { font-size: var(--font-md); margin-bottom: var(--space-sm); }
+h1 { font-size: 2.5rem; } /* Adjusted for better hierarchy */
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
 
-/* Styles for paragraphs */
 p {
-    margin-bottom: var(--space-md); /* Spacing below paragraphs */
+    margin-bottom: 1rem;
+    font-size: 1rem;
 }
 
-/* Styles for links */
 a {
-    color: var(--primary-color); /* Default link color */
-    text-decoration: none; /* Remove underline */
-    transition: color 0.3s ease; /* Smooth color transition on hover */
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 a:hover {
-    color: var(--secondary-color); /* Change color on hover */
-    text-decoration: underline; /* Add underline on hover for clarity */
-}
-
-/* Styles for images */
-img {
-    max-width: 100%; /* Ensure images don't overflow their containers */
-    height: auto; /* Maintain aspect ratio */
-    display: block; /* Remove extra space below images */
-}
-
-/* Button Styles */
-.btn {
-    display: inline-block; /* Allows padding and margin */
-    background-color: var(--accent-color); /* Button background color */
-    color: var(--text-color); /* Button text color */
-    padding: var(--space-sm) var(--space-lg); /* Padding inside button */
-    border-radius: 4px; /* Rounded corners */
-    text-align: center;
-    font-weight: 500; /* Medium font weight */
-    border: none; /* Remove default border */
-    cursor: pointer; /* Indicate clickable element */
-    transition: background-color 0.3s ease, opacity 0.3s ease; /* Smooth transitions */
-    font-size: var(--font-base);
-}
-
-.btn:hover {
-    background-color: var(--secondary-color); /* Darker color on hover */
-    color: var(--light-text); /* White text on hover */
-    text-decoration: none; /* Ensure no underline on hover */
-}
-
-.btn:active {
-    opacity: 0.9; /* Slight press effect */
-}
-
-/* Utility class for centering content */
-.container {
-    width: 90%; /* Container width */
-    max-width: 1200px; /* Maximum width */
-    margin: 0 auto; /* Center the container */
-    padding: 0 var(--space-md); /* Horizontal padding */
-}
-
-/*
-==============================================================================
-HEADER & NAVIGATION STYLES
-------------------------------------------------------------------------------
-Styles for the sticky header and navigation menu.
-
-Feel free to adjust:
-- Header background color and height.
-- Logo text color and size.
-- Navigation link spacing, colors, and hover effects.
-- Language selector styling.
-==============================================================================
-*/
-header {
-    background-color: var(--primary-color); /* Header background color */
-    color: var(--light-text); /* Header text color */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    position: sticky; /* Make header stick to the top */
-    top: 0; /* Stick to the very top */
-    z-index: 1000; /* Ensure header is above other content */
-    padding: var(--space-md) 0; /* Vertical padding (horizontal padding handled by nav inside .container) */
-}
-
-nav {
-    display: flex; /* Use flexbox for layout */
-    justify-content: space-between; /* Space out items */
-    align-items: center; /* Vertically align items */
-    max-width: 1200px; /* Match container max-width */
-    margin: 0 auto; /* Center the nav */
-    padding: 0 var(--space-lg); /* Padding inside nav */
-}
-
-/* Logo text style */
-.logo-text {
-    font-family: 'Playfair Display', serif; /* Apply heading font */
-    font-size: var(--font-lg); /* Logo text size */
-    font-weight: 700;
-    color: var(--light-text); /* Logo text color */
-    text-decoration: none; /* Remove underline */
-}
-
-/* Navigation links list */
-.nav-links {
-    display: flex; /* Arrange links in a row */
-    list-style: none; /* Remove bullet points */
-    gap: var(--space-lg); /* Space between links */
-}
-
-.nav-links a {
-    color: var(--light-text); /* Link color */
-    font-weight: 500; /* Medium font weight */
-    position: relative; /* Needed for the underline effect */
-    padding: var(--space-sm) var(--space-md); /* Add padding around links */
-    border-radius: 4px; /* Slightly rounded corners for hover effect */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transitions */
-}
-
-/* Underline effect on hover */
-.nav-links a:after {
-    content: '';
-    position: absolute;
-    bottom: -5px; /* Position below text */
-    left: 50%; /* Start from center */
-    transform: translateX(-50%); /* Center the underline */
-    width: 0; /* Initially no width */
-    height: 2px; /* Underline thickness */
-    background-color: var(--accent-color); /* Underline color */
-    transition: width 0.3s ease; /* Smooth width transition */
-}
-
-.nav-links a:hover:after,
-.nav-links a.active:after {
-    width: 80%; /* Expand width on hover or if active */
-}
-
-/* Style for the active link */
-.nav-links a.active {
-    font-weight: 700; /* Bold font for active link */
-    background-color: rgba(255, 255, 255, 0.1); /* Subtle background for active link */
-}
-
-/* Container for elements on the right side of the nav */
-.nav-right {
-    display: flex;
-    align-items: center;
-}
-
-/* Language selector button */
-.language-selector {
-    position: relative;
-}
-
-.lang-toggle {
-    background: none;
-    border: none;
-    color: var(--light-text); /* Text color */
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm); /* Space between icon and text */
-    font-size: var(--font-base);
-    font-weight: 500;
-    padding: var(--space-sm) var(--space-md); /* Padding */
-    border-radius: 4px; /* Rounded corners */
-    transition: background-color 0.3s ease; /* Smooth transition */
-}
-
-.lang-toggle:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Subtle background on hover */
-}
-
-/* Styles for the globe icon (if using SVG directly or via font) */
-.globe-icon {
-    width: 24px;
-    height: 24px;
-    stroke: currentColor; /* Use parent color */
-    fill: none;
-}
-
-
-/*
-==============================================================================
-HERO SECTION STYLES (Homepage Banner)
-------------------------------------------------------------------------------
-Styles for the large banner section on the homepage.
-
-Feel free to adjust:
-- Background color, image, and overlay.
-- Padding and height.
-- Text alignment, size, and color.
-- Button appearance within the hero.
-==============================================================================
-*/
-.hero {
-    background-color: var(--primary-color); /* Fallback background color */
-    color: var(--light-text); /* Text color */
-    padding: var(--space-xxl) 0; /* Vertical padding */
-    text-align: center; /* Center align content */
-    display: flex; /* Use flexbox */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    min-height: 50vh; /* Minimum height of the hero section */
-
-    /* Background image with overlay */
-    background-image:
-        linear-gradient(rgba(0, 51, 153, 0.8), rgba(0, 51, 153, 0.6)), /* Darker overlay */
-        url('https://placehold.co/1920x800/003399/ffffff?text=Hero+Image'); /* Placeholder image - replace with your own! */
-    background-size: cover; /* Cover the entire section */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat;
-}
-
-.hero-content {
-    max-width: 900px; /* Max width for content */
-    margin: 0 auto; /* Center content */
-    padding: 0 var(--space-md); /* Horizontal padding */
-}
-
-.hero h1 {
-    font-size: var(--font-xxl); /* Large heading size */
-    margin-bottom: var(--space-md); /* Space below heading */
-    color: var(--light-text); /* Heading color on dark background */
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
-}
-
-.hero p {
-    font-size: var(--font-lg); /* Larger paragraph text */
-    margin-bottom: var(--space-lg); /* Space below paragraph */
-    color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
-}
-
-.hero .btn {
-    background-color: var(--accent-color); /* Accent color for button */
-    color: var(--text-color); /* Dark text on accent button */
-    padding: var(--space-md) var(--space-xl); /* Larger padding for button */
-    font-size: var(--font-md);
-    font-weight: 700;
-}
-
-.hero .btn:hover {
-    background-color: #ffdb7f; /* Slightly lighter accent on hover */
-    color: var(--text-color);
-}
-
-
-/*
-==============================================================================
-PAGE HEADER STYLES (For internal pages like Blog, About, Resources)
-------------------------------------------------------------------------------
-A smaller header for pages other than the homepage.
-
-Feel free to adjust:
-- Background color or image.
-- Padding and height.
-- Text alignment, size, and color.
-==============================================================================
-*/
-.page-header {
-    background-color: var(--primary-color); /* Background color */
-    color: var(--light-text); /* Text color */
-    padding: var(--space-xl) 0; /* Vertical padding */
-    text-align: center; /* Center align content */
-    min-height: 30vh; /* Minimum height */
-    display: flex; /* Use flexbox */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-
-    /* Optional: Add background image with overlay */
-    /* background-image: linear-gradient(rgba(0, 51, 153, 0.8), rgba(0, 51, 153, 0.6)), url('path/to/your/image.jpg'); */
-    /* background-size: cover; */
-    /* background-position: center; */
-}
-
-.page-header-content {
-    max-width: 800px; /* Max width for content */
-    margin: 0 auto; /* Center content */
-    padding: 0 var(--space-md); /* Horizontal padding */
-}
-
-.page-header h1 {
-    font-size: var(--font-xl); /* Heading size */
-    margin-bottom: var(--space-sm); /* Space below heading */
-    color: var(--light-text); /* Heading color */
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
-}
-
-.page-header p {
-    font-size: var(--font-md); /* Paragraph text size */
-    color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
-}
-
-
-/*
-==============================================================================
-MAIN CONTENT AREA & SECTION STYLES
-------------------------------------------------------------------------------
-Styles for the main content sections on different pages.
-
-Feel free to adjust:
-- Overall padding and max-width for the main area.
-- Spacing between sections.
-- Section background colors (e.g., for alternating styles).
-==============================================================================
-*/
-main {
-    padding: var(--space-xl) var(--space-lg); /* Padding for the main content area */
-    max-width: 1200px; /* Max width for the main content */
-    margin: 0 auto; /* Center the main content */
-}
-
-/* Styles for individual sections within main */
-main section {
-    margin-bottom: var(--space-xl); /* Space between sections */
-    padding: var(--space-lg) 0; /* Padding within sections */
-}
-
-/* Example: Styles for alternating section backgrounds */
-/*
-main section:nth-child(even) {
-    background-color: var(--grey-bg);
-    padding: var(--space-xl) var(--space-lg);
-    margin-left: calc(var(--space-lg) * -1);
-    margin-right: calc(var(--space-lg) * -1);
-}
-
-main section:nth-child(odd) {
-     background-color: var(--light-bg);
-}
-*/
-
-/*
-==============================================================================
-HOME PAGE SPECIFIC SECTION STYLES
-------------------------------------------------------------------------------
-Styles specifically for the sections appearing on the homepage.
-
-Feel free to adjust:
-- Layouts for article/resource grids.
-- Styling of individual cards (padding, borders, shadows, hover effects).
-- Typography within cards.
-==============================================================================
-*/
-
-/* Latest Articles Section */
-.latest-articles h2,
-.resources-preview h2 {
-    text-align: center; /* Center section titles */
-    margin-bottom: var(--space-xl); /* More space below section title */
-    font-size: var(--font-heading-section); /* Use section heading font size */
-}
-
-/* Article Grid (Homepage) */
-.article-grid {
-    display: grid; /* Use CSS Grid for layout */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid columns */
-    gap: var(--space-lg); /* Space between grid items */
-}
-
-/* Individual Article Card */
-.article-card {
-    background-color: var(--light-text); /* Card background */
-    border-radius: 8px; /* Rounded corners */
-    overflow: hidden; /* Hide overflowing content (like image corners) */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions on hover */
-    display: flex; /* Use flexbox */
-    flex-direction: column; /* Stack content vertically */
-    height: 100%; /* Ensure cards in a row have equal height */
-}
-
-.article-card:hover {
-    transform: translateY(-5px); /* Lift card slightly on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
-}
-
-.article-image img {
-    width: 100%; /* Make image fill card width */
-    height: 200px; /* Fixed height for images */
-    object-fit: cover; /* Cover the area without distorting aspect ratio */
-    border-bottom: 1px solid var(--border-color); /* Border below image */
-}
-
-.article-content {
-    padding: var(--space-md); /* Padding inside the card */
-    flex-grow: 1; /* Allow content to grow and fill available space */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Push read more link to the bottom */
-}
-
-.article-content h3 {
-    font-size: var(--font-md); /* Heading size inside card */
-    margin-bottom: var(--space-sm);
-}
-
-.article-content p {
-    font-size: var(--font-base);
-    margin-bottom: var(--space-md);
-    flex-grow: 1; /* Allow paragraph to take up space */
-}
-
-.article-content .read-more {
-    font-size: var(--font-sm);
-    font-weight: 600;
-    color: var(--primary-color);
-    text-decoration: none;
-    align-self: flex-start; /* Align link to the left */
-}
-
-.article-content .read-more:hover {
-    color: var(--secondary-color);
+    color: var(--link-hover-color);
     text-decoration: underline;
 }
 
-/* Resources Preview Section */
-.resources-preview {
-    background-color: var(--grey-bg); /* Grey background for this section */
-    padding: var(--space-xl) var(--space-lg); /* Add padding */
-    /* To make the grey background span full width, uncomment the lines below */
-    /* margin-left: calc(var(--space-lg) * -1); */
-    /* margin-right: calc(var(--space-lg) * -1); */
-}
-
-/* Resources Grid (Homepage Preview) */
-.resources-grid {
-    display: grid; /* Use CSS Grid */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
-    gap: var(--space-lg); /* Space between items */
-}
-
-/* Individual Resource Card (Homepage Preview) */
-.resource-card {
-    background-color: var(--light-text); /* Card background */
-    border-radius: 8px; /* Rounded corners */
-    padding: var(--space-md); /* Padding inside card */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    display: flex; /* Use flexbox */
-    flex-direction: column; /* Stack content */
-    justify-content: space-between; /* Distribute space */
-    min-height: 180px; /* Minimum height for consistency */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth transitions */
-}
-
-.resource-card:hover {
-    transform: translateY(-3px); /* Lift card slightly */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Larger shadow */
-}
-
-.resource-card h3 {
-    font-size: var(--font-md);
-    margin-bottom: var(--space-sm);
-    color: var(--primary-color); /* Color for resource title */
-}
-
-.resource-card p {
-    font-size: var(--font-base);
-    margin-bottom: var(--space-md);
-    flex-grow: 1; /* Allow paragraph to take space */
-}
-
-/* Styles for the button inside the resource card */
-.resource-card .btn {
-     padding: var(--space-sm) var(--space-md);
-     font-size: var(--font-sm);
-     align-self: flex-start; /* Align button to the left */
-}
-
-
-/*
-==============================================================================
-NEWSLETTER SECTION STYLES
-------------------------------------------------------------------------------
-Styles for the newsletter subscription section.
-
-Feel free to adjust:
-- Background color or image.
-- Padding.
-- Text styles and form layout.
-- Button appearance.
-==============================================================================
-*/
-.resources-newsletter,
-.blog-newsletter {
-    background-color: var(--dark-bg); /* Dark background */
-    color: var(--light-text); /* Light text */
-    padding: var(--space-xl) var(--space-lg); /* Padding */
-    text-align: center; /* Center align content */
-    margin-top: var(--space-xl); /* Space above the section */
-
-    /* To make the dark background span full width, uncomment the lines below */
-    /* margin-left: calc(var(--space-lg) * -1); */
-    /* margin-right: calc(var(--space-lg) * -1); */
-}
-
-.newsletter-container {
-    max-width: 800px; /* Max width for content */
-    margin: 0 auto; /* Center content */
-}
-
-.newsletter-container h2 {
-    font-size: var(--font-xl);
-    margin-bottom: var(--space-md);
-    color: var(--light-text); /* Heading color on dark background */
-}
-
-.newsletter-container p {
-    font-size: var(--font-md);
-    margin-bottom: var(--space-lg);
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.newsletter-form {
-    display: flex; /* Arrange form elements in a row */
-    gap: var(--space-md); /* Space between input and button */
-    justify-content: center; /* Center the form */
-    flex-wrap: wrap; /* Allow elements to wrap on smaller screens */
-}
-
-.newsletter-form input[type="email"] {
-    padding: var(--space-md);
-    font-size: var(--font-base);
+/* Consistent Button Styling */
+.btn {
+    display: inline-block;
+    background-color: var(--button-background);
+    color: var(--button-text-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
     border: none;
-    border-radius: 4px;
-    flex-grow: 1; /* Allow input to take available space */
-    max-width: 400px; /* Max width for the input */
-}
-
-.newsletter-form .btn {
-    background-color: var(--accent-color); /* Accent color for button */
-    color: var(--text-color); /* Dark text */
-    padding: var(--space-md) var(--space-xl); /* Larger padding */
-    font-size: var(--font-base);
+    cursor: pointer;
+    font-size: 1rem;
     font-weight: 700;
+    text-align: center;
 }
 
-.newsletter-form .btn:hover {
-     background-color: #ffdb7f; /* Slightly lighter accent on hover */
+.btn:hover {
+    background-color: var(--button-hover-background);
+    color: var(--button-text-color);
+    text-decoration: none;
+}
+
+/* Container for centering content */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem; /* Add padding on smaller screens */
+    width: 100%; /* Ensure container takes full width */
+}
+
+
+/* --- 5. Header and Navigation Styling --- */
+header {
+    background-color: var(--header-background);
+    color: var(--text-color);
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.logo-container .logo-text {
+    font-size: 1.6rem; /* Slightly larger logo */
+    font-weight: 700;
+    color: var(--heading-color); /* Use heading color for logo */
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem; /* Increased space between links */
+    align-items: center;
+}
+
+.nav-links li {
+    padding: 0.5rem 0; /* Add padding for clickable area */
+}
+
+.nav-links a {
      color: var(--text-color);
+     text-decoration: none;
+     font-weight: 500;
+     position: relative;
+     padding-bottom: 5px; /* Space for underline */
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--link-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Language Selector Icon Styling */
+.language-selector .lang-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0; /* Remove padding if icon button */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.language-selector .lang-toggle svg.globe-icon {
+    width: 24px;
+    height: 24px;
+    stroke: var(--text-color);
+    fill: none;
+    transition: stroke 0.5s ease;
+}
+
+.language-selector .lang-toggle:hover svg.globe-icon {
+    stroke: var(--link-color); /* Accent color on hover */
 }
 
 
-/*
-==============================================================================
-FOOTER STYLES
-------------------------------------------------------------------------------
-Styles for the website footer.
+/* --- 6. Page Header Section Styling --- */
+.page-header {
+    background-color: var(--card-background);
+    padding: 5rem 1rem; /* More vertical padding */
+    text-align: center;
+    border-bottom: 1px solid var(--section-separator-color);
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+}
 
-Feel free to adjust:
-- Background color and text color.
-- Padding and layout of footer sections.
-- Link styles within the footer.
-- Copyright text styling.
-==============================================================================
-*/
+.page-header h1 {
+    font-size: 3rem; /* Larger main heading */
+    margin-bottom: 0.75rem;
+    color: var(--heading-color);
+}
+
+.page-header p {
+    font-size: 1.25rem; /* Larger subtext */
+    color: var(--text-color);
+    max-width: 800px; /* Limit width for readability */
+    margin: 0.5rem auto 0;
+}
+
+/* --- 7. Content Sections (General Layout) --- */
+section {
+    padding: 4rem 1rem; /* Consistent vertical padding for sections */
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%; /* Ensure section takes full width */
+}
+
+/* Style for alternating section backgrounds (optional but nice for visual breaks) */
+/* For example, apply a class like .alt-background to some sections in HTML */
+.alt-background {
+    background-color: var(--card-background);
+    border-bottom: 1px solid var(--section-separator-color);
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+
+/* --- 8. Footer Styling --- */
 footer {
-    background-color: var(--primary-color); /* Footer background color */
-    color: var(--light-text); /* Text color */
-    padding: var(--space-xl) var(--space-lg) var(--space-md) var(--space-lg); /* Padding: top, right, bottom, left */
+    background-color: var(--footer-background);
+    color: var(--footer-text-color);
+    padding: 2.5rem 1rem 1.5rem; /* Adjusted padding */
+    margin-top: auto;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    width: 100%;
 }
 
 .footer-content {
-    display: grid; /* Use grid for footer sections */
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive columns */
-    gap: var(--space-lg); /* Space between sections */
-    max-width: 1200px; /* Match main content width */
-    margin: 0 auto; /* Center footer content */
-    margin-bottom: var(--space-lg); /* Space above bottom footer */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
 }
 
 .footer-section h3 {
-    font-size: var(--font-md);
-    margin-bottom: var(--space-sm);
-    color: var(--light-text); /* Heading color */
-}
-
-.footer-section p {
-    font-size: var(--font-base);
-    color: rgba(255, 255, 255, 0.8); /* Slightly transparent text */
+    color: var(--footer-text-color);
+    margin-bottom: 1.2rem; /* More space below heading */
+    font-size: 1.1rem;
 }
 
 .footer-section ul {
-    list-style: none; /* Remove bullet points */
+    list-style: none;
+    padding: 0;
 }
 
 .footer-section ul li {
-    margin-bottom: var(--space-sm); /* Space between list items */
+    margin-bottom: 0.75rem; /* More space between list items */
 }
 
 .footer-section a {
-    color: rgba(255, 255, 255, 0.8); /* Link color */
-    font-size: var(--font-base);
+    color: var(--footer-text-color);
+    text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .footer-section a:hover {
-    color: var(--light-text); /* White color on hover */
+    color: var(--link-color); /* Hover using accent color */
     text-decoration: underline;
 }
 
 .social-links a {
-    display: inline-block; /* Allows padding/margin */
-    margin-right: var(--space-md); /* Space between social icons */
-    color: var(--light-text);
-    font-size: var(--font-base);
+    margin-right: 15px; /* More space between social links */
+    font-size: 1.1rem;
+    color: var(--footer-text-color);
+    transition: color 0.3s ease;
 }
 
 .social-links a:hover {
-    color: var(--accent-color); /* Accent color on hover */
+    color: var(--link-color); /* Accent color on hover */
 }
 
 .footer-bottom {
-    text-align: center; /* Center the copyright text */
-    padding-top: var(--space-md); /* Space above copyright */
-    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Separator line */
-}
-
-.footer-bottom p {
-    font-size: var(--font-sm);
-    color: rgba(255, 255, 255, 0.6); /* Lighter text for copyright */
-    margin: 0; /* Remove default paragraph margin */
+    text-align: center;
+    margin-top: 3rem; /* More space above copyright */
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--section-separator-color);
+    color: var(--footer-text-color);
+    font-size: 0.9rem;
 }
 
 
-/*
-==============================================================================
-BLOG PAGE SPECIFIC STYLES
-------------------------------------------------------------------------------
-Styles specifically for the blog page layout and components.
+/* --- 9. Specific Section Styles (Based on your HTML Structure) --- */
 
-Feel free to adjust:
-- Blog filter styling.
-- Blog post grid layout.
-- Styling of individual blog cards.
-- Pagination styling.
-==============================================================================
-*/
-.blog-container {
-    /* No specific styles needed here, main padding applies */
+/* Hero Section (index.html) */
+.hero {
+    background-color: var(--background-color);
+    padding: 8rem 1rem; /* Generous padding for a strong intro */
+    text-align: center;
+    border-bottom: 1px solid var(--section-separator-color);
 }
 
-/* Blog Filter Section */
-.blog-filters {
-    margin-bottom: var(--space-xl); /* Space below filters */
-    text-align: center; /* Center filters */
+.hero h1 {
+    font-size: 3.5rem; /* Larger hero heading */
+    margin-bottom: 1.5rem;
 }
 
-.blog-filters h3 {
-    font-size: var(--font-lg);
-    margin-bottom: var(--space-md);
-    color: var(--dark-bg);
+.hero p {
+    font-size: 1.4rem; /* Larger hero subtext */
+    margin-bottom: 2.5rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.tag-filters {
-    display: flex; /* Arrange tags in a row */
-    justify-content: center; /* Center the tag buttons */
-    flex-wrap: wrap; /* Allow buttons to wrap */
-    gap: var(--space-sm); /* Space between tag buttons */
+
+/* Blog Preview & Resources Preview Sections (index.html) */
+.blog-preview, .resources-preview {
+    /* These sections will likely have .alt-background class in HTML */
+    padding: 4rem 1rem;
+    text-align: center; /* Center content */
 }
 
-.tag-btn {
-    background-color: var(--grey-bg); /* Default button background */
-    color: var(--text-color); /* Default text color */
+.blog-preview h2, .resources-preview h2 {
+    margin-bottom: 3rem; /* More space below section title */
+    font-size: 2.2rem;
+}
+
+.blog-articles-grid, .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Allow slightly smaller cards */
+    gap: 2.5rem; /* Increased gap */
+}
+
+.blog-card, .resource-card {
+    background-color: var(--background-color);
     border: 1px solid var(--border-color);
-    border-radius: 20px; /* Pill shape */
-    padding: var(--space-sm) var(--space-md);
-    font-size: var(--font-sm);
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-.tag-btn:hover {
-    background-color: var(--secondary-color);
-    color: var(--light-text);
-    border-color: var(--secondary-color);
-}
-
-.tag-btn.active {
-    background-color: var(--primary-color);
-    color: var(--light-text);
-    border-color: var(--primary-color);
-    font-weight: 700;
-}
-
-/* Blog Posts Grid */
-.blog-grid {
-    display: grid; /* Use CSS Grid */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-    gap: var(--space-lg); /* Space between grid items */
-    margin-bottom: var(--space-xl); /* Space below the grid */
-}
-
-/* Individual Blog Card */
-.blog-card {
-    background-color: var(--light-text); /* Card background */
-    border-radius: 8px; /* Rounded corners */
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex; /* Use flexbox */
-    flex-direction: column; /* Stack content */
-    height: 100%; /* Ensure cards have equal height */
-}
-
-.blog-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.blog-image img {
-    width: 100%;
-    height: 250px; /* Slightly taller images for blog posts */
-    object-fit: cover;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.blog-content {
-    padding: var(--space-md);
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    transition: background-color 0.5s ease, border-color 0.5s ease, transform 0.3s ease; /* Added transform */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle card shadow */
 }
 
-.blog-meta {
-    font-size: var(--font-sm);
-    color: #666;
-    margin-bottom: var(--space-sm);
-    display: flex; /* Arrange date and tags in a row */
-    justify-content: space-between; /* Space them out */
-    align-items: center;
+.blog-card:hover, .resource-card:hover {
+    transform: translateY(-5px); /* Slight lift effect on hover */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* More pronounced shadow on hover */
+}
+
+
+.blog-card img {
+    width: 100%;
+    height: 220px; /* Slightly increased height */
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    text-align: left; /* Align text left within card */
+}
+
+.card-content h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.3rem;
+}
+
+.card-content p {
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: auto;
+    font-weight: 700;
+    text-decoration: none; /* Ensure no underline on initial state */
+}
+
+/* Resources Preview specifics */
+.resource-card h3 {
+     margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.3rem;
+}
+
+.resource-card p {
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+
+/* Blog Content Section (blog.html) */
+.blog-content {
+    display: flex;
+    gap: 3rem; /* Increased gap between main content and sidebar */
+    padding: 3rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
     flex-wrap: wrap; /* Allow wrapping */
 }
 
-.blog-date {
-    margin-right: var(--space-md); /* Space between date and tags */
+.blog-main {
+    flex: 3;
+    min-width: 300px;
 }
 
-.blog-tags .tag {
-    display: inline-block;
-    background-color: var(--grey-bg);
-    color: var(--text-color);
-    font-size: var(--font-sm);
-    padding: var(--space-xs) var(--space-sm);
-    border-radius: 4px;
-    margin-right: var(--space-sm); /* Add missing value */
+.blog-sidebar {
+    flex: 1;
+    min-width: 280px; /* Slightly wider sidebar */
+    background-color: var(--card-background);
+    padding: 2rem; /* Increased padding */
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+    height: fit-content; /* Adjust height to content */
 }
+
+.blog-post {
+    background-color: var(--card-background);
+    padding: 2rem; /* Increased padding */
+    margin-bottom: 3rem; /* More space between posts */
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.blog-post h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.blog-post .post-meta {
+    font-size: 0.95rem;
+    color: var(--placeholder-color);
+    margin-bottom: 1.5rem;
+}
+
+.blog-post .post-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 2rem; /* More space below image */
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+.blog-post .post-excerpt p {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+.blog-sidebar .sidebar-section {
+    margin-bottom: 2.5rem; /* More space between sidebar sections */
+}
+
+.blog-sidebar .sidebar-section h3 {
+    margin-bottom: 1.2rem;
+    font-size: 1.2rem;
+    color: var(--heading-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.75rem; /* More padding below border */
+}
+
+.blog-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.blog-sidebar ul li {
+    margin-bottom: 1rem; /* More space between list items */
+}
+
+.blog-sidebar a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: block;
+    font-size: 0.95rem;
+}
+
+.blog-sidebar a:hover {
+    color: var(--link-color);
+}
+
+.blog-sidebar .recent-posts .post-title {
+    display: block;
+    font-weight: 500;
+}
+
+.blog-sidebar .recent-posts .post-date {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--placeholder-color);
+    margin-top: 3px;
+}
+
+/* Sidebar form */
+.sidebar-section form {
+    display: flex;
+    flex-direction: column; /* Stack form elements */
+    gap: 10px;
+}
+
+.sidebar-section form input[type="text"],
+.sidebar-section form input[type="email"] {
+    width: 100%; /* Full width */
+    padding: 0.75rem; /* Increased padding */
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+    font-size: 1rem;
+}
+
+.sidebar-section form input[type="text"]::placeholder,
+.sidebar-section form input[type="email"]::placeholder {
+    color: var(--placeholder-color);
+}
+
+.sidebar-section form button {
+    width: 100%; /* Full width button */
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+}
+
+/* Pagination (Blog page) */
+.pagination {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 0.75rem 1rem;
+    margin: 0 5px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.pagination a.active {
+    background-color: var(--link-color);
+    color: var(--button-text-color);
+    border-color: var(--link-color);
+}
+
+.pagination a:hover:not(.active) {
+    background-color: var(--card-background);
+    color: var(--link-color);
+    border-color: var(--link-color);
+}
+
+
+/* Resources Listing Section (resources.html) */
+.resources-listing {
+    padding: 3rem 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.resource-item {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem; /* Increased padding */
+    margin-bottom: 2rem; /* More space between items */
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem; /* Increased gap */
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+}
+
+.resource-icon {
+    flex-shrink: 0;
+    width: 50px; /* Larger icon area */
+    height: 50px;
+    display: flex; /* Center icon */
+    align-items: center;
+    justify-content: center;
+}
+
+.resource-icon svg {
+    width: 40px; /* Larger SVG icon */
+    height: 40px;
+    stroke: var(--link-color);
+    fill: none;
+    transition: stroke 0.5s ease;
+}
+
+.resource-content {
+    flex-grow: 1;
+    min-width: 250px; /* Ensure content has minimum width before wrapping */
+}
+
+.resource-content h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.3rem;
+}
+
+.resource-content p {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.resource-meta {
+    font-size: 0.95rem;
+    color: var(--placeholder-color);
+    margin-bottom: 1.5rem;
+}
+
+.resource-meta span {
+    margin-right: 1.5rem; /* More space between meta info */
+}
+
+/* Resources Newsletter Section (resources.html) */
+.resources-newsletter {
+     /* This section will likely have .alt-background class in HTML */
+    padding: 4rem 1rem;
+    text-align: center;
+}
+
+.newsletter-container {
+    max-width: 700px; /* Wider container */
+    margin: 0 auto;
+}
+
+.newsletter-container h2 {
+     font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.newsletter-container p {
+    font-size: 1.25rem; /* Larger text */
+    margin-bottom: 2.5rem;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 15px; /* Increased gap */
+    justify-content: center;
+    flex-wrap: wrap; /* Allow wrapping */
+}
+
+.newsletter-form input[type="email"] {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    flex-grow: 1;
+    max-width: 350px; /* Slightly wider input */
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+    font-size: 1rem;
+}
+
+.newsletter-form input[type="email"]::placeholder {
+    color: var(--placeholder-color);
+}
+
+.newsletter-form button {
+    padding: 0.75rem 2rem; /* More padding */
+    font-size: 1rem;
+}
+
+
+/* About Content Section (about.html) */
+.about-content {
+    padding: 3rem 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about-content h2 {
+    font-size: 2rem; /* Adjusted size */
+    margin-top: 2.5rem; /* More space above section headings */
+    margin-bottom: 1.2rem;
+    border-bottom: 1px solid var(--section-separator-color);
+    padding-bottom: 0.75rem;
+}
+
+.about-content p {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem; /* Increased gap */
+    margin-top: 3rem;
+}
+
+.team-member {
+    text-align: center;
+    background-color: var(--card-background);
+    padding: 2rem; /* Increased padding */
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.team-member img {
+    width: 160px; /* Slightly larger image */
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    border: 4px solid var(--link-color); /* Thicker accent border */
+    transition: border-color 0.5s ease;
+}
+
+.team-member h3 {
+    font-size: 1.4rem; /* Adjusted size */
+    margin-bottom: 0.5rem;
+}
+
+.team-member p {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+
+/* --- 10. Responsive Adjustments --- */
+@media (max-width: 1000px) {
+    .blog-content {
+        flex-direction: column;
+    }
+
+    .blog-main {
+        flex: auto; /* Allow main content to take full width */
+    }
+
+    .blog-sidebar {
+        flex: auto; /* Allow sidebar to take full width */
+        min-width: auto;
+    }
+
+    .resource-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .resource-icon {
+        margin-bottom: 1rem;
+    }
+
+    .resource-content {
+        min-width: auto;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+     .newsletter-form input[type="email"] {
+        width: 100%;
+        max-width: none;
+     }
+
+     .newsletter-form button {
+         width: auto; /* Button width fits content or stays full width if desired */
+     }
+}
+
+
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.3rem; }
+
+    header nav {
+        flex-direction: column;
+        gap: 1.5rem; /* Space between logo/nav/right */
+        padding: 0 1rem;
+    }
+
+    .logo-container {
+         width: 100%;
+         text-align: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .nav-links li {
+        padding: 0; /* Remove padding if stacked vertically */
+    }
+
+    .nav-right {
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
+
+
+    .page-header {
+        padding: 3rem 1rem;
+    }
+
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .page-header p {
+        font-size: 1.1rem;
+    }
+
+    .hero {
+        padding: 5rem 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .blog-preview h2, .resources-preview h2 {
+        font-size: 2rem;
+    }
+
+    .blog-articles-grid, .resources-grid {
+         grid-template-columns: 1fr; /* Stack cards */
+    }
+
+    .blog-card, .resource-card {
+        text-align: left;
+    }
+
+    .resource-item {
+        text-align: left; /* Back to left align for list items */
+        align-items: flex-start;
+    }
+
+     .resource-icon {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 0;
+     }
+
+     .resource-item {
+        flex-direction: row; /* Back to row layout if space allows */
+        flex-wrap: wrap; /* Allow wrap if content is too wide */
+     }
+
+     .resource-content {
+         flex-grow: 1;
+     }
+
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-section {
+        min-width: auto;
+        width: 100%;
+        margin-bottom: 2rem; /* Add space between stacked footer sections */
+    }
+
+    .footer-section ul {
+        padding: 0;
+    }
+
+    .social-links {
+        text-align: center;
+    }
+
+    .social-links a {
+        margin: 0 10px; /* Adjust spacing for centered icons */
+    }
+
+     .sidebar-section form input[type="text"],
+    .sidebar-section form input[type="email"] {
+        width: 100%; /* Full width input even with button */
+        margin-right: 0;
+    }
+
+    .sidebar-section form button {
+        width: auto; /* Button width fits content */
+    }
+
+    .newsletter-form {
+         flex-direction: column;
+         align-items: center;
+         gap: 1rem;
+    }
+
+    .newsletter-form input[type="email"] {
+         width: 100%;
+         max-width: none;
+    }
+
+    .newsletter-form button {
+         width: auto;
+    }
+
+    .team-grid {
+         grid-template-columns: 1fr; /* Stack team members */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.5rem; }
+    h3 { font-size: 1.2rem; }
+    p { font-size: 0.95rem; }
+
+    .logo-container .logo-text {
+        font-size: 1.4rem;
+    }
+
+     .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .page-header p {
+        font-size: 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+     .blog-preview h2, .resources-preview h2 {
+        font-size: 1.8rem;
+    }
+
+    .blog-post h2 {
+        font-size: 1.5rem;
+    }
+
+    .resource-item {
+        padding: 1.5rem;
+    }
+
+    .resource-icon svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    .resource-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .newsletter-container h2 {
+        font-size: 1.8rem;
+    }
+
+    .newsletter-container p {
+        font-size: 1rem;
+    }
+
+    .team-member h3 {
+        font-size: 1.2rem;
+    }
+
+    .team-member img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .footer-content {
+        gap: 1.5rem;
+    }
+}
+
+/* --- 11. Theme Toggle Button Styling --- */
+/* Add this button to your HTML header, e.g., near the language selector */
+.theme-toggle-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0; /* Adjust if you want clickable area larger than icon */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color); /* Icon color follows text color */
+    transition: color 0.5s ease;
+}
+
+.theme-toggle-button:hover {
+     color: var(--link-color); /* Accent color on hover */
+}
+
+.theme-toggle-button svg {
+     width: 24px;
+     height: 24px;
+     fill: currentColor; /* Fills the SVG with the current text color */
+}
+
+/* Hide one icon based on body class */
+.theme-toggle-button .sun-icon,
+.theme-toggle-button .moon-icon {
+    display: none; /* Hide by default */
+}
+
+body.dark-mode .theme-toggle-button .moon-icon {
+    display: block; /* Show moon icon in dark mode */
+}
+
+body:not(.dark-mode) .theme-toggle-button .sun-icon {
+    display: block; /* Show sun icon in light mode */
+}
+
+/* Optional: Add styles for a simple moon/sun SVG if you don't have icons */
+/* Example SVG (place directly in your HTML button):
+   <button class="theme-toggle-button">
+       <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+           <circle cx="12" cy="12" r="5"/>
+           <line x1="12" y1="1" x2="12" y2="3"/>
+           <line x1="12" y1="21" x2="12" y2="23"/>
+           <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+           <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+           <line x1="1" y1="12" x2="3" y2="12"/>
+           <line x1="21" y1="12" x2="23" y2="12"/>
+           <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+           <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+       </svg>
+       <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+       </svg>
+   </button>
+*/

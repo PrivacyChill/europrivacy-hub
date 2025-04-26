@@ -1,249 +1,135 @@
 // Translations
-
 const translations = {
-
     hero: {
-
         title: {
-
             en: "Welcome to EuroPrivacy Hub",
-
             it: "Benvenuti su EuroPrivacy Hub",
-
-            de: "Willkommen bei EuroPrivacy Hub"
-
+            de: "Willkommen bei EuroPrivacy Hub",
         },
-
         description: {
-
             en: "Your trusted source for privacy law and data protection resources",
-
             it: "La tua fonte affidabile per le leggi sulla privacy e le risorse sulla protezione dei dati",
-
-            de: "Ihre vertrauenswürdige Quelle für Datenschutzrecht und Datenschutzressourcen"
-
-        }
-
-    }
-
+            de: "Ihre vertrauenswürdige Quelle für Datenschutzrecht und Datenschutzressourcen",
+        },
+    },
 };
 
+// Blog posts
 const blogPosts = [
-
     {
-
         id: 1,
-
-        title: {
-
-            en: "Understanding GDPR Basics",
-
-            it: "Comprendere le basi del GDPR",
-
-            de: "Grundlagen der DSGVO verstehen"
-
-        },
-
-        content: {
-
-            en: "Introduction to European data protection principles...",
-
-            it: "Introduzione ai principi europei sulla protezione dei dati...",
-
-            de: "Einführung in die europäischen Datenschutzprinzipien..."
-
-        },
-
-        tags: ["GDPR", "Data Protection"]
-
+        title: { en: "Understanding GDPR Basics", it: "Comprendere le basi del GDPR", de: "Grundlagen der DSGVO verstehen" },
+        content: { en: "Introduction to European data protection principles...", it: "Introduzione ai principi europei sulla protezione dei dati...", de: "Einführung in die europäischen Datenschutzprinzipien..." },
+        tags: ["GDPR", "Data Protection"],
     },
-
     {
-
         id: 2,
-
-        title: {
-
-            en: "Data Subject Rights",
-
-            it: "Diritti dell'interessato",
-
-            de: "Rechte der betroffenen Person"
-
-        },
-
-        content: {
-
-            en: "Understanding your rights under GDPR...",
-
-            it: "Comprendere i tuoi diritti ai sensi del GDPR...",
-
-            de: "Verstehen Sie Ihre Rechte unter der DSGVO..."
-
-        },
-
-        tags: ["Rights", "GDPR"]
-
-    }
-
+        title: { en: "Data Subject Rights", it: "Diritti dell'interessato", de: "Rechte der betroffenen Person" },
+        content: { en: "Understanding your rights under GDPR...", it: "Comprendere i tuoi diritti ai sensi del GDPR...", de: "Verstehen Sie Ihre Rechte unter der DSGVO..." },
+        tags: ["Rights", "GDPR"],
+    },
 ];
 
 // Current language state
-
 let currentLang = 'en';
 
+// Initialize the app
 document.addEventListener('DOMContentLoaded', () => {
+    setupThemeToggle();
+    updateContent();
+});
 
-    // Theme Toggle Logic
+// Setup theme toggle
+function setupThemeToggle() {
+    const themeToggleButton = createFloatingThemeToggle();
+    document.body.appendChild(themeToggleButton); // Append button to the body
 
-    const themeToggle = document.getElementById('themeToggle');
+    // Get current theme from local storage
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    setTheme(savedTheme);
 
-    let isDarkTheme = false;
-
-    // Check for saved theme preference
-
-    const savedTheme = localStorage.getItem('theme');
-
-    if (savedTheme) {
-
-        document.documentElement.setAttribute('data-theme', savedTheme);
-
-        isDarkTheme = savedTheme === 'dark';
-
-    }
-
-    themeToggle.addEventListener('click', () => {
-
-        isDarkTheme = !isDarkTheme;
-
-        const theme = isDarkTheme ? 'dark' : 'light';
-
-        document.documentElement.setAttribute('data-theme', theme);
-
-        localStorage.setItem('theme', theme);
-
+    themeToggleButton.addEventListener('click', () => {
+        const newTheme = savedTheme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
     });
+}
 
-    // Language Selector Logic
+// Set the selected theme function
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+}
 
-    const langSelector = document.querySelector('.language-selector');
-
+// Function to create the floating theme toggle button
+function createFloatingThemeToggle() {
+    const button = document.createElement('button');
+    button.innerHTML = '🌙'; // Use an SVG or icon if preferred
+    button.classList.add('floating-theme-toggle');
+    button.style.position = 'fixed';
+    button.style.bottom = '20px';
+    button.style.right = '20px';
+    button.style.border = 'none';
+    button.style.borderRadius = '50%';
+    button.style.backgroundColor = '#007bff'; // Customize color
+    button.style.color = 'white';
+    button.style.padding = '10px';
+    button.style.cursor = 'pointer';
+    button.style.zIndex = '1000';
+    return button;
+}
+// Setup language selector functionality
+function setupLanguageSelector() {
     const langToggle = document.querySelector('.lang-toggle');
-
     const langOptions = document.querySelectorAll('.lang-option');
-
     const currentLangText = document.querySelector('.current-lang');
 
-    // Toggle dropdown
-
     langToggle.addEventListener('click', (e) => {
-
         e.stopPropagation();
-
-        langSelector.classList.toggle('active');
-
+        langToggle.parentElement.classList.toggle('active');
     });
-
-    // Close dropdown when clicking outside
 
     document.addEventListener('click', () => {
-
-        langSelector.classList.remove('active');
-
+        langToggle.parentElement.classList.remove('active');
     });
-
-    // Language selection
 
     langOptions.forEach(option => {
-
         option.addEventListener('click', (e) => {
-
             e.preventDefault();
 
-            const lang = option.dataset.lang;
-
-            const langCode = option.querySelector('.lang-code').textContent;
-            
-            // Update active state
-
-            langOptions.forEach(opt => opt.classList.remove('active'));
-
-            option.classList.add('active');
-            
-            // Update current language display
-
-            currentLangText.textContent = langCode;
-            
-            // Update language and content
-
-            currentLang = lang;
+            currentLang = option.dataset.lang;
+            currentLangText.textContent = option.querySelector('.lang-code').textContent;
 
             updateContent();
-            
-            // Close dropdown
-
-            langSelector.classList.remove('active');
-
+            langToggle.parentElement.classList.remove('active');
         });
-
     });
+}
 
-    // Update content based on selected language
+// Update the content based on the selected language
+function updateContent() {
+    const mainTitle = document.getElementById('mainTitle');
+    const mainDesc = document.getElementById('mainDesc');
+    const blogPostsContainer = document.getElementById('blog-posts');
 
-    function updateContent() {
-
-        const mainTitle = document.getElementById('mainTitle');
-
-        const mainDesc = document.getElementById('mainDesc');
-
-        const blogPostsContainer = document.getElementById('blog-posts');
-
-        // Update hero section
-
-        if (mainTitle && mainDesc) {
-
-            mainTitle.textContent = translations.hero.title[currentLang];
-
-            mainDesc.textContent = translations.hero.description[currentLang];
-
-        }
-
-        // Update blog posts
-
-        if (blogPostsContainer) {
-
-            renderBlogPosts(blogPostsContainer);
-
-        }
-
+    if (mainTitle && mainDesc) {
+        mainTitle.textContent = translations.hero.title[currentLang];
+        mainDesc.textContent = translations.hero.description[currentLang];
     }
 
-    // Render blog posts
-
-    function renderBlogPosts(container) {
-
-        container.innerHTML = blogPosts.map(post => `
-
-            <article class="blog-post">
-
-                <h2>${post.title[currentLang]}</h2>
-
-                <div class="tags">
-
-                    ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-
-                </div>
-
-                <p>${post.content[currentLang]}</p>
-
-            </article>
-
-        `).join('');
-
+    if (blogPostsContainer) {
+        renderBlogPosts(blogPostsContainer);
     }
+}
 
-    // Initial render
-
-    updateContent();
-
-});
+// Render blog posts
+function renderBlogPosts(container) {
+    container.innerHTML = blogPosts.map(post => `
+        <article class="blog-post">
+            <h2>${post.title[currentLang]}</h2>
+            <div class="tags">
+                ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+            </div>
+            <p>${post.content[currentLang]}</p>
+        </article>
+    `).join('');
+}
