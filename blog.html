@@ -1,68 +1,190 @@
+<!-- ================ 3. blog.html ================ -->
+<!-- This is your blog page -->
+<!-- Copy this entire code into a new file named "blog.html" -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - EuroPrivacy Hub</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>EuroPrivacy Hub - Blog</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
 </head>
 <body>
+    <!-- HEADER SECTION - Same across all pages -->
     <header>
         <nav>
-            <a href="index.html" class="logo-container">
-                <img src="./images/logo.png" alt="EuroPrivacy Hub Logo" class="logo-image">
-                <span class="logo-text">EuroPrivacy Hub</span>
-            </a>
-
+            <!-- Main navigation links -->
             <ul class="nav-links">
                 <li><a href="blog.html" class="active">Blog</a></li>
                 <li><a href="resources.html">Resources</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
 
+            <!-- Right side navigation elements (language selector) -->
             <div class="nav-right">
                 <div class="language-selector">
-                    <!-- Language selector (same as index.html) -->
+                    <button class="lang-toggle">
+                        <svg class="globe-icon" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            <path d="M2 12h20"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </nav>
     </header>
 
-    <div class="container">
-        <section class="page-header">
-            <h1>Latest Blog Posts</h1>
-        </section>
+    <!-- BLOG HEADER -->
+    <section class="page-header">
+        <div class="header-content">
+            <h1>Privacy Blog</h1>
+            <p>Latest insights, news, and analysis on European privacy law and regulations</p>
+        </div>
+    </section>
 
-        <section class="blog-grid">
-            <article class="blog-card">
-                <h2>Understanding GDPR Basics</h2>
-                <p class="date">April 15, 2025</p>
-                <p class="excerpt">An introduction to European data protection principles and how they affect businesses and individuals.</p>
-                <div class="tags">
-                    <span class="tag">GDPR</span>
-                    <span class="tag">Privacy</span>
+    <!-- MAIN CONTENT -->
+    <main class="blog-content">
+        <!-- Blog Articles -->
+        <section class="blog-articles">
+            <!-- Blog Article 1 -->
+            <article class="blog-article">
+                <div class="article-image">
+                    <!-- Replace with your image -->
+                    <img src="https://placehold.co/800x400" alt="GDPR Updates">
                 </div>
+                <div class="article-meta">
+                    <span class="date">April 15, 2025</span>
+                    <span class="category">GDPR</span>
+                </div>
+                <h2>GDPR Updates 2025: What Organizations Need to Know</h2>
+                <p>The General Data Protection Regulation continues to evolve as digital landscapes change. This article examines the latest updates to the GDPR framework and provides actionable insights for organizations to maintain compliance.</p>
+                <a href="#" class="read-more">Read Full Article</a>
             </article>
 
-            <article class="blog-card">
-                <h2>Data Subject Rights Explained</h2>
-                <p class="date">April 14, 2025</p>
-                <p class="excerpt">A comprehensive guide to understanding your rights under GDPR and how to exercise them.</p>
-                <div class="tags">
-                    <span class="tag">Rights</span>
-                    <span class="tag">GDPR</span>
+            <!-- Blog Article 2 -->
+            <article class="blog-article">
+                <div class="article-image">
+                    <!-- Replace with your image -->
+                    <img src="https://placehold.co/800x400" alt="EU-US Data Privacy">
                 </div>
+                <div class="article-meta">
+                    <span class="date">April 10, 2025</span>
+                    <span class="category">International</span>
+                </div>
+                <h2>EU-US Data Privacy Framework: Comprehensive Guide</h2>
+                <p>The new framework for transatlantic data flows presents both opportunities and challenges for organizations transferring personal data between the EU and US. This guide unpacks key provisions and compliance requirements.</p>
+                <a href="#" class="read-more">Read Full Article</a>
+            </article>
+
+            <!-- Blog Article 3 -->
+            <article class="blog-article">
+                <div class="article-image">
+                    <!-- Replace with your image -->
+                    <img src="https://placehold.co/800x400" alt="AI Regulations">
+                </div>
+                <div class="article-meta">
+                    <span class="date">April 5, 2025</span>
+                    <span class="category">AI & Privacy</span>
+                </div>
+                <h2>AI and Data Protection: Navigating the Regulatory Landscape</h2>
+                <p>As artificial intelligence becomes increasingly integrated into business operations, privacy regulations are adapting to address new challenges. This article explores the intersection of AI technologies and European data protection laws.</p>
+                <a href="#" class="read-more">Read Full Article</a>
             </article>
         </section>
-    </div>
 
+        <!-- Sidebar -->
+        <aside class="blog-sidebar">
+            <!-- Categories -->
+            <div class="sidebar-section">
+                <h3>Categories</h3>
+                <ul class="categories">
+                    <li><a href="#">GDPR (8)</a></li>
+                    <li><a href="#">ePrivacy (5)</a></li>
+                    <li><a href="#">International Transfers (6)</a></li>
+                    <li><a href="#">Data Protection (12)</a></li>
+                    <li><a href="#">AI & Privacy (4)</a></li>
+                    <li><a href="#">Enforcement (7)</a></li>
+                </ul>
+            </div>
+
+            <!-- Popular Posts -->
+            <div class="sidebar-section">
+                <h3>Popular Posts</h3>
+                <ul class="popular-posts">
+                    <li>
+                        <a href="#">
+                            <span class="post-title">Data Breach Response: A Step-by-Step Guide</span>
+                            <span class="post-date">March 22, 2025</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="post-title">Privacy by Design: Implementing Data Protection</span>
+                            <span class="post-date">March 15, 2025</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="post-title">The Role of DPOs in Modern Organizations</span>
+                            <span class="post-date">March 8, 2025</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Newsletter Signup -->
+            <div class="sidebar-section newsletter">
+                <h3>Stay Updated</h3>
+                <p>Subscribe to our newsletter for the latest privacy news and updates.</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
+            </div>
+        </aside>
+    </main>
+
+    <!-- FOOTER SECTION -->
     <footer>
-        <p>© 2025 EuroPrivacy Hub</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>EuroPrivacy Hub</h3>
+                <p>Your trusted source for privacy law and data protection resources in Europe.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: contact@europrivacyhub.com</p>
+                <div class="social-links">
+                    <!-- Add your social media links here -->
+                    <a href="#" class="social-icon">LinkedIn</a>
+                    <a href="#" class="social-icon">Twitter</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 EuroPrivacy Hub. All rights reserved.</p>
+        </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <!-- JavaScript for interactive elements -->
+    <script>
+        // Language selector functionality can be added here
+        document.querySelector('.lang-toggle').addEventListener('click', function() {
+            // Add code for language selection later
+            alert('Language selection coming soon!');
+        });
+    </script>
 </body>
 </html>

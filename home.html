@@ -1,0 +1,165 @@
+<!-- ================ 2. home.html (MAIN PAGE) ================ -->
+<!-- This is your main homepage (renamed from index.html) -->
+<!-- Copy this entire code into a new file named "home.html" -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EuroPrivacy Hub - Home</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- You can add your favicon here later -->
+    <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
+</head>
+<body>
+    <!-- HEADER SECTION - Same across all pages -->
+    <header>
+        <nav>
+            <!-- Main navigation links -->
+            <ul class="nav-links">
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+
+            <!-- Right side navigation elements (language selector) -->
+            <div class="nav-right">
+                <div class="language-selector">
+                    <button class="lang-toggle">
+                        <svg class="globe-icon" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            <path d="M2 12h20"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION - Main banner -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>WELCOME TO EUROPRIVACY HUB</h1>
+            <p>Your trusted source for privacy law and data protection resources</p>
+            <a href="about.html" class="btn">Learn More</a>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT SECTION -->
+    <main>
+        <!-- Latest Articles Section -->
+        <section class="latest-articles">
+            <h2>Latest Articles</h2>
+            <div class="article-grid">
+                <!-- Article Card 1 -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <!-- Replace with your image -->
+                        <img src="https://placehold.co/400x300" alt="GDPR Updates">
+                    </div>
+                    <div class="article-content">
+                        <h3>GDPR Updates 2025</h3>
+                        <p>Key changes to the General Data Protection Regulation and what organizations need to know.</p>
+                        <a href="blog.html" class="read-more">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Article Card 2 -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <!-- Replace with your image -->
+                        <img src="https://placehold.co/400x300" alt="Privacy Shield">
+                    </div>
+                    <div class="article-content">
+                        <h3>EU-US Data Privacy Framework</h3>
+                        <p>Understanding the new regulations for transferring personal data between EU and US.</p>
+                        <a href="blog.html" class="read-more">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Article Card 3 -->
+                <div class="article-card">
+                    <div class="article-image">
+                        <!-- Replace with your image -->
+                        <img src="https://placehold.co/400x300" alt="AI Regulations">
+                    </div>
+                    <div class="article-content">
+                        <h3>AI and Data Protection</h3>
+                        <p>Exploring the intersection of artificial intelligence and privacy regulations.</p>
+                        <a href="blog.html" class="read-more">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources Preview Section -->
+        <section class="resources-preview">
+            <h2>Privacy Resources</h2>
+            <div class="resources-grid">
+                <!-- Resource Card 1 -->
+                <div class="resource-card">
+                    <h3>GDPR Compliance Checklist</h3>
+                    <p>Step-by-step guide to ensure your organization follows GDPR guidelines.</p>
+                    <a href="resources.html" class="btn">Download</a>
+                </div>
+
+                <!-- Resource Card 2 -->
+                <div class="resource-card">
+                    <h3>Privacy Policy Templates</h3>
+                    <p>Customizable templates for your website or application.</p>
+                    <a href="resources.html" class="btn">Access Templates</a>
+                </div>
+
+                <!-- Resource Card 3 -->
+                <div class="resource-card">
+                    <h3>Data Protection Impact Assessment</h3>
+                    <p>Tools and guidance for conducting effective DPIAs.</p>
+                    <a href="resources.html" class="btn">Learn More</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>EuroPrivacy Hub</h3>
+                <p>Your trusted source for privacy law and data protection resources in Europe.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="home.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: contact@europrivacyhub.com</p>
+                <div class="social-links">
+                    <!-- Add your social media links here -->
+                    <a href="#" class="social-icon">LinkedIn</a>
+                    <a href="#" class="social-icon">Twitter</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 EuroPrivacy Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for interactive elements -->
+    <script>
+        // Language selector functionality can be added here
+        document.querySelector('.lang-toggle').addEventListener('click', function() {
+            // Add code for language selection later
+            alert('Language selection coming soon!');
+        });
+    </script>
+</body>
+</html>
