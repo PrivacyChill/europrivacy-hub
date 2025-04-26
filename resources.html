@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EuroPrivacy Hub - Resources</title>
-    **<link rel="stylesheet" href="css/style.css">**
+    <link rel="stylesheet" href="css/style.css">
     <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
 </head>
 <body>
@@ -12,7 +12,7 @@
     <header>
         <nav>
             <!-- Site logo/title that links to homepage -->
-            <a href="home.html" class="logo-container">
+            <a href="index.html" class="logo-container">
                 <span class="logo-text">EuroPrivacy Hub</span>
             </a>
 
@@ -38,141 +38,69 @@
         </nav>
     </header>
 
-    <!-- RESOURCES HEADER -->
-    <section class="page-header">
-        <div class="header-content">
-            <h1>Privacy Resources</h1>
-            <p>Tools, templates, and guides to help you navigate European privacy laws</p>
-        </div>
-    </section>
-
-    <!-- MAIN CONTENT -->
-    <main class="resources-content">
-        <!-- Resources Categories -->
-        <section class="resource-categories">
-            <h2>Resource Categories</h2>
-            <div class="category-buttons">
-                <button class="category-btn active" data-category="all">All Resources</button>
-                <button class="category-btn" data-category="templates">Templates</button>
-                <button class="category-btn" data-category="guides">Guides</button>
-                <button class="category-btn" data-category="checklists">Checklists</button>
-                <button class="category-btn" data-category="tools">Tools</button>
+    <main>
+        <!-- RESOURCES HEADER -->
+        <section class="page-header">
+            <div class="header-content">
+                <h1>Privacy Resources</h1>
+                <p>Tools, templates, and guides to help you navigate European privacy laws</p>
             </div>
         </section>
 
-        <!-- Resources Grid -->
-        <section class="resources-grid-container">
-            <!-- Resource Card 1 -->
-            <div class="resource-card" data-category="templates">
+        <!-- RESOURCES LISTING SECTION -->
+        <section class="resources-listing">
+            <!-- Example Resource Item -->
+            <div class="resource-item">
                 <div class="resource-icon">
-                    <svg viewBox="0 0 24 24" width="48" height="48">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                        <polyline points="14 2 14 8 20 8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                        <line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                        <line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                        <polyline points="10 9 9 9 8 9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <rect width="18" height="14" x="3" y="7" rx="2"></rect>
+                        <path d="M12 7V3c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2h-8zM8 5h4m-4 4h8m-8 4h8"></path>
                     </svg>
                 </div>
                 <div class="resource-content">
-                    <h3>GDPR-Compliant Privacy Policy Template</h3>
-                    <p>A comprehensive template that covers all required GDPR disclosures for websites and applications.</p>
+                    <h3>GDPR Compliance Checklist</h3>
+                    <p>A comprehensive checklist to help your organization assess and ensure compliance with the General Data Protection Regulation.</p>
                     <div class="resource-meta">
-                        <span class="format">Format: DOCX, PDF</span>
+                        <span class="format">Format: PDF</span>
                         <span class="updated">Updated: March 2025</span>
                     </div>
                     <a href="#" class="btn">Download</a>
                 </div>
             </div>
 
-            <!-- Resource Card 2 -->
-            <div class="resource-card" data-category="guides">
-                <div class="resource-icon">
-                    <svg viewBox="0 0 24 24" width="48" height="48">
-                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            <!-- Example Resource Item 2 -->
+            <div class="resource-item">
+                 <div class="resource-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <polyline points="10 9 9 9 8 9"></polyline>
                     </svg>
                 </div>
                 <div class="resource-content">
-                    <h3>Data Processing Agreement Guide</h3>
-                    <p>Detailed guide explaining what to include in Data Processing Agreements with third-party processors.</p>
+                    <h3>Privacy Policy Template</h3>
+                    <p>A customizable template to help you create a clear and compliant privacy policy for your website or application.</p>
                     <div class="resource-meta">
-                        <span class="format">Format: PDF</span>
-                        <span class="updated">Updated: April 2025</span>
-                    </div>
-                    <a href="#" class="btn">Download</a>
-                </div>
-            </div>
-
-            <!-- Resource Card 3 -->
-            <div class="resource-card" data-category="checklists">
-                <div class="resource-icon">
-                    <svg viewBox="0 0 24 24" width="48" height="48">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                        <polyline points="22 4 12 14.01 9 11.01" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                    </svg>
-                </div>
-                <div class="resource-content">
-                    <h3>GDPR Compliance Checklist</h3>
-                    <p>Step-by-step checklist to ensure your organization meets all GDPR requirements.</p>
-                    <div class="resource-meta">
-                        <span class="format">Format: PDF, Excel</span>
+                        <span class="format">Format: DOCX</span>
                         <span class="updated">Updated: February 2025</span>
                     </div>
                     <a href="#" class="btn">Download</a>
                 </div>
             </div>
 
-            <!-- Resource Card 4 -->
-            <div class="resource-card" data-category="tools">
+            <!-- Example Resource Item 3 -->
+            <div class="resource-item">
                 <div class="resource-icon">
-                    <svg viewBox="0 0 24 24" width="48" height="48">
-                        <path d="M12 2a10 10 0 1 0 10 10 10 10 0 0 0-10-10zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                        <path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                    </svg>
-                </div>
-                <div class="resource-content">
-                    <h3>Data Breach Response Calculator</h3>
-                    <p>Interactive tool to determine whether a data breach requires notification under GDPR Article 33.</p>
-                    <div class="resource-meta">
-                        <span class="format">Format: Online Tool</span>
-                        <span class="updated">Updated: April 2025</span>
-                    </div>
-                    <a href="#" class="btn">Access Tool</a>
-                </div>
-            </div>
-
-            <!-- Resource Card 5 -->
-            <div class="resource-card" data-category="templates">
-                <div class="resource-icon">
-                    <svg viewBox="0 0 24 24" width="48" height="48">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                        <line x1="9" y1="9" x2="15" y2="9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                        <line x1="9" y1="12" x2="15" y2="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                        <line x1="9" y1="15" x2="15" y2="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                    </svg>
-                </div>
-                <div class="resource-content">
-                    <h3>Cookie Consent Banner Template</h3>
-                    <p>GDPR and ePrivacy compliant cookie consent banner with customizable options.</p>
-                    <div class="resource-meta">
-                        <span class="format">Format: HTML, CSS, JS</span>
-                        <span class="updated">Updated: March 2025</span>
-                    </div>
-                    <a href="#" class="btn">Download</a>
-                </div>
-            </div>
-
-            <!-- Resource Card 6 -->
-            <div class="resource-card" data-category="guides">
-                <div class="resource-icon">
-                    <svg viewBox="0 0 24 24" width="48" height="48">
-                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
                     </svg>
                 </div>
                 <div class="resource-content">
                     <h3>International Data Transfer Guide</h3>
-                    <p>Comprehensive guide to navigating international data transfers under European privacy law.</p>
+                    <p>Comprehensive guide to navigating international data transfers under European privacy law, including SCCs and TFRs.</p>
                     <div class="resource-meta">
                         <span class="format">Format: PDF</span>
                         <span class="updated">Updated: April 2025</span>
@@ -180,13 +108,14 @@
                     <a href="#" class="btn">Download</a>
                 </div>
             </div>
+
         </section>
 
         <!-- Newsletter Section -->
         <section class="resources-newsletter">
             <div class="newsletter-container">
                 <h2>Get Resources Delivered to Your Inbox</h2>
-                <p>Subscribe to receive new resources, tools, and updates on European privacy regulations.</p>
+                <p>Subscribe to receive new resources, tools, and updates on European privacy regulations directly to your email.</p>
                 <form class="newsletter-form">
                     <input type="email" placeholder="Your email address" required>
                     <button type="submit" class="btn">Subscribe</button>
@@ -205,7 +134,7 @@
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="home.html">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="resources.html">Resources</a></li>
                     <li><a href="about.html">About</a></li>
@@ -228,46 +157,10 @@
 
     <!-- JavaScript for interactive elements -->
     <script>
-        // Language selector functionality
+        // Language selector functionality can be added here
         document.querySelector('.lang-toggle').addEventListener('click', function() {
+            // Add code for language selection later
             alert('Language selection coming soon!');
-        });
-
-        // Resource category filtering
-        const categoryButtons = document.querySelectorAll('.category-btn');
-        const resourceCards = document.querySelectorAll('.resource-card');
-
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove active class from all buttons
-                categoryButtons.forEach(btn => btn.classList.remove('active'));
-
-                // Add active class to the clicked button
-                this.classList.add('active');
-
-                // Get the selected category
-                const selectedCategory = this.dataset.category;
-
-                // Filter resource cards
-                resourceCards.forEach(card => {
-                    const cardCategory = card.dataset.category;
-
-                    if (selectedCategory === 'all' || cardCategory === selectedCategory) {
-                        card.style.display = 'flex'; // Adjust if your CSS uses a different display type for cards
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
-
-        // Simple form submission handler (for demonstration)
-        const newsletterForm = document.querySelector('.newsletter-form');
-        newsletterForm.addEventListener('submit', function(event) {
-            event.preventDefault();
-            const emailInput = this.querySelector('input[type="email"]');
-            alert(`Subscribed with email: ${emailInput.value}`);
-            emailInput.value = ''; // Clear the input
         });
     </script>
 </body>

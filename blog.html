@@ -1,7 +1,3 @@
-<!-- ================ 3. blog.html ================ -->
-<!-- This is your blog page -->
-<!-- Copy this entire code into a new file named "blog.html" -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +11,11 @@
     <!-- HEADER SECTION - Same across all pages -->
     <header>
         <nav>
+            <!-- Site logo/title that links to homepage -->
+            <a href="index.html" class="logo-container">
+                <span class="logo-text">EuroPrivacy Hub</span>
+            </a>
+
             <!-- Main navigation links -->
             <ul class="nav-links">
                 <li><a href="blog.html" class="active">Blog</a></li>
@@ -37,114 +38,100 @@
         </nav>
     </header>
 
-    <!-- BLOG HEADER -->
-    <section class="page-header">
-        <div class="header-content">
-            <h1>Privacy Blog</h1>
-            <p>Latest insights, news, and analysis on European privacy law and regulations</p>
-        </div>
-    </section>
-
-    <!-- MAIN CONTENT -->
-    <main class="blog-content">
-        <!-- Blog Articles -->
-        <section class="blog-articles">
-            <!-- Blog Article 1 -->
-            <article class="blog-article">
-                <div class="article-image">
-                    <!-- Replace with your image -->
-                    <img src="https://placehold.co/800x400" alt="GDPR Updates">
-                </div>
-                <div class="article-meta">
-                    <span class="date">April 15, 2025</span>
-                    <span class="category">GDPR</span>
-                </div>
-                <h2>GDPR Updates 2025: What Organizations Need to Know</h2>
-                <p>The General Data Protection Regulation continues to evolve as digital landscapes change. This article examines the latest updates to the GDPR framework and provides actionable insights for organizations to maintain compliance.</p>
-                <a href="#" class="read-more">Read Full Article</a>
-            </article>
-
-            <!-- Blog Article 2 -->
-            <article class="blog-article">
-                <div class="article-image">
-                    <!-- Replace with your image -->
-                    <img src="https://placehold.co/800x400" alt="EU-US Data Privacy">
-                </div>
-                <div class="article-meta">
-                    <span class="date">April 10, 2025</span>
-                    <span class="category">International</span>
-                </div>
-                <h2>EU-US Data Privacy Framework: Comprehensive Guide</h2>
-                <p>The new framework for transatlantic data flows presents both opportunities and challenges for organizations transferring personal data between the EU and US. This guide unpacks key provisions and compliance requirements.</p>
-                <a href="#" class="read-more">Read Full Article</a>
-            </article>
-
-            <!-- Blog Article 3 -->
-            <article class="blog-article">
-                <div class="article-image">
-                    <!-- Replace with your image -->
-                    <img src="https://placehold.co/800x400" alt="AI Regulations">
-                </div>
-                <div class="article-meta">
-                    <span class="date">April 5, 2025</span>
-                    <span class="category">AI & Privacy</span>
-                </div>
-                <h2>AI and Data Protection: Navigating the Regulatory Landscape</h2>
-                <p>As artificial intelligence becomes increasingly integrated into business operations, privacy regulations are adapting to address new challenges. This article explores the intersection of AI technologies and European data protection laws.</p>
-                <a href="#" class="read-more">Read Full Article</a>
-            </article>
+    <main>
+        <!-- BLOG HEADER -->
+        <section class="page-header">
+            <div class="header-content">
+                <h1>Privacy Blog</h1>
+                <p>Latest insights, news, and analysis on data protection</p>
+            </div>
         </section>
 
-        <!-- Sidebar -->
-        <aside class="blog-sidebar">
-            <!-- Categories -->
-            <div class="sidebar-section">
-                <h3>Categories</h3>
-                <ul class="categories">
-                    <li><a href="#">GDPR (8)</a></li>
-                    <li><a href="#">ePrivacy (5)</a></li>
-                    <li><a href="#">International Transfers (6)</a></li>
-                    <li><a href="#">Data Protection (12)</a></li>
-                    <li><a href="#">AI & Privacy (4)</a></li>
-                    <li><a href="#">Enforcement (7)</a></li>
-                </ul>
+        <!-- BLOG CONTENT SECTION -->
+        <section class="blog-content">
+            <div class="blog-main">
+                <!-- Example Blog Post -->
+                <article class="blog-post">
+                    <h2>Understanding GDPR Article 17: The Right to Erasure</h2>
+                    <div class="post-meta">
+                        <span class="post-date">April 20, 2025</span>
+                        <span class="post-author">By EuroPrivacy Hub Team</span>
+                    </div>
+                    <img src="https://placehold.co/800x400" alt="Blog Post Image" class="post-image">
+                    <div class="post-excerpt">
+                        <p>GDPR's Article 17 grants individuals the 'right to erasure', often known as the 'right to be forgotten'. This means individuals have the right to request the deletion or removal of personal data where there is no compelling reason for its continued processing. Understanding this right is crucial for organizations handling personal data.</p>
+                        <p>This right is not absolute and only applies in certain circumstances. For example, it does not apply if the processing is necessary for compliance with a legal obligation or for the establishment, exercise, or defense of legal claims.</p>
+                    </div>
+                    <a href="#" class="read-more">Continue Reading</a>
+                </article>
+
+                <!-- Add more blog posts here following the same structure -->
+
+                <!-- Pagination (Optional) -->
+                <div class="pagination">
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                </div>
             </div>
 
-            <!-- Popular Posts -->
-            <div class="sidebar-section">
-                <h3>Popular Posts</h3>
-                <ul class="popular-posts">
-                    <li>
-                        <a href="#">
-                            <span class="post-title">Data Breach Response: A Step-by-Step Guide</span>
-                            <span class="post-date">March 22, 2025</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="post-title">Privacy by Design: Implementing Data Protection</span>
-                            <span class="post-date">March 15, 2025</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <span class="post-title">The Role of DPOs in Modern Organizations</span>
-                            <span class="post-date">March 8, 2025</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            <!-- Sidebar -->
+            <aside class="blog-sidebar">
+                <!-- Search Bar -->
+                <div class="sidebar-section search">
+                    <form>
+                        <input type="text" placeholder="Search Blog...">
+                        <button type="submit">Search</button>
+                    </form>
+                </div>
 
-            <!-- Newsletter Signup -->
-            <div class="sidebar-section newsletter">
-                <h3>Stay Updated</h3>
-                <p>Subscribe to our newsletter for the latest privacy news and updates.</p>
+                <!-- Categories -->
+                <div class="sidebar-section categories">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#">GDPR</a></li>
+                        <li><a href="#">International Transfers</a></li>
+                        <li><a href="#">AI and Privacy</a></li>
+                        <li><a href="#">DPO Insights</a></li>
+                    </ul>
+                </div>
+
+                <!-- Recent Posts -->
+                <div class="sidebar-section recent-posts">
+                    <h3>Recent Posts</h3>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <span class="post-title">Key Changes in the Latest Schrems II Ruling</span>
+                                <span class="post-date">April 15, 2025</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="post-title">Navigating Consent Requirements Under ePrivacy</span>
+                                <span class="post-date">April 1, 2025</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="post-title">The Role of DPOs in Modern Organizations</span>
+                                <span class="post-date">March 8, 2025</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter Signup -->
+                <div class="sidebar-section newsletter">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for the latest privacy news and updates.</p>
                 <form class="newsletter-form">
                     <input type="email" placeholder="Your email address" required>
                     <button type="submit" class="btn">Subscribe</button>
                 </form>
             </div>
         </aside>
+    </section>
     </main>
 
     <!-- FOOTER SECTION -->
@@ -157,7 +144,7 @@
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="home.html">Home</a></li>
+                    <li><a href="index.html">Home</a></li>
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="resources.html">Resources</a></li>
                     <li><a href="about.html">About</a></li>

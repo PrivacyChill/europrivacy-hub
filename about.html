@@ -3,56 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - EuroPrivacy Hub</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>EuroPrivacy Hub - About Us</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
 </head>
 <body>
+    <!-- HEADER SECTION - Same across all pages -->
     <header>
         <nav>
+            <!-- Site logo/title that links to homepage -->
+            <a href="index.html" class="logo-container">
+                <span class="logo-text">EuroPrivacy Hub</span>
+            </a>
+
+            <!-- Main navigation links -->
             <ul class="nav-links">
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="resources.html">Resources</a></li>
                 <li><a href="about.html" class="active">About</a></li>
             </ul>
 
+            <!-- Right side navigation elements (language selector) -->
             <div class="nav-right">
                 <div class="language-selector">
-                    <!-- Language selector (same as index.html) -->
+                    <button class="lang-toggle">
+                        <svg class="globe-icon" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                            <path d="M2 12h20"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </nav>
     </header>
 
-    <div class="container">
+    <main>
+        <!-- ABOUT HEADER -->
         <section class="page-header">
-            <h1>About EuroPrivacy Hub</h1>
+            <div class="header-content">
+                <h1>About EuroPrivacy Hub</h1>
+                <p>Our Mission, Vision, and Team</p>
+            </div>
         </section>
 
+        <!-- ABOUT CONTENT SECTION -->
         <section class="about-content">
-            <div class="mission-statement">
-                <h2>Our Mission</h2>
-                <p>EuroPrivacy Hub is dedicated to making privacy law and data protection accessible to everyone. We provide resources, guidance, and expert insights to help individuals and organizations navigate the complex landscape of European privacy regulations.</p>
-            </div>
+            <div class="container">
+                <h2>Our Story</h2>
+                <p>EuroPrivacy Hub was founded with the mission to demystify European data protection law. In an increasingly digital world, understanding and implementing privacy regulations like the GDPR is crucial for businesses and individuals alike. We aim to provide clear, accessible, and practical information.</p>
 
-            <div class="values">
-                <h2>Our Values</h2>
+                <p>Leveraging expertise from data protection professionals, we curate resources, analyze legal developments, and share insights to help you navigate the complex landscape of privacy. Our goal is to empower you with the knowledge you need to protect data effectively and comply with regulations.</p>
+
+                <h2>Our Vision</h2>
+                <p>We envision a digital environment where privacy is a fundamental aspect of design and operation, not an afterthought. By providing reliable resources and fostering a community of informed individuals, we strive to contribute to a more privacy-aware and compliant digital ecosystem across Europe and beyond.</p>
+
+                <h2>Meet the Team</h2>
+                <div class="team-grid">
+                    <!-- Example Team Member -->
+                    <div class="team-member">
+                        <img src="https://placehold.co/200x200" alt="Team Member Name">
+                        <h3>[Your Name or Team Lead Name]</h3>
+                        <p>Founder & Lead Data Protection Expert</p>
+                        <p>Passionate about privacy rights and making complex legal topics understandable for everyone.</p>
+                    </div>
+                    <!-- Add more team members here following the same structure -->
+                    <!-- <div class="team-member">
+                        <img src="https://placehold.co/200x200" alt="Team Member Name">
+                        <h3>Another Team Member</h3>
+                        <p>Role/Title</p>
+                        <p>Brief description of their expertise or contribution.</p>
+                    </div> -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>EuroPrivacy Hub</h3>
+                <p>Your trusted source for privacy law and data protection resources in Europe.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
                 <ul>
-                    <li>Transparency in privacy matters</li>
-                    <li>Accessibility of legal information</li>
-                    <li>Commitment to data protection</li>
-                    <li>Educational excellence</li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="about.html">About</a></li>
                 </ul>
             </div>
-        </section>
-    </div>
-
-    <footer>
-        <p>© 2025 EuroPrivacy Hub</p>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>Email: contact@europrivacyhub.com</p>
+                <div class="social-links">
+                    <!-- Add your social media links here -->
+                    <a href="#" class="social-icon">LinkedIn</a>
+                    <a href="#" class="social-icon">Twitter</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 EuroPrivacy Hub. All rights reserved.</p>
+        </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <!-- JavaScript for interactive elements -->
+    <script>
+        // Language selector functionality can be added here
+        document.querySelector('.lang-toggle').addEventListener('click', function() {
+            // Add code for language selection later
+            alert('Language selection coming soon!');
+        });
+    </script>
 </body>
 </html>
