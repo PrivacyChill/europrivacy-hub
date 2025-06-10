@@ -1558,3 +1558,102 @@ body:not(.dark-mode) .theme-toggle-button .sun-icon {
     color: var(--text-color);
     margin-bottom: 2rem;
 }
+/* Blog Category Active State */
+.blog-sidebar .categories a.active {
+    background-color: var(--link-color); /* Highlight background */
+    color: var(--button-text-color); /* White text on highlight */
+    border-radius: 4px; /* Soft corners */
+    padding: 5px 10px; /* Some padding */
+    margin-left: -10px; /* Adjust slightly for visual alignment */
+    font-weight: 700;
+}
+
+.blog-sidebar .categories a.active:hover {
+    background-color: var(--link-hover-color); /* Darker on hover */
+    color: var(--button-text-color);
+}
+/* --- Categories Selection Page Styling (categories.html) --- */
+.categories-selection {
+    padding: 4rem 1.5rem;
+    text-align: center;
+}
+
+.category-tags-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem; /* Space between tags */
+    margin-bottom: 3rem; /* Space before buttons */
+}
+
+.category-tag {
+    display: inline-block;
+    padding: 0.8rem 1.2rem;
+    background-color: var(--card-background); /* Use card background for default tag */
+    border: 1px solid var(--border-color);
+    border-radius: 20px; /* Pill shape for tags */
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.category-tag:hover {
+    background-color: var(--section-separator-color); /* Lighter hover */
+    border-color: var(--link-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.category-tag.active {
+    background-color: var(--link-color); /* Active background */
+    color: var(--button-text-color); /* White text on active */
+    border-color: var(--link-color);
+    font-weight: 700;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.category-tag.active:hover {
+    background-color: var(--link-hover-color); /* Darker active hover */
+    border-color: var(--link-hover-color);
+}
+
+.category-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* Space between buttons */
+}
+
+/* Secondary button style for Clear Filters */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+}
+
+.btn-secondary:hover {
+    background-color: var(--section-separator-color);
+    color: var(--link-color);
+    border-color: var(--link-color);
+    box-shadow: none;
+}
+
+/* Ensure the category message on blog.html is styled */
+#category-filter-message {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--placeholder-color);
+    margin-bottom: 2rem; /* Space below message */
+    font-weight: 500;
+}
+/* Styling for the category filter message on blog.html */
+#category-filter-message {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--placeholder-color); /* Muted color */
+    margin-top: -1.5rem; /* Pull it up slightly below the header description */
+    margin-bottom: 2rem; /* Space before blog posts */
+    font-weight: 500;
+}

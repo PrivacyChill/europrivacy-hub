@@ -66,7 +66,10 @@ const translations = {
             en: "Latest insights, news, and analysis on data protection",
             it: "Approfondimenti, notizie e analisi sulla protezione dei dati",
             de: "Neueste Einblicke, Nachrichten und Analysen zum Datenschutz",
-        }
+        },
+        showingCategory: {en: "Showing posts in category: ", it: "Visualizzazione articoli nella categoria: ", de: "Beiträge in Kategorie anzeigen: "},
+        allCategories: {en: "All Categories", it: "Tutte le Categorie", de: "Alle Kategorien"},
+        filterButton: {en: "Filter posts by category", it: "Filtra articoli per categoria", de: "Beiträge nach Kategorie filtern"} // New translation
     },
     resourcesPage: {
         title: {
@@ -81,12 +84,18 @@ const translations = {
         },
         recommendedSectionTitle: {en: "Our Privacy Toolkit & Curated Content", it: "Il Nostro Toolkit Privacy e Contenuti Curati", de: "Unser Datenschutz-Toolkit & Kuratierte Inhalte"}
     },
-    postPage: { // New translations for post.html
+    postPage: {
         backToBlog: {en: "Back to Blog List", it: "Torna all'Elenco del Blog", de: "Zurück zur Blogliste"},
         notFound: {
             title: {en: "Post Not Found", it: "Articolo Non Trovato", de: "Beitrag nicht gefunden"},
-            message: {en: "The blog post you are looking for does not exist.", it: "L'articolo del blog che cerchi non esiste.", de: "Der gesuchte Blogbeitrag existiert nicht."}
+            message: {en: "The blog post you are looking for does not exist.", it: "L'articolo del blog che cerchi non esiste.", de: "Der gesunto Blogbeitrag existiert nicht."}
         }
+    },
+    categoriesPage: {
+        title: {en: "Blog Categories", it: "Categorie Blog", de: "Blog-Kategorien"},
+        description: {en: "Select one or more categories to filter articles.", it: "Seleziona una o più categorie per filtrare gli articoli.", de: "Wählen Sie eine oder mehrere Kategorien aus, um Artikel zu filtern."},
+        viewFiltered: {en: "View Filtered Posts", it: "Visualizza Articoli Filtrati", de: "Gefilterte Beiträge anzeigen"},
+        clearFilters: {en: "Clear Filters", it: "Cancella Filtri", de: "Filter löschen"}
     }
 };
 
@@ -107,7 +116,7 @@ const resourcesData = [
         },
         format: "PDF",
         updated: "March 2025",
-        downloadLink: "#" // Replace with actual download link
+        downloadLink: "#"
     },
     {
         id: "privacy-policy-template",
@@ -124,7 +133,7 @@ const resourcesData = [
         },
         format: "DOCX",
         updated: "February 2025",
-        downloadLink: "#" // Replace with actual download link
+        downloadLink: "#"
     },
     {
         id: "international-data-transfer-guide",
@@ -141,9 +150,8 @@ const resourcesData = [
         },
         format: "PDF",
         updated: "April 2025",
-        downloadLink: "#" // Replace with actual download link
+        downloadLink: "#"
     }
-    // Add more resources here following the same structure
 ];
 
 // --- Recommended Items (Tools, Creators, Content) data ---
@@ -157,7 +165,7 @@ const recommendedItems = [
             it: "Migliora la tua privacy e sicurezza online con un servizio VPN affidabile.",
             de: "Verbessern Sie Ihre Online-Privatsphäre und -Sicherheit mit einem zuverlässigen VPN-Dienst."
         },
-        link: "#", // Replace with actual VPN affiliate link
+        link: "#",
         note: {en: "Affiliate link: Get a special discount!", it: "Link affiliato: Ottieni uno sconto speciale!", de: "Affiliate-Link: Erhalten Sie einen Sonderrabatt!"}
     },
     {
@@ -169,7 +177,7 @@ const recommendedItems = [
             it: "Esplora video coinvolgenti e approfondimenti su argomenti di privacy da un creatore di spicco.",
             de: "Entdecken Sie fesselnde Videos und tiefgehende Einblicke in Datenschutzthemen von einem führenden Creator."
         },
-        link: "#", // Replace with actual YouTube channel link
+        link: "#",
         note: {en: "External content", it: "Contenuto esterno", de: "Externer Inhalt"}
     },
     {
@@ -181,10 +189,9 @@ const recommendedItems = [
             it: "Scopri uno strumento potente per gestire la tua impronta digitale e proteggere i tuoi dati.",
             de: "Entdecken Sie ein leistungsstarkes Tool zur Verwaltung Ihres digitalen Fußabdrucks und zum Schutz Ihrer Daten."
         },
-        link: "#", // Replace with actual software link
+        link: "#",
         note: {en: "Future discount code available!", it: "Futuro codice sconto disponibile!", de: "Zukünftiger Rabattcode verfügbar!"}
     }
-    // Add more recommended items here
 ];
 
 
@@ -207,43 +214,65 @@ const ctaMessages = [
 
 // Stores the fetched blog index (list of posts with excerpts)
 let blogIndex = [];
+// Stores all unique categories extracted from blogIndex
+let allUniqueCategories = [];
+// Stores selected categories on categories.html
+let selectedCategories = new Set();
+
 
 // Initialize the app when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', async () => {
-    // Determine current page to run specific rendering functions
     const currentPage = window.location.pathname.split('/').pop();
+    console.log("Current Page:", currentPage);
 
-    setupThemeToggle(); // Setup theme toggle and initial theme
-    setupLanguageSelector(); // Setup language selector
+    setupThemeToggle();
+    setupLanguageSelector();
 
     // Fetch blog index first as it's needed by multiple pages
+    const blogIndexUrl = './content/blog/blog-index.json';
     try {
-        const response = await fetch('content/blog/blog-index.json');
+        const response = await fetch(blogIndexUrl);
         if (!response.ok) {
+            console.error(`Error fetching blog index: HTTP status ${response.status}`, await response.text());
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         blogIndex = await response.json();
+        console.log("Successfully fetched blog index:", blogIndex);
+        
+        // Collect unique categories once blogIndex is loaded
+        collectAllCategories();
+
     } catch (error) {
-        console.error("Could not fetch blog index:", error);
-        // Fallback or display error message on the site
-        blogIndex = []; // Ensure it's an empty array if fetch fails
+        console.error("Could not fetch blog index (check path and JSON syntax):", error);
+        blogIndex = [];
     }
 
-
+    // Now render content based on the current page
     if (currentPage === 'post.html') {
-        renderIndividualBlogPost(); // Render only the specific blog post
+        renderIndividualBlogPost();
     } else {
-        // These run on all pages *except* post.html
         updateContent(); // Update general page content (hero, page headers, etc.)
         if (currentPage === 'index.html') {
-            renderBlogPreviews(); // Renders previews for index.html
-            renderResourcePreviews(); // Renders resource previews for index.html
-            startCtaCarousel(); // Start CTA carousel only on index.html
+            renderBlogPreviews();
+            renderResourcePreviews();
+            startCtaCarousel();
         } else if (currentPage === 'blog.html') {
-            renderFullBlogListing(); // Renders full blog list for blog.html
+            renderFullBlogListing();
+            // Attach event listener for the new filter button only on blog.html
+            const filterBtn = document.getElementById('filter-categories-btn');
+            if (filterBtn) {
+                filterBtn.textContent = translations.blogPage.filterButton[currentLang]; // Set button text
+                filterBtn.addEventListener('click', () => {
+                    // Redirect to categories.html, potentially passing current filters
+                    const currentFilters = new URLSearchParams(window.location.search).get('categories');
+                    window.location.href = `categories.html${currentFilters ? `?preselect=${currentFilters}` : ''}`;
+                });
+            }
         } else if (currentPage === 'resources.html') {
-            renderFullResourceListing(); // Renders full resource list for resources.html
-            renderRecommendedItems(); // Renders recommended items for resources.html
+            renderFullResourceListing();
+            renderRecommendedItems();
+        } else if (currentPage === 'categories.html') {
+            renderCategoriesPage();
         }
     }
 });
@@ -266,7 +295,7 @@ function setupThemeToggle() {
     if (initialTheme) {
         setTheme(initialTheme);
     } else {
-        setTheme('light'); // Default to light
+        setTheme('light');
     }
 
     themeToggleButton.addEventListener('click', () => {
@@ -304,12 +333,24 @@ function setupLanguageSelector() {
             currentLangTextSpan.textContent = langDisplayNames[currentLang].toUpperCase();
             localStorage.setItem('language', currentLang);
 
-            // Re-render content based on the current page
             const currentPage = window.location.pathname.split('/').pop();
+            // Re-render only necessary parts based on current page
             if (currentPage === 'post.html') {
-                renderIndividualBlogPost(); // For the post page
-            } else {
-                updateContent(); // For other pages
+                renderIndividualBlogPost();
+            } else if (currentPage === 'index.html') {
+                updateContent(); // Updates hero, offers, newsletter
+                renderBlogPreviews(); // Re-renders blog previews
+                renderResourcePreviews(); // Re-renders resource previews
+            } else if (currentPage === 'blog.html') {
+                updateContent(); // Updates page header
+                renderFullBlogListing(); // Re-renders blog listing with new language/filters
+            } else if (currentPage === 'resources.html') {
+                updateContent(); // Updates page header
+                renderFullResourceListing(); // Re-renders full resource list
+                renderRecommendedItems(); // Re-renders recommended items
+            } else if (currentPage === 'categories.html') {
+                updateContent(); // Updates page header
+                renderCategoriesPage(); // Re-renders categories page with correct translations
             }
             
             langToggle.parentElement.classList.remove('open');
@@ -326,7 +367,7 @@ function setupLanguageSelector() {
 }
 
 
-// Update content for main pages (index, blog list, resources list)
+// Update content for main pages (index, blog list, resources list, categories)
 function updateContent() {
     // Update Hero Section (index.html)
     const heroTitle = document.querySelector('.hero h1');
@@ -371,22 +412,23 @@ function updateContent() {
     }
 
 
-    // Update Page Headers (blog.html, resources.html, about.html)
+    // Update Page Headers (blog.html, resources.html, about.html, categories.html)
     const pageHeader = document.querySelector('.page-header');
     if (pageHeader) {
         const pageHeaderTitle = pageHeader.querySelector('h1');
         const pageHeaderDesc = pageHeader.querySelector('p');
-        const currentPageTitle = document.title; // Get title from HTML
+        const currentPageTitle = document.title; 
 
-        // Check if the current page title contains specific keywords to determine which header translations to use
-        if (currentPageTitle.includes("Blog") && translations.blogPage.title[currentLang]) {
+        if (currentPageTitle.includes("Blog Categories") && translations.categoriesPage.title[currentLang]) {
+            if (pageHeaderTitle) pageHeaderTitle.textContent = translations.categoriesPage.title[currentLang];
+            if (pageHeaderDesc) pageHeaderDesc.textContent = translations.categoriesPage.description[currentLang];
+        } else if (currentPageTitle.includes("Blog") && translations.blogPage.title[currentLang]) {
             if (pageHeaderTitle) pageHeaderTitle.textContent = translations.blogPage.title[currentLang];
             if (pageHeaderDesc) pageHeaderDesc.textContent = translations.blogPage.description[currentLang];
         } else if (currentPageTitle.includes("Resources") && translations.resourcesPage.title[currentLang]) {
             if (pageHeaderTitle) pageHeaderTitle.textContent = translations.resourcesPage.title[currentLang];
             if (pageHeaderDesc) pageHeaderDesc.textContent = translations.resourcesPage.description[currentLang];
 
-            // Update Recommended Tools Section on Resources page
             const recommendedToolsHeadline = document.querySelector('.recommended-tools h2');
             if (recommendedToolsHeadline) {
                 recommendedToolsHeadline.textContent = translations.resourcesPage.recommendedSectionTitle[currentLang];
@@ -421,7 +463,6 @@ function updateCtaCarousel() {
     const ctaCarousel = document.querySelector('.hero-cta-carousel');
     if (!ctaCarousel) return;
 
-    // Clear existing slides to avoid duplicates during language switch
     ctaCarousel.innerHTML = '';
 
     const currentCta = ctaMessages[currentCtaIndex];
@@ -432,25 +473,22 @@ function updateCtaCarousel() {
     
     ctaCarousel.appendChild(newSlide);
 
-    // Trigger reflow to ensure transition works for the new slide
-    newSlide.offsetWidth; // Force reflow
+    newSlide.offsetWidth;
     newSlide.classList.add('active');
 }
 
-let ctaInterval; // Declare interval variable to clear it
+let ctaInterval;
 function startCtaCarousel() {
-    // Clear any existing interval to prevent multiple carousels running
     if (ctaInterval) {
         clearInterval(ctaInterval);
     }
 
-    updateCtaCarousel(); // Display initial CTA
+    updateCtaCarousel();
 
     ctaInterval = setInterval(() => {
         const activeSlide = document.querySelector('.hero-cta-carousel .hero-cta-slide.active');
         if (activeSlide) {
             activeSlide.classList.remove('active');
-            // Adding a class for exit transition if needed, then remove
             activeSlide.addEventListener('transitionend', function handler() {
                 activeSlide.removeEventListener('transitionend', handler);
                 activeSlide.remove();
@@ -460,7 +498,7 @@ function startCtaCarousel() {
         currentCtaIndex = (currentCtaIndex + 1) % ctaMessages.length;
         updateCtaCarousel();
 
-    }, 5000); // Change CTA every 5 seconds
+    }, 5000);
 }
 
 
@@ -469,10 +507,9 @@ function renderBlogPreviews() {
     const blogPreviewGrid = document.querySelector('.blog-articles-grid');
     if (!blogPreviewGrid) return;
 
-    blogPreviewGrid.innerHTML = ''; // Clear existing content
+    blogPreviewGrid.innerHTML = '';
 
-    // Use blogIndex (fetched from JSON) for previews
-    blogIndex.slice(0, 2).forEach(post => { // Display first 2 posts for preview
+    blogIndex.slice(0, 2).forEach(post => {
         const articleHtml = `
             <div class="blog-card">
                 <img src="${post.imageUrl}" alt="${post.imageAlt[currentLang]}">
@@ -487,7 +524,7 @@ function renderBlogPreviews() {
     });
 }
 
-// Function to render full blog listing on blog.html
+// Function to render full blog listing on blog.html (now filters by multiple categories)
 function renderFullBlogListing() {
     const blogMainContent = document.querySelector('.blog-main');
     if (!blogMainContent) return;
@@ -503,29 +540,74 @@ function renderFullBlogListing() {
             blogMainContent.appendChild(blogPostsContainer);
         }
     }
-    blogPostsContainer.innerHTML = ''; // Clear container for full posts
+    blogPostsContainer.innerHTML = '';
 
-    // Use blogIndex for full listing previews
-    blogIndex.forEach(post => {
-        const fullPostHtml = `
-            <article class="blog-post" id="${post.id}">
-                <h2>${post.title[currentLang]}</h2>
-                <div class="post-meta">
-                    <span class="post-date">${post.date}</span>
-                    <span class="post-author">By ${post.author}</span>
-                    <div class="tags">
-                        ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryParams = urlParams.get('categories'); // Get comma-separated categories
+    let currentFilters = [];
+    if (categoryParams) {
+        currentFilters = categoryParams.split(',').map(cat => decodeURIComponent(cat).trim());
+    }
+    console.log("Active Filters (from URL):", currentFilters);
+
+    let filteredPosts = [];
+    if (currentFilters.length > 0) {
+        // Filter: Post must have AT LEAST ONE of the selected categories (OR logic)
+        filteredPosts = blogIndex.filter(post => 
+            post.tags && currentFilters.some(filter => post.tags.includes(filter))
+        );
+    } else {
+        filteredPosts = blogIndex; // Show all if no filters
+    }
+
+    // Add "Showing Category" message or "All Categories"
+    // Find the correct element to append the message to
+    const pageHeaderDesc = document.querySelector('.page-header p'); // The main description under the H1
+    let categoryMessageElement = document.getElementById('category-filter-message');
+    if (!categoryMessageElement) {
+        categoryMessageElement = document.createElement('p');
+        categoryMessageElement.id = 'category-filter-message';
+        if (pageHeaderDesc) {
+            pageHeaderDesc.insertAdjacentElement('afterend', categoryMessageElement);
+        } else {
+            // Fallback if .page-header p is not found (unlikely with current HTML)
+            blogMainContent.prepend(categoryMessageElement);
+        }
+    }
+
+    if (currentFilters.length > 0) {
+        categoryMessageElement.textContent = `${translations.blogPage.showingCategory[currentLang]} "${currentFilters.join(', ')}"`;
+        categoryMessageElement.style.display = 'block';
+    } else {
+        categoryMessageElement.textContent = translations.blogPage.allCategories[currentLang];
+        categoryMessageElement.style.display = 'block';
+    }
+
+    // Render filtered posts
+    if (filteredPosts.length === 0) {
+        blogPostsContainer.innerHTML = `<p style="text-align: center; padding: 2rem;">No articles found for the selected categories.</p>`;
+    } else {
+        filteredPosts.forEach(post => {
+            const fullPostHtml = `
+                <article class="blog-post" id="${post.id}">
+                    <h2>${post.title[currentLang]}</h2>
+                    <div class="post-meta">
+                        <span class="post-date">${post.date}</span>
+                        <span class="post-author">By ${post.author}</span>
+                        <div class="tags">
+                            ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        </div>
                     </div>
-                </div>
-                <img src="${post.imageUrl}" alt="${post.imageAlt[currentLang]}" class="post-image">
-                <div class="post-excerpt">
-                    ${post.excerpt[currentLang]}
-                </div>
-                <a href="post.html?id=${post.id}" class="read-more">Read Full Post</a>
-            </article>
-        `;
-        blogPostsContainer.insertAdjacentHTML('beforeend', fullPostHtml);
-    });
+                    <img src="${post.imageUrl}" alt="${post.imageAlt[currentLang]}" class="post-image">
+                    <div class="post-excerpt">
+                        ${post.excerpt[currentLang]}
+                    </div>
+                    <a href="post.html?id=${post.id}" class="read-more">Read Full Post</a>
+                </article>
+            `;
+            blogPostsContainer.insertAdjacentHTML('beforeend', fullPostHtml);
+        });
+    }
 }
 
 // Function to render an individual blog post on post.html
@@ -533,13 +615,7 @@ async function renderIndividualBlogPost() {
     const postContentArea = document.getElementById('post-content-area');
     if (!postContentArea) return;
 
-    // Reset language for post.html page header for consistency
-    const pageHeaderTitle = document.querySelector('.page-header h1');
-    const pageHeaderDesc = document.querySelector('.page-header p');
-    if (pageHeaderTitle) pageHeaderTitle.textContent = "Blog Post"; // Default title for post page
-    if (pageHeaderDesc) pageHeaderDesc.textContent = "Detailed article on data protection"; // Default description
-
-    // Update footer links specific to post.html (these are static elements in HTML, so update their text)
+    // Update footer links specific to post.html
     const privacyPolicyLink = document.getElementById('privacy-policy-link');
     const termsOfServiceLink = document.getElementById('terms-of-service-link');
     const cookiePolicyLink = document.getElementById('cookie-policy-link');
@@ -554,13 +630,12 @@ async function renderIndividualBlogPost() {
         contactEmailLink.href = `mailto:${translations.footer.contactEmail}`;
     }
 
-
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');
 
     if (!postId) {
         postContentArea.innerHTML = `
-            <div class="not-found-message" style="text-align: center; padding: 4rem 0;">
+            <div class="not-found-message">
                 <h1>${translations.postPage.notFound.title[currentLang]}</h1>
                 <p>${translations.postPage.notFound.message[currentLang]}</p>
                 <a href="blog.html" class="btn">${translations.postPage.backToBlog[currentLang]}</a>
@@ -571,13 +646,15 @@ async function renderIndividualBlogPost() {
     }
 
     try {
-        // Fetch the individual blog post JSON file
-        const response = await fetch(`content/blog/${postId}.json`);
+        const postJsonUrl = `./content/blog/${postId}.json`;
+        console.log("Attempting to fetch individual post from:", postJsonUrl);
+        const response = await fetch(postJsonUrl);
+
         if (!response.ok) {
+            console.error(`Error fetching individual post: HTTP status ${response.status}`, await response.text());
             if (response.status === 404) {
-                // Post not found
                 postContentArea.innerHTML = `
-                    <div class="not-found-message" style="text-align: center; padding: 4rem 0;">
+                    <div class="not-found-message">
                         <h1>${translations.postPage.notFound.title[currentLang]}</h1>
                         <p>${translations.postPage.notFound.message[currentLang]}</p>
                         <a href="blog.html" class="btn">${translations.postPage.backToBlog[currentLang]}</a>
@@ -589,8 +666,8 @@ async function renderIndividualBlogPost() {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const post = await response.json();
+        console.log("Successfully fetched individual post:", post);
 
-        // Update page title based on the fetched post
         document.title = `EuroPrivacy Hub - ${post.title[currentLang]}`;
 
         postContentArea.innerHTML = `
@@ -615,7 +692,7 @@ async function renderIndividualBlogPost() {
     } catch (error) {
         console.error("Error fetching individual blog post:", error);
         postContentArea.innerHTML = `
-            <div class="not-found-message" style="text-align: center; padding: 4rem 0;">
+            <div class="not-found-message">
                 <h1>${translations.postPage.notFound.title[currentLang]}</h1>
                 <p>${translations.postPage.notFound.message[currentLang]}</p>
                 <a href="blog.html" class="btn">${translations.postPage.backToBlog[currentLang]}</a>
@@ -631,9 +708,9 @@ function renderResourcePreviews() {
     const resourcesPreviewGrid = document.querySelector('.resources-grid');
     if (!resourcesPreviewGrid) return;
 
-    resourcesPreviewGrid.innerHTML = ''; // Clear existing content
+    resourcesPreviewGrid.innerHTML = '';
 
-    resourcesData.slice(0, 3).forEach(resource => { // Display first 3 resources for preview
+    resourcesData.slice(0, 3).forEach(resource => {
         const cardHtml = `
             <div class="resource-card">
                 <h3>${resource.title[currentLang]}</h3>
@@ -650,7 +727,7 @@ function renderFullResourceListing() {
     const resourcesListing = document.querySelector('.resources-listing');
     if (!resourcesListing) return;
 
-    resourcesListing.innerHTML = ''; // Clear existing content
+    resourcesListing.innerHTML = '';
 
     resourcesData.forEach(resource => {
         const itemHtml = `
@@ -680,7 +757,7 @@ function renderRecommendedItems() {
 
     if (!recommendedItemsGrid) return;
 
-    recommendedItemsGrid.innerHTML = ''; // Clear existing content
+    recommendedItemsGrid.innerHTML = '';
 
     recommendedItems.forEach(item => {
         const itemHtml = `
@@ -693,4 +770,75 @@ function renderRecommendedItems() {
         `;
         recommendedItemsGrid.insertAdjacentHTML('beforeend', itemHtml);
     });
+}
+
+// Function to render categories page
+function renderCategoriesPage() {
+    const categoriesContainer = document.getElementById('category-tags-container');
+    const viewFilteredBtn = document.getElementById('view-filtered-posts-btn');
+    const clearFiltersBtn = document.getElementById('clear-filters-btn');
+
+    if (!categoriesContainer || !viewFilteredBtn || !clearFiltersBtn) {
+        console.warn("Categories page elements not found.");
+        return;
+    }
+
+    categoriesContainer.innerHTML = ''; // Clear previous tags
+
+    // Get pre-selected categories from URL if any (e.g., from a link on blog.html sidebar)
+    const urlParams = new URLSearchParams(window.location.search);
+    const preselectParam = urlParams.get('preselect');
+    selectedCategories = new Set();
+    if (preselectParam) {
+        preselectParam.split(',').forEach(cat => selectedCategories.add(decodeURIComponent(cat)));
+    }
+    console.log("Initial Selected Categories (from URL):", selectedCategories);
+
+
+    // Render category tags
+    if (allUniqueCategories.length === 0) {
+        categoriesContainer.innerHTML = `<p>No categories available yet.</p>`;
+    } else {
+        allUniqueCategories.forEach(category => {
+            const tagSpan = document.createElement('span');
+            tagSpan.classList.add('category-tag');
+            tagSpan.textContent = category;
+            
+            if (selectedCategories.has(category)) {
+                tagSpan.classList.add('active');
+            }
+
+            tagSpan.addEventListener('click', () => {
+                if (selectedCategories.has(category)) {
+                    selectedCategories.delete(category);
+                    tagSpan.classList.remove('active');
+                } else {
+                    selectedCategories.add(category);
+                    tagSpan.classList.add('active');
+                }
+                console.log("Current selected categories:", Array.from(selectedCategories));
+            });
+            categoriesContainer.appendChild(tagSpan);
+        });
+    }
+
+    // Set up button actions
+    viewFilteredBtn.textContent = translations.categoriesPage.viewFiltered[currentLang];
+    viewFilteredBtn.onclick = () => {
+        const filterString = Array.from(selectedCategories).map(cat => encodeURIComponent(cat)).join(',');
+        window.location.href = `blog.html${filterString ? `?categories=${filterString}` : ''}`;
+    };
+
+    clearFiltersBtn.textContent = translations.categoriesPage.clearFilters[currentLang];
+    clearFiltersBtn.onclick = () => {
+        selectedCategories.clear();
+        renderCategoriesPage(); // Re-render to clear active states visually
+        // No redirect here, just clear the visual selection. User clicks 'View Filtered' to go to blog.html with no filters.
+    };
+
+    // Update page header for categories.html
+    const pageHeaderTitle = document.getElementById('categories-page-title');
+    const pageHeaderDesc = document.getElementById('categories-page-description');
+    if (pageHeaderTitle) pageHeaderTitle.textContent = translations.categoriesPage.title[currentLang];
+    if (pageHeaderDesc) pageHeaderDesc.textContent = translations.categoriesPage.description[currentLang];
 }
