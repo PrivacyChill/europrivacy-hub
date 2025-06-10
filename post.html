@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EuroPrivacy Hub - Blog</title>
+    <title>EuroPrivacy Hub - Blog Post</title>
     <link rel="stylesheet" href="css/style.css">
     <!-- Google Fonts: Roboto for a modern, clean look -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
 </head>
 <body>
-    <!-- HEADER SECTION -->
+    <!-- HEADER SECTION - Same across all pages -->
     <header>
         <nav>
             <!-- Site logo/title that links to homepage -->
@@ -81,90 +80,18 @@
     </header>
 
     <main>
-        <!-- BLOG HEADER -->
-        <section class="page-header">
-            <div class="header-content">
-                <h1>Privacy Blog</h1>
-                <p>Latest insights, news, and analysis on data protection</p>
+        <!-- Individual Blog Post Content will be loaded here by JavaScript -->
+        <section class="blog-post-detail">
+            <div class="container">
+                <div id="post-content-area">
+                    <!-- Specific blog post details will be injected here -->
+                    <p>Loading blog post...</p>
+                </div>
             </div>
         </section>
-
-        <!-- BLOG CONTENT SECTION -->
-        <section class="blog-content">
-            <div class="blog-main">
-                <!-- Blog posts will be dynamically loaded here by JavaScript -->
-                <div class="blog-posts-container">
-                    <!-- Article previews will be injected here -->
-                </div>
-
-                <!-- Pagination (Optional - you might need to implement its logic in JS) -->
-                <div class="pagination">
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                </div>
-            </div>
-
-            <!-- Sidebar (remains largely static, but can also be dynamic if needed) -->
-            <aside class="blog-sidebar">
-                <!-- Search Bar -->
-                <div class="sidebar-section search">
-                    <form>
-                        <input type="text" placeholder="Search Blog..." aria-label="Search blog posts">
-                        <button type="submit" class="btn">Search</button>
-                    </form>
-                </div>
-
-                <!-- Categories -->
-                <div class="sidebar-section categories">
-                    <h3>Categories</h3>
-                    <ul>
-                        <li><a href="#">GDPR</a></li>
-                        <li><a href="#">International Transfers</a></li>
-                        <li><a href="#">AI and Privacy</a></li>
-                        <li><a href="#">DPO Insights</a></li>
-                    </ul>
-                </div>
-
-                <!-- Recent Posts -->
-                <div class="sidebar-section recent-posts">
-                    <h3>Recent Posts</h3>
-                    <ul>
-                        <li>
-                            <a href="#">
-                                <span class="post-title">Key Changes in the Latest Schrems II Ruling</span>
-                                <span class="post-date">April 15, 2025</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="post-title">Navigating Consent Requirements Under ePrivacy</span>
-                                <span class="post-date">April 1, 2025</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <span class="post-title">The Role of DPOs in Modern Organizations</span>
-                                <span class="post-date">March 8, 2025</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Newsletter Signup -->
-                <div class="sidebar-section newsletter">
-                    <h3>Stay Updated</h3>
-                    <p>Subscribe to our newsletter for the latest privacy news and updates.</p>
-                <form class="newsletter-form">
-                    <input type="email" placeholder="Your email address" required aria-label="Enter your email address for newsletter subscription">
-                    <button type="submit" class="btn">Subscribe</button>
-                </form>
-            </div>
-        </aside>
-    </section>
     </main>
 
-    <!-- FOOTER SECTION -->
+    <!-- FOOTER SECTION - Same across all pages -->
     <footer>
         <div class="footer-content">
             <div class="footer-section">

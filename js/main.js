@@ -1,4 +1,4 @@
-// Translations (keep this for multi-language support)
+// Translations
 const translations = {
     hero: {
         title: {
@@ -56,7 +56,6 @@ const translations = {
         cookiePolicy: {en: "Cookie Policy", it: "Politica sui Cookie", de: "Cookie-Richtlinie"},
         contactEmail: "contact@europrivacyhub.com"
     },
-    // Add other page-specific translations here if needed, e.g., for blog/resource headings
     blogPage: {
         title: {
             en: "Privacy Blog",
@@ -81,6 +80,13 @@ const translations = {
             de: "Tools, Vorlagen und Leitfäden zur Navigation durch europäische Datenschutzgesetze",
         },
         recommendedSectionTitle: {en: "Our Privacy Toolkit & Curated Content", it: "Il Nostro Toolkit Privacy e Contenuti Curati", de: "Unser Datenschutz-Toolkit & Kuratierte Inhalte"}
+    },
+    postPage: { // New translations for post.html
+        backToBlog: {en: "Back to Blog List", it: "Torna all'Elenco del Blog", de: "Zurück zur Blogliste"},
+        notFound: {
+            title: {en: "Post Not Found", it: "Articolo Non Trovato", de: "Beitrag nicht gefunden"},
+            message: {en: "The blog post you are looking for does not exist.", it: "L'articolo del blog che cerchi non esiste.", de: "Der gesuchte Blogbeitrag existiert nicht."}
+        }
     }
 };
 
@@ -322,48 +328,49 @@ const ctaMessages = [
 
 // Initialize the app when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
-    setupThemeToggle(); // Setup the theme toggle button and initial theme
-    setupLanguageSelector(); // Setup language selector
-    updateContent(); // Update content based on current language
+    // Determine current page to run specific rendering functions
+    const currentPage = window.location.pathname.split('/').pop();
 
-    // Start CTA carousel only on the homepage
-    if (document.querySelector('.hero-cta-carousel')) {
+    setupThemeToggle(); // Setup theme toggle and initial theme
+    setupLanguageSelector(); // Setup language selector
+
+    if (currentPage === 'post.html') {
+        renderIndividualBlogPost(); // Render only the specific blog post
+    } else {
+        updateContent(); // Update general page content (hero, blog previews, resources previews)
+    }
+
+    // Start CTA carousel only on the homepage (index.html)
+    if (currentPage === 'index.html' && document.querySelector('.hero-cta-carousel')) {
         startCtaCarousel();
     }
 });
 
 // Function to set the theme (light/dark)
 function setTheme(theme) {
-    // Add or remove 'dark-mode' class on the body element
     document.body.classList.toggle('dark-mode', theme === 'dark');
-    // Save the chosen theme to local storage
     localStorage.setItem('theme', theme);
 }
 
 // Function to setup the theme toggle button
 function setupThemeToggle() {
     const themeToggleButton = document.querySelector('.theme-toggle-button');
-
     if (!themeToggleButton) {
         console.warn("Theme toggle button not found. Please ensure a button with class 'theme-toggle-button' exists in your header.");
-        return; // Exit if button not found
+        return;
     }
 
-    // Initial theme setting (this part is crucial for default to white)
     const initialTheme = localStorage.getItem('theme');
     if (initialTheme) {
         setTheme(initialTheme);
     } else {
-        // Default to light if no preference is saved in local storage.
-        setTheme('light');
+        setTheme('light'); // Default to light
     }
 
-    // Add event listener for the toggle button
     themeToggleButton.addEventListener('click', () => {
-        // Get the *current* theme from the body class, not a stale variable
         const currentThemeIsDark = document.body.classList.contains('dark-mode');
         const newTheme = currentThemeIsDark ? 'light' : 'dark';
-        setTheme(newTheme); // Apply and save the new theme
+        setTheme(newTheme);
     });
 }
 
@@ -378,35 +385,36 @@ function setupLanguageSelector() {
         return;
     }
 
-    // Attempt to get saved language from local storage, otherwise default to 'en'
     currentLang = localStorage.getItem('language') || 'en';
     currentLangTextSpan.textContent = langDisplayNames[currentLang].toUpperCase();
 
-    // Toggle dropdown visibility on button click
     langToggle.addEventListener('click', (event) => {
-        event.stopPropagation(); // Prevent document click from closing it immediately
+        event.stopPropagation();
         const isOpen = langToggle.parentElement.classList.toggle('open');
         langToggle.setAttribute('aria-expanded', isOpen);
     });
 
-    // Handle language selection from dropdown
     dropdownContent.querySelectorAll('a').forEach(option => {
         option.addEventListener('click', (event) => {
-            event.preventDefault(); // Prevent default link behavior
+            event.preventDefault();
 
-            currentLang = option.dataset.lang; // Get language from data-lang attribute
-            currentLangTextSpan.textContent = langDisplayNames[currentLang].toUpperCase(); // Update displayed text
-            localStorage.setItem('language', currentLang); // Save selected language
+            currentLang = option.dataset.lang;
+            currentLangTextSpan.textContent = langDisplayNames[currentLang].toUpperCase();
+            localStorage.setItem('language', currentLang);
 
-            updateContent(); // Update all dynamic content
+            // Re-render content based on the current page
+            const currentPage = window.location.pathname.split('/').pop();
+            if (currentPage === 'post.html') {
+                renderIndividualBlogPost(); // For the post page
+            } else {
+                updateContent(); // For other pages
+            }
             
-            // Close the dropdown after selection
             langToggle.parentElement.classList.remove('open');
             langToggle.setAttribute('aria-expanded', 'false');
         });
     });
 
-    // Close dropdown when clicking outside
     document.addEventListener('click', (event) => {
         if (!langToggle.parentElement.contains(event.target)) {
             langToggle.parentElement.classList.remove('open');
@@ -416,7 +424,7 @@ function setupLanguageSelector() {
 }
 
 
-// Update all dynamic content on the page based on the current language
+// Update content for main pages (index, blog list, resources list)
 function updateContent() {
     // Update Hero Section (index.html)
     const heroTitle = document.querySelector('.hero h1');
@@ -425,60 +433,65 @@ function updateContent() {
     }
     // Hero CTA carousel text is updated by updateCtaCarousel function
 
+
     // Update "What We Offer" Section (index.html)
-    const whatWeOfferHeadline = document.querySelector('.what-we-offer h2');
-    const whatWeOfferIntro = document.querySelector('.what-we-offer .intro-text');
-    const offeringItems = document.querySelectorAll('.offering-item');
-    const ctaAboutBtn = document.querySelector('.what-we-offer .btn');
+    const whatWeOfferSection = document.querySelector('.what-we-offer');
+    if (whatWeOfferSection) {
+        const whatWeOfferHeadline = whatWeOfferSection.querySelector('h2');
+        const whatWeOfferIntro = whatWeOfferSection.querySelector('.intro-text');
+        const offeringItems = whatWeOfferSection.querySelectorAll('.offering-item');
+        const ctaAboutBtn = whatWeOfferSection.querySelector('.btn');
 
-    if (whatWeOfferHeadline) whatWeOfferHeadline.textContent = translations.whatWeOffer.headline[currentLang];
-    if (whatWeOfferIntro) whatWeOfferIntro.textContent = translations.whatWeOffer.intro[currentLang];
+        if (whatWeOfferHeadline) whatWeOfferHeadline.textContent = translations.whatWeOffer.headline[currentLang];
+        if (whatWeOfferIntro) whatWeOfferIntro.textContent = translations.whatWeOffer.intro[currentLang];
 
-    if (offeringItems.length >= 3) {
-        offeringItems[0].querySelector('h3').textContent = translations.whatWeOffer.expertGuidance.title[currentLang];
-        offeringItems[0].querySelector('p').textContent = translations.whatWeOffer.expertGuidance.description[currentLang];
-        
-        offeringItems[1].querySelector('h3').textContent = translations.whatWeOffer.practicalTools.title[currentLang];
-        offeringItems[1].querySelector('p').textContent = translations.whatWeOffer.practicalTools.description[currentLang];
-        
-        offeringItems[2].querySelector('h3').textContent = translations.whatWeOffer.timelyUpdates.title[currentLang];
-        offeringItems[2].querySelector('p').textContent = translations.whatWeOffer.timelyUpdates.description[currentLang];
+        if (offeringItems.length >= 3) {
+            offeringItems[0].querySelector('h3').textContent = translations.whatWeOffer.expertGuidance.title[currentLang];
+            offeringItems[0].querySelector('p').textContent = translations.whatWeOffer.expertGuidance.description[currentLang];
+            
+            offeringItems[1].querySelector('h3').textContent = translations.whatWeOffer.practicalTools.title[currentLang];
+            offeringItems[1].querySelector('p').textContent = translations.whatWeOffer.practicalTools.description[currentLang];
+            
+            offeringItems[2].querySelector('h3').textContent = translations.whatWeOffer.timelyUpdates.title[currentLang];
+            offeringItems[2].querySelector('p').textContent = translations.whatWeOffer.timelyUpdates.description[currentLang];
+        }
+        if (ctaAboutBtn) ctaAboutBtn.textContent = translations.whatWeOffer.ctaAbout[currentLang];
     }
-    if (ctaAboutBtn) ctaAboutBtn.textContent = translations.whatWeOffer.ctaAbout[currentLang];
 
 
-    // Update Newsletter Section (index.html)
-    const newsletterHeadline = document.querySelector('.newsletter-section h2');
-    const newsletterDescription = document.querySelector('.newsletter-section p');
-    if (newsletterHeadline) newsletterHeadline.textContent = translations.newsletter.headline[currentLang];
-    if (newsletterDescription) newsletterDescription.textContent = translations.newsletter.description[currentLang];
+    // Update Newsletter Section (index.html, resources.html)
+    const newsletterSection = document.querySelector('.newsletter-section');
+    if (newsletterSection) {
+        const newsletterHeadline = newsletterSection.querySelector('h2');
+        const newsletterDescription = newsletterSection.querySelector('p');
+        if (newsletterHeadline) newsletterHeadline.textContent = translations.newsletter.headline[currentLang];
+        if (newsletterDescription) newsletterDescription.textContent = translations.newsletter.description[currentLang];
+    }
 
 
     // Update Page Headers (blog.html, resources.html, about.html)
-    const pageHeaderTitle = document.querySelector('.page-header h1');
-    const pageHeaderDesc = document.querySelector('.page-header p');
-    // Determine current page based on body ID or title if needed
-    const currentPageTitle = document.title; 
+    const pageHeader = document.querySelector('.page-header');
+    if (pageHeader) {
+        const pageHeaderTitle = pageHeader.querySelector('h1');
+        const pageHeaderDesc = pageHeader.querySelector('p');
+        const currentPageTitle = document.title; // Get title from HTML
 
-    if (currentPageTitle.includes("Blog") && pageHeaderTitle && translations.blogPage.title[currentLang]) {
-        pageHeaderTitle.textContent = translations.blogPage.title[currentLang];
-        pageHeaderDesc.textContent = translations.blogPage.description[currentLang];
-    } else if (currentPageTitle.includes("Resources") && pageHeaderTitle && translations.resourcesPage.title[currentLang]) {
-        pageHeaderTitle.textContent = translations.resourcesPage.title[currentLang];
-        pageHeaderDesc.textContent = translations.resourcesPage.description[currentLang];
+        if (currentPageTitle.includes("Blog") && translations.blogPage.title[currentLang]) {
+            pageHeaderTitle.textContent = translations.blogPage.title[currentLang];
+            pageHeaderDesc.textContent = translations.blogPage.description[currentLang];
+        } else if (currentPageTitle.includes("Resources") && translations.resourcesPage.title[currentLang]) {
+            pageHeaderTitle.textContent = translations.resourcesPage.title[currentLang];
+            pageHeaderDesc.textContent = translations.resourcesPage.description[currentLang];
 
-        // Update Recommended Tools Section on Resources page
-        const recommendedToolsHeadline = document.querySelector('.recommended-tools h2');
-        if (recommendedToolsHeadline) {
-            recommendedToolsHeadline.textContent = translations.resourcesPage.recommendedSectionTitle[currentLang];
+            // Update Recommended Tools Section on Resources page
+            const recommendedToolsHeadline = document.querySelector('.recommended-tools h2');
+            if (recommendedToolsHeadline) {
+                recommendedToolsHeadline.textContent = translations.resourcesPage.recommendedSectionTitle[currentLang];
+            }
         }
-
     }
-    // 'About' page header already has static content in HTML, if you want dynamic update, add similar logic
-    // else if (currentPageTitle.includes("about") && pageHeaderTitle) { ... }
 
-
-    // Update Footer Links
+    // Update Footer Links (These elements are on all HTML pages)
     const privacyPolicyLink = document.getElementById('privacy-policy-link');
     const termsOfServiceLink = document.getElementById('terms-of-service-link');
     const cookiePolicyLink = document.getElementById('cookie-policy-link');
@@ -494,14 +507,18 @@ function updateContent() {
     }
 
 
-    // Render Blog Posts for index.html (preview) and blog.html (full list)
-    renderBlogPosts();
-
-    // Render Resources for index.html (preview) and resources.html (full list)
-    renderResources();
-
-    // Render Recommended Items for resources.html
-    renderRecommendedItems();
+    // Render dynamically loaded sections based on current page
+    const currentPage = window.location.pathname.split('/').pop();
+    if (currentPage === 'index.html') {
+        renderBlogPreviews(); // Renders previews for index.html
+        renderResourcePreviews(); // Renders resource previews for index.html
+    } else if (currentPage === 'blog.html') {
+        renderFullBlogListing(); // Renders full blog list for blog.html
+    } else if (currentPage === 'resources.html') {
+        renderFullResourceListing(); // Renders full resource list for resources.html
+        renderRecommendedItems(); // Renders recommended items for resources.html
+    }
+    // No specific rendering needed for about.html as its content is static.
 
     // Update the displayed current language text in the header
     const currentLangTextSpan = document.querySelector('.language-selector .current-lang-text');
@@ -515,23 +532,20 @@ function updateCtaCarousel() {
     const ctaCarousel = document.querySelector('.hero-cta-carousel');
     if (!ctaCarousel) return;
 
-    // Clear existing slides
+    // Clear existing slides to avoid duplicates during language switch
     ctaCarousel.innerHTML = '';
 
     const currentCta = ctaMessages[currentCtaIndex];
     const newSlide = document.createElement('a');
     newSlide.href = currentCta.link;
-    newSlide.classList.add('btn', 'hero-cta-slide'); // Use 'btn' class for styling
+    newSlide.classList.add('btn', 'hero-cta-slide');
     newSlide.textContent = translations.hero[currentCta.textKey][currentLang];
     
-    // Add active class immediately for smooth transition on initial load or language switch
-    // This will be handled by the carousel logic itself to ensure only one is active.
-    // We append it first, then let the transition system activate it.
     ctaCarousel.appendChild(newSlide);
 
-    // After appending, trigger reflow to ensure transition works
-    newSlide.offsetWidth; // Trigger reflow
-    newSlide.classList.add('active'); // Activate the slide
+    // Trigger reflow to ensure transition works for the new slide
+    newSlide.offsetWidth;
+    newSlide.classList.add('active');
 }
 
 function startCtaCarousel() {
@@ -541,12 +555,11 @@ function startCtaCarousel() {
         const activeSlide = document.querySelector('.hero-cta-slide.active');
         if (activeSlide) {
             activeSlide.classList.remove('active');
-            activeSlide.classList.add('exit'); // Add an exit class for transition out (if needed)
-
-            // Remove the old slide after its transition
-            activeSlide.addEventListener('transitionend', () => {
+            // Adding a class for exit transition if needed, then remove
+            activeSlide.addEventListener('transitionend', function handler() {
+                activeSlide.removeEventListener('transitionend', handler);
                 activeSlide.remove();
-            }, { once: true });
+            });
         }
 
         currentCtaIndex = (currentCtaIndex + 1) % ctaMessages.length;
@@ -556,119 +569,156 @@ function startCtaCarousel() {
 }
 
 
-// Function to render blog posts dynamically
-function renderBlogPosts() {
-    const blogPreviewGrid = document.querySelector('.blog-articles-grid'); // For index.html
-    const blogMainContent = document.querySelector('.blog-main'); // For blog.html
+// Function to render blog post previews on index.html
+function renderBlogPreviews() {
+    const blogPreviewGrid = document.querySelector('.blog-articles-grid');
+    if (!blogPreviewGrid) return;
 
-    // Ensure we have a container for full blog posts on blog.html
-    let blogPostsContainer = null;
-    if (blogMainContent) {
-        blogPostsContainer = blogMainContent.querySelector('.blog-posts-container');
-        if (!blogPostsContainer) { // Create if it doesn't exist (e.g., if you haven't added it to HTML yet)
-            blogPostsContainer = document.createElement('div');
-            blogPostsContainer.classList.add('blog-posts-container');
-            // Find where to insert it, typically before pagination or at the end of blog-main
-            const pagination = blogMainContent.querySelector('.pagination');
-            if (pagination) {
-                blogMainContent.insertBefore(blogPostsContainer, pagination);
-            } else {
-                blogMainContent.appendChild(blogPostsContainer);
-            }
+    blogPreviewGrid.innerHTML = ''; // Clear existing content
+
+    blogPosts.slice(0, 2).forEach(post => { // Display first 2 posts for preview
+        const articleHtml = `
+            <div class="blog-card">
+                <img src="${post.imageUrl}" alt="${post.imageAlt[currentLang]}">
+                <div class="card-content">
+                    <h3>${post.title[currentLang]}</h3>
+                    <p>${post.excerpt[currentLang]}</p>
+                    <a href="post.html?id=${post.id}" class="read-more">Read More</a>
+                </div>
+            </div>
+        `;
+        blogPreviewGrid.insertAdjacentHTML('beforeend', articleHtml);
+    });
+}
+
+// Function to render full blog listing on blog.html
+function renderFullBlogListing() {
+    const blogMainContent = document.querySelector('.blog-main');
+    if (!blogMainContent) return;
+
+    let blogPostsContainer = blogMainContent.querySelector('.blog-posts-container');
+    if (!blogPostsContainer) {
+        blogPostsContainer = document.createElement('div');
+        blogPostsContainer.classList.add('blog-posts-container');
+        const pagination = blogMainContent.querySelector('.pagination');
+        if (pagination) {
+            blogMainContent.insertBefore(blogPostsContainer, pagination);
+        } else {
+            blogMainContent.appendChild(blogPostsContainer);
         }
     }
+    blogPostsContainer.innerHTML = ''; // Clear container for full posts
 
-    // Clear existing content
-    if (blogPreviewGrid) blogPreviewGrid.innerHTML = '';
-    if (blogPostsContainer) blogPostsContainer.innerHTML = ''; 
-
-    // Render for index.html (showing first 2 posts as preview)
-    if (blogPreviewGrid) {
-        blogPosts.slice(0, 2).forEach(post => { // Display first 2 posts for preview
-            const articleHtml = `
-                <div class="blog-card">
-                    <img src="${post.imageUrl}" alt="${post.imageAlt[currentLang]}">
-                    <div class="card-content">
-                        <h3>${post.title[currentLang]}</h3>
-                        <p>${post.excerpt[currentLang]}</p>
-                        <a href="blog.html#${post.id}" class="read-more">Read More</a>
+    blogPosts.forEach(post => {
+        const fullPostHtml = `
+            <article class="blog-post" id="${post.id}">
+                <h2>${post.title[currentLang]}</h2>
+                <div class="post-meta">
+                    <span class="post-date">${post.date}</span>
+                    <span class="post-author">By ${post.author}</span>
+                    <div class="tags">
+                        ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                     </div>
                 </div>
-            `;
-            blogPreviewGrid.insertAdjacentHTML('beforeend', articleHtml);
-        });
-    }
+                <img src="${post.imageUrl}" alt="${post.imageAlt[currentLang]}" class="post-image">
+                <div class="post-excerpt">
+                    ${post.excerpt[currentLang]}
+                </div>
+                <a href="post.html?id=${post.id}" class="read-more">Read Full Post</a>
+            </article>
+        `;
+        blogPostsContainer.insertAdjacentHTML('beforeend', fullPostHtml);
+    });
+}
 
-    // Render for blog.html (showing all posts)
-    if (blogPostsContainer) {
-        blogPosts.forEach(post => {
-            const fullPostHtml = `
-                <article class="blog-post" id="${post.id}">
-                    <h2>${post.title[currentLang]}</h2>
-                    <div class="post-meta">
-                        <span class="post-date">${post.date}</span>
-                        <span class="post-author">By ${post.author}</span>
-                        <div class="tags">
-                            ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                        </div>
+// Function to render an individual blog post on post.html
+function renderIndividualBlogPost() {
+    const postContentArea = document.getElementById('post-content-area');
+    if (!postContentArea) return;
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('id');
+    const post = blogPosts.find(p => p.id === postId);
+
+    if (post) {
+        document.title = `EuroPrivacy Hub - ${post.title[currentLang]}`; // Update page title
+        postContentArea.innerHTML = `
+            <article class="full-blog-post">
+                <h1>${post.title[currentLang]}</h1>
+                <div class="post-meta">
+                    <span class="post-date">${post.date}</span>
+                    <span class="post-author">By ${post.author}</span>
+                    <div class="tags">
+                        ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                     </div>
-                    <img src="${post.imageUrl}" alt="${post.imageAlt[currentLang]}" class="post-image">
-                    <div class="post-content">
-                        ${post.content[currentLang]}
-                    </div>
-                    <a href="blog.html" class="read-more">Back to Blog List</a>
-                </article>
-            `;
-            blogPostsContainer.insertAdjacentHTML('beforeend', fullPostHtml);
-        });
+                </div>
+                <img src="${post.imageUrl}" alt="${post.imageAlt[currentLang]}" class="post-image">
+                <div class="post-content">
+                    ${post.content[currentLang]}
+                </div>
+                <div style="margin-top: 2rem;">
+                    <a href="blog.html" class="btn">${translations.postPage.backToBlog[currentLang]}</a>
+                </div>
+            </article>
+        `;
+    } else {
+        postContentArea.innerHTML = `
+            <div class="not-found-message" style="text-align: center; padding: 4rem 0;">
+                <h1>${translations.postPage.notFound.title[currentLang]}</h1>
+                <p>${translations.postPage.notFound.message[currentLang]}</p>
+                <a href="blog.html" class="btn">${translations.postPage.backToBlog[currentLang]}</a>
+            </div>
+        `;
+        document.title = `EuroPrivacy Hub - ${translations.postPage.notFound.title[currentLang]}`;
     }
 }
 
-// Function to render resources dynamically
-function renderResources() {
-    const resourcesPreviewGrid = document.querySelector('.resources-grid'); // For index.html
-    const resourcesListing = document.querySelector('.resources-listing'); // For resources.html
 
-    // Clear existing content
-    if (resourcesPreviewGrid) resourcesPreviewGrid.innerHTML = '';
-    if (resourcesListing) resourcesListing.innerHTML = '';
+// Function to render resource previews on index.html
+function renderResourcePreviews() {
+    const resourcesPreviewGrid = document.querySelector('.resources-grid');
+    if (!resourcesPreviewGrid) return;
 
-    // Render for index.html (showing first 3 resources as preview)
-    if (resourcesPreviewGrid) {
-        resourcesData.slice(0, 3).forEach(resource => { // Display first 3 resources for preview
-            const cardHtml = `
-                <div class="resource-card">
+    resourcesPreviewGrid.innerHTML = ''; // Clear existing content
+
+    resourcesData.slice(0, 3).forEach(resource => { // Display first 3 resources for preview
+        const cardHtml = `
+            <div class="resource-card">
+                <h3>${resource.title[currentLang]}</h3>
+                <p>${resource.description[currentLang]}</p>
+                <a href="${resource.downloadLink}" class="btn">${currentLang === 'en' ? 'Download' : (currentLang === 'it' ? 'Scarica' : 'Herunterladen')} ${resource.format}</a>
+            </div>
+        `;
+        resourcesPreviewGrid.insertAdjacentHTML('beforeend', cardHtml);
+    });
+}
+
+// Function to render full resource listing on resources.html
+function renderFullResourceListing() {
+    const resourcesListing = document.querySelector('.resources-listing');
+    if (!resourcesListing) return;
+
+    resourcesListing.innerHTML = ''; // Clear existing content
+
+    resourcesData.forEach(resource => {
+        const itemHtml = `
+            <div class="resource-item">
+                <div class="resource-icon">
+                    ${resource.iconSvg}
+                </div>
+                <div class="resource-content">
                     <h3>${resource.title[currentLang]}</h3>
                     <p>${resource.description[currentLang]}</p>
-                    <a href="${resource.downloadLink}" class="btn">${currentLang === 'en' ? 'Download' : (currentLang === 'it' ? 'Scarica' : 'Herunterladen')} ${resource.format}</a>
-                </div>
-            `;
-            resourcesPreviewGrid.insertAdjacentHTML('beforeend', cardHtml);
-        });
-    }
-
-    // Render for resources.html (showing all resources)
-    if (resourcesListing) {
-        resourcesData.forEach(resource => {
-            const itemHtml = `
-                <div class="resource-item">
-                    <div class="resource-icon">
-                        ${resource.iconSvg}
+                    <div class="resource-meta">
+                        <span class="format">Format: ${resource.format}</span>
+                        <span class="updated">Updated: ${resource.updated}</span>
                     </div>
-                    <div class="resource-content">
-                        <h3>${resource.title[currentLang]}</h3>
-                        <p>${resource.description[currentLang]}</p>
-                        <div class="resource-meta">
-                            <span class="format">Format: ${resource.format}</span>
-                            <span class="updated">Updated: ${resource.updated}</span>
-                        </div>
-                        <a href="${resource.downloadLink}" class="btn">${currentLang === 'en' ? 'Download' : (currentLang === 'it' ? 'Scarica' : 'Herunterladen')}</a>
-                    </div>
+                    <a href="${resource.downloadLink}" class="btn">${currentLang === 'en' ? 'Download' : (currentLang === 'it' ? 'Scarica' : 'Herunterladen')}</a>
                 </div>
-            `;
-            resourcesListing.insertAdjacentHTML('beforeend', itemHtml);
-        });
-    }
+            </div>
+        `;
+        resourcesListing.insertAdjacentHTML('beforeend', itemHtml);
+    });
 }
 
 
@@ -676,7 +726,7 @@ function renderResources() {
 function renderRecommendedItems() {
     const recommendedItemsGrid = document.querySelector('.recommended-items-grid');
 
-    if (!recommendedItemsGrid) return; // Exit if not on resources page or element not found
+    if (!recommendedItemsGrid) return;
 
     recommendedItemsGrid.innerHTML = ''; // Clear existing content
 

@@ -1457,3 +1457,102 @@ body:not(.dark-mode) .theme-toggle-button .sun-icon {
     background-color: var(--button-hover-background) !important;
     box-shadow: 0 6px 12px rgba(0,0,0,0.3) !important;
 }
+/* --- Individual Blog Post Page Styling (post.html) --- */
+.blog-post-detail {
+    padding: 3rem 1.5rem;
+    max-width: 900px; /* Max width for readability of long content */
+    margin: 0 auto;
+}
+
+.full-blog-post {
+    background-color: var(--card-background);
+    padding: 2.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow-light);
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.full-blog-post h1 {
+    font-size: 2.5rem; /* Larger heading for main post */
+    margin-bottom: 1.5rem;
+}
+
+.full-blog-post .post-meta {
+    font-size: 1rem;
+    color: var(--placeholder-color);
+    margin-bottom: 2rem;
+}
+
+.full-blog-post .post-image {
+    width: 100%;
+    height: auto;
+    max-height: 400px; /* Cap image height */
+    object-fit: cover;
+    margin-bottom: 2.5rem;
+    border-radius: 8px;
+}
+
+.full-blog-post .post-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8; /* Improved readability for main content */
+}
+
+/* Styles for lists within post content */
+.full-blog-post .post-content ul,
+.full-blog-post .post-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.full-blog-post .post-content ul li,
+.full-blog-post .post-content ol li {
+    margin-bottom: 0.5rem;
+}
+
+/* Styles for strong/em within post content */
+.full-blog-post .post-content strong {
+    font-weight: 700;
+}
+
+.full-blog-post .post-content em {
+    font-style: italic;
+}
+
+/* Styling for tags within post-meta or separately */
+.full-blog-post .tags {
+    display: inline-flex; /* Use flex to align tags */
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px; /* Space from date/author */
+}
+
+.full-blog-post .tags .tag {
+    background-color: var(--section-separator-color);
+    color: var(--text-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Error message for post not found */
+.not-found-message {
+    padding: 5rem 1.5rem;
+    text-align: center;
+    background-color: var(--card-background);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow-light);
+}
+
+.not-found-message h1 {
+    font-size: 2.5rem;
+    color: var(--heading-color);
+}
+
+.not-found-message p {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+}
