@@ -5,32 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EuroPrivacy Hub - Home</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts: Roboto for a modern, clean look -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- You can add your favicon here later -->
     <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
 </head>
 <body>
+    <!-- HEADER SECTION -->
     <header>
         <nav>
+            <!-- Site logo/title that links to homepage -->
             <a href="index.html" class="logo-container">
                 <span class="logo-text">EuroPrivacy Hub</span>
             </a>
 
+            <!-- Main navigation links -->
             <ul class="nav-links">
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="resources.html">Resources</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
 
-            <!-- Right side navigation elements (language selector) -->
+            <!-- Search Bar -->
+            <div class="header-search">
+                <form action="#" method="get">
+                    <input type="text" placeholder="Search..." aria-label="Search the website by keyword">
+                    <button type="submit" aria-label="Perform search">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+                            <path d="M0 0h24v24H0V0z" fill="none"/>
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Right side navigation elements (language selector and theme toggle) -->
             <div class="nav-right">
-                <div class="language-selector">
-                    <button class="lang-toggle" aria-label="Select language">
+                <!-- Language Selector Dropdown -->
+                <div class="language-selector dropdown">
+                    <button class="lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
                         <svg class="globe-icon" viewBox="0 0 24 24">
                             <circle cx="12" cy="12" r="10"></circle>
                             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                             <path d="M2 12h20"></path>
                         </svg>
+                        <span class="current-lang-text">EN</span> <!-- Display current language code -->
+                        <svg class="dropdown-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
                     </button>
+                    <div class="dropdown-content">
+                        <a href="#" data-lang="en">English</a>
+                        <a href="#" data-lang="it">Italiano</a>
+                        <a href="#" data-lang="de">Deutsch</a>
+                    </div>
                 </div>
                 <!-- Theme Toggle Button -->
                 <button class="theme-toggle-button" aria-label="Toggle theme">
@@ -53,15 +81,40 @@
         </nav>
     </header>
     
-    <script src="js/your-js-file.js" defer></script>
-
     <main>
         <!-- HERO SECTION - Main banner -->
         <section class="hero">
             <div class="hero-content">
-                <h1>WELCOME TO EUROPRIVACY HUB</h1>
+                <h1>Your Guide to European Data Protection Law.</h1>
                 <p>Your trusted source for privacy law and data protection resources</p>
-                <a href="about.html" class="btn">Learn More About Us</a>
+                <div class="hero-cta-carousel">
+                    <!-- CTA buttons will be dynamically loaded here by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- "What We Offer" Section -->
+        <section class="what-we-offer alt-background">
+            <div class="container">
+                <h2>Your Privacy Journey, Curated.</h2>
+                <p class="intro-text">Navigating European data protection can be complex. We've distilled years of insights and practical findings into a central hub, offering you everything we've personally found helpful on this path.</p>
+                <div class="offerings-grid">
+                    <div class="offering-item">
+                        <h3>Expert Guidance</h3>
+                        <p>Clear, accessible explanations of complex GDPR articles and EU privacy regulations.</p>
+                    </div>
+                    <div class="offering-item">
+                        <h3>Practical Tools</h3>
+                        <p>Downloadable templates, checklists, and guides to streamline your compliance efforts.</p>
+                    </div>
+                    <div class="offering-item">
+                        <h3>Timely Updates</h3>
+                        <p>Stay informed with analysis of legal developments and landmark rulings.</p>
+                    </div>
+                </div>
+                <div style="margin-top: 3rem;">
+                    <a href="about.html" class="btn">Learn More About Our Mission</a>
+                </div>
             </div>
         </section>
 
@@ -69,55 +122,32 @@
         <section class="blog-preview">
             <h2>Latest from the Blog</h2>
             <div class="blog-articles-grid">
-                <!-- Blog Article 1 -->
-                <div class="blog-card">
-                    <img src="https://placehold.co/600x400" alt="Blog Post Image 1">
-                    <div class="card-content">
-                        <h3>Understanding GDPR Article 17: The Right to Erasure</h3>
-                        <p>Explore the nuances of the 'right to be forgotten' and its implications for data controllers.</p>
-                        <a href="blog.html" class="read-more">Read More</a>
-                    </div>
-                </div>
-
-                <!-- Blog Article 2 -->
-                <div class="blog-card">
-                     <img src="https://placehold.co/600x400" alt="Blog Post Image 2">
-                    <div class="card-content">
-                        <h3>The Role of the Data Protection Officer (DPO)</h3>
-                        <p>An in-depth look at the responsibilities and importance of a DPO in modern data governance.</p>
-                        <a href="blog.html" class="read-more">Read More</a>
-                    </div>
-                </div>
+                <!-- Blog articles will be dynamically loaded here by JavaScript -->
             </div>
         </section>
 
-        <section class="resources-preview">
+        <!-- Resources Preview Section -->
+        <section class="resources-preview alt-background">
             <h2>Privacy Resources</h2>
             <div class="resources-grid">
-                <!-- Resource Card 1 -->
-                <div class="resource-card">
-                    <h3>GDPR Compliance Checklist</h3>
-                    <p>Step-by-step guide to ensure your organization follows GDPR guidelines.</p>
-                    <a href="resources.html" class="btn">Download</a>
-                </div>
+                <!-- Resources will be dynamically loaded here by JavaScript -->
+            </div>
+        </section>
 
-                <!-- Resource Card 2 -->
-                <div class="resource-card">
-                    <h3>Privacy Policy Templates</h3>
-                    <p>Customizable templates for your website or application.</p>
-                    <a href="resources.html" class="btn">Access Templates</a>
-                </div>
-
-                <!-- Resource Card 3 -->
-                <div class="resource-card">
-                    <h3>Data Protection Impact Assessment</h3>
-                    <p>Tools and guidance for conducting effective DPIAs.</p>
-                    <a href="resources.html" class="btn">Learn More</a>
-                </div>
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <div class="container">
+                <h2>Stay Informed, Effortlessly.</h2>
+                <p>Receive a single weekly email with our latest insights, essential resources, and critical privacy news. Your email is for our newsletter only – no spam, ever.</p>
+                <form class="newsletter-form-main">
+                    <input type="email" placeholder="Your email address" required aria-label="Enter your email address for newsletter subscription">
+                    <button type="submit" class="btn">Subscribe</button>
+                </form>
             </div>
         </section>
     </main>
 
+    <!-- FOOTER SECTION -->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -131,11 +161,14 @@
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="resources.html">Resources</a></li>
                     <li><a href="about.html">About</a></li>
+                    <li><a href="#" id="privacy-policy-link">Privacy Policy</a></li>
+                    <li><a href="#" id="terms-of-service-link">Terms of Service</a></li>
+                    <li><a href="#" id="cookie-policy-link">Cookie Policy</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Contact</h3>
-                <p>Email: contact@europrivacyhub.com</p>
+                <p>Email: <a href="mailto:contact@europrivacyhub.com" id="footer-contact-email">contact@europrivacyhub.com</a></p>
                 <div class="social-links">
                     <a href="#" class="social-icon">LinkedIn</a>
                     <a href="#" class="social-icon">Twitter</a>
@@ -147,13 +180,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for interactive elements -->
-    <script>
-        // Language selector functionality can be added here
-        document.querySelector('.lang-toggle').addEventListener('click', function() {
-            // Add code for language selection later
-            alert('Language selection coming soon!');
-        });
-    </script>
+    <!-- JavaScript for interactive elements and dynamic content -->
+    <script src="js/main.js" defer></script>
 </body>
 </html>

@@ -5,32 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EuroPrivacy Hub - Resources</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts: Roboto for a modern, clean look -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
 </head>
 <body>
+    <!-- HEADER SECTION -->
     <header>
         <nav>
+            <!-- Site logo/title that links to homepage -->
             <a href="index.html" class="logo-container">
                 <span class="logo-text">EuroPrivacy Hub</span>
             </a>
 
+            <!-- Main navigation links -->
             <ul class="nav-links">
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="resources.html" class="active">Resources</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
 
-            <!-- Right side navigation elements (language selector) -->
+            <!-- Search Bar -->
+            <div class="header-search">
+                <form action="#" method="get">
+                    <input type="text" placeholder="Search..." aria-label="Search the website by keyword">
+                    <button type="submit" aria-label="Perform search">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+                            <path d="M0 0h24v24H0V0z" fill="none"/>
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Right side navigation elements (language selector and theme toggle) -->
             <div class="nav-right">
-                <div class="language-selector">
-                    <button class="lang-toggle">
+                <!-- Language Selector Dropdown -->
+                <div class="language-selector dropdown">
+                    <button class="lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
                         <svg class="globe-icon" viewBox="0 0 24 24">
                             <circle cx="12" cy="12" r="10"></circle>
                             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                             <path d="M2 12h20"></path>
                         </svg>
+                        <span class="current-lang-text">EN</span> <!-- Display current language code -->
+                        <svg class="dropdown-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
                     </button>
-                </div>
+                    <div class="dropdown-content">
+                        <a href="#" data-lang="en">English</a>
+                        <a href="#" data-lang="it">Italiano</a>
+                        <a href="#" data-lang="de">Deutsch</a>
+                    </div>
                 </div>
                 <!-- Theme Toggle Button -->
                 <button class="theme-toggle-button" aria-label="Toggle theme">
@@ -54,6 +81,7 @@
     </header>
 
     <main>
+        <!-- RESOURCES HEADER -->
         <section class="page-header">
             <div class="header-content">
                 <h1>Privacy Resources</h1>
@@ -61,74 +89,26 @@
             </div>
         </section>
 
+        <!-- RESOURCES LISTING SECTION -->
         <section class="resources-listing">
-            <!-- Example Resource Item -->
-            <div class="resource-item">
-                <div class="resource-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <rect width="18" height="14" x="3" y="7" rx="2"></rect>
-                        <path d="M12 7V3c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2h-8zM8 5h4m-4 4h8m-8 4h8"></path>
-                    </svg>
-                </div>
-                <div class="resource-content">
-                    <h3>GDPR Compliance Checklist</h3>
-                    <p>A comprehensive checklist to help your organization assess and ensure compliance with the General Data Protection Regulation.</p>
-                    <div class="resource-meta">
-                        <span class="format">Format: PDF</span>
-                        <span class="updated">Updated: March 2025</span>
-                    </div>
-                    <a href="#" class="btn">Download</a>
+            <!-- Resources will be dynamically loaded here by JavaScript -->
+        </section>
+
+        <!-- Recommended Tools Section -->
+        <section class="recommended-tools alt-background">
+            <div class="container">
+                <h2>Our Privacy Toolkit & Curated Content</h2>
+                <div class="recommended-items-grid">
+                    <!-- Recommended items will be dynamically loaded here by JavaScript -->
                 </div>
             </div>
-
-            <!-- Example Resource Item 2 -->
-            <div class="resource-item">
-                 <div class="resource-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                        <polyline points="14 2 14 8 20 8"></polyline>
-                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                        <polyline points="10 9 9 9 8 9"></polyline>
-                    </svg>
-                </div>
-                <div class="resource-content">
-                    <h3>Privacy Policy Template</h3>
-                    <p>A customizable template to help you create a clear and compliant privacy policy for your website or application.</p>
-                    <div class="resource-meta">
-                        <span class="format">Format: DOCX</span>
-                        <span class="updated">Updated: February 2025</span>
-                    </div>
-                    <a href="#" class="btn">Download</a>
-                </div>
-            </div>
-
-            <!-- Example Resource Item 3 -->
-            <div class="resource-item">
-                <div class="resource-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open">
-                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                    </svg>
-                </div>
-                <div class="resource-content">
-                    <h3>International Data Transfer Guide</h3>
-                    <p>Comprehensive guide to navigating international data transfers under European privacy law, including SCCs and TFRs.</p>
-                    <div class="resource-meta">
-                        <span class="format">Format: PDF</span>
-                        <span class="updated">Updated: April 2025</span>
-                    </div>
-                    <a href="#" class="btn">Download</a>
-                </div>
-            </div>
-
         </section>
 
         <!-- Newsletter Section -->
         <section class="resources-newsletter">
             <div class="newsletter-container">
-                <h2>Get Resources Delivered to Your Inbox</h2>
-                <p>Subscribe to receive new resources, tools, and updates on European privacy regulations directly to your email.</p>
+                <h2>Stay Informed, Effortlessly.</h2>
+                <p>Receive a single weekly email with our latest insights, essential resources, and critical privacy news. Your email is for our newsletter only – no spam, ever.</p>
                 <form class="newsletter-form">
                     <input type="email" placeholder="Your email address" required aria-label="Enter your email address for newsletter subscription">
                     <button type="submit" class="btn">Subscribe</button>
@@ -137,6 +117,7 @@
         </section>
     </main>
 
+    <!-- FOOTER SECTION -->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -150,11 +131,14 @@
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="resources.html">Resources</a></li>
                     <li><a href="about.html">About</a></li>
+                    <li><a href="#" id="privacy-policy-link">Privacy Policy</a></li>
+                    <li><a href="#" id="terms-of-service-link">Terms of Service</a></li>
+                    <li><a href="#" id="cookie-policy-link">Cookie Policy</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Contact</h3>
-                <p>Email: contact@europrivacyhub.com</p>
+                <p>Email: <a href="mailto:contact@europrivacyhub.com" id="footer-contact-email">contact@europrivacyhub.com</a></p>
                 <div class="social-links">
                     <a href="#" class="social-icon">LinkedIn</a>
                     <a href="#" class="social-icon">Twitter</a>
@@ -166,13 +150,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for interactive elements -->
-    <script>
-        // Language selector functionality can be added here
-        document.querySelector('.lang-toggle').addEventListener('click', function() {
-            // Add code for language selection later
-            alert('Language selection coming soon!');
-        });
-    </script>
+    <!-- JavaScript for interactive elements and dynamic content -->
+    <script src="js/main.js" defer></script>
 </body>
 </html>

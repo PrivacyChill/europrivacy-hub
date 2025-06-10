@@ -16,9 +16,7 @@
 }
 
 /* --- 2. Font Import and Global Typography --- */
-/* For a true Google-inspired look, consider importing 'Roboto' font from Google Fonts:
-   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-*/
+/* Roboto font is imported directly in HTML head now. */
 body {
     font-family: 'Roboto', Arial, sans-serif; /* Google's primary typeface */
     line-height: 1.6;
@@ -48,28 +46,38 @@ main {
     --button-hover-background: #174ea6;
     --border-color: #dadce0; /* Light gray border */
     --card-background: #ffffff;
-    --heading-color: #212529; /* Dark headings */
-    --placeholder-color: #6c757d; /* Muted text for placeholders/meta */
-    --section-separator-color: #eeeeee;
+    --heading-color: #202124;
+    --placeholder-color: #70757a; /* Muted text for placeholders/meta */
+    --section-separator-color: #e8eaed; /* Very light separator */
+    --box-shadow-light: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15); /* Subtle elevation */
+    --dropdown-background: #ffffff;
+    --dropdown-border: #dadce0;
+    --dropdown-link-hover-bg: #e8f0fe; /* Light blue hover for dropdown links */
+    --input-background: #ffffff;
 }
 
 /* Dark Mode Colors (Activated when body has class="dark-mode") */
 body.dark-mode {
-    --background-color: #121212; /* Rich Dark Background */
-    --text-color: #e0e0e0; /* Light Text Color */
-    --link-color: #bb86fc; /* Accent color for links (e.g., from Material Design dark theme) */
-    --link-hover-color: #a070d8;
-    --header-background: #1e1e1e; /* Slightly lighter dark for header */
-    --footer-background: #0a0a0a; /* Slightly darker dark for footer */
-    --footer-text-color: #b0b0b0;
-    --button-background: #bb86fc; /* Accent color for buttons */
-    --button-text-color: #121212; /* Dark text on accent buttons */
-    --button-hover-background: #a070d8;
-    --border-color: #3a3a3a; /* Darker borders */
-    --card-background: #1e1e1e; /* Card background matches header */
-    --heading-color: #ffffff; /* White headings in dark mode */
-    --placeholder-color: #a0a0a0; /* Lighter muted text */
-     --section-separator-color: #2a2a2a;
+    --background-color: #202124; /* Dark charcoal */
+    --text-color: #e8eaed; /* Light text */
+    --link-color: #8ab4f8; /* Lighter Google Blue for dark mode */
+    --link-hover-color: #c5d0f6;
+    --header-background: #292a2d; /* Darker header */
+    --footer-background: #171717; /* Very dark footer */
+    --footer-text-color: #bdc1c6;
+    --button-background: #8ab4f8;
+    --button-text-color: #202124; /* Dark text on light button */
+    --button-hover-background: #c5d0f6;
+    --border-color: #5f6368; /* Muted dark border */
+    --card-background: #292a2d; /* Dark card background */
+    --heading-color: #e8eaed;
+    --placeholder-color: #9aa0a6;
+    --section-separator-color: #3c4043;
+    --box-shadow-light: none; /* Dark mode often relies less on strong shadows */
+    --dropdown-background: #292a2d;
+    --dropdown-border: #5f6368;
+    --dropdown-link-hover-bg: #3c4043; /* Darker hover for dropdown links */
+    --input-background: #3c4043;
 }
 
 /* Apply theme variables to body */
@@ -131,6 +139,23 @@ a:hover {
     text-decoration: none;
 }
 
+/* Form input styling */
+input[type="text"],
+input[type="email"] {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--input-background);
+    color: var(--text-color);
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+    font-size: 1rem;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder {
+    color: var(--placeholder-color);
+}
+
 /* Container for centering content */
 .container {
     max-width: 1280px; /* Slightly wider container */
@@ -151,12 +176,18 @@ header {
 
 header nav {
     display: flex;
-    justify-content: space-between;
+    /* Use flex-wrap: wrap; and align-items: center; to handle responsiveness */
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: space-between; /* Space out items */
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 1.5rem;
-    flex-wrap: wrap;
+    gap: 1.5rem; /* Gap between main nav elements */
+}
+
+.logo-container {
+    flex-shrink: 0; /* Don't shrink logo */
 }
 
 .logo-container .logo-text {
@@ -171,6 +202,9 @@ header nav {
     display: flex;
     gap: 2rem;
     align-items: center;
+    flex-grow: 1; /* Allow navigation links to grow and push other elements */
+    justify-content: flex-start; /* Align links to the start */
+    /* On smaller screens, they will wrap below */
 }
 
 .nav-links li {
@@ -201,30 +235,106 @@ header nav {
     width: 100%;
 }
 
+/* Search Bar Styling */
+.header-search {
+    flex-grow: 2; /* Allow search bar to take up more space */
+    max-width: 400px; /* Limit max width */
+    position: relative;
+}
+
+.header-search form {
+    display: flex;
+    width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 24px; /* Pill shape for search bar */
+    overflow: hidden; /* Ensures content stays within border-radius */
+    background-color: var(--input-background);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.header-search form:focus-within {
+    box-shadow: 0 1px 3px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15); /* More pronounced shadow on focus */
+    border-color: var(--link-color); /* Highlight border on focus */
+}
+
+.header-search input[type="text"] {
+    border: none; /* Remove default input border */
+    padding: 0.75rem 1rem;
+    flex-grow: 1;
+    background-color: transparent; /* Transparent background to show form's background */
+    color: var(--text-color);
+    outline: none; /* Remove outline on focus */
+}
+
+.header-search button {
+    background-color: transparent;
+    border: none;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color); /* Icon color */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header-search button:hover {
+    background-color: rgba(0,0,0,0.05); /* Subtle hover for button */
+    color: var(--link-color); /* Highlight icon on hover */
+}
+
+body.dark-mode .header-search button:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+.header-search button svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor; /* Use current text color */
+}
+
+
 .nav-right {
     display: flex;
     align-items: center;
     gap: 1rem;
+    flex-shrink: 0; /* Don't shrink to ensure visible */
 }
 
 /* Language Selector Dropdown Styling */
 .language-selector {
     position: relative;
-    display: inline-block; /* Allows dropdown to be positioned relative to this */
+    display: inline-block;
 }
 
 .language-selector .lang-toggle {
     background: none;
-    border: 1px solid var(--border-color); /* Add a border for clarity */
+    border: 1px solid var(--border-color);
     cursor: pointer;
-    padding: 0; /* Remove padding if icon button */
+    padding: 0.5rem 0.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 0.95rem;
+    gap: 0.5rem;
+}
+
+.language-selector .lang-toggle:hover {
+    background-color: rgba(0,0,0,0.05);
+    border-color: var(--link-color);
+}
+
+body.dark-mode .language-selector .lang-toggle:hover {
+    background-color: rgba(255,255,255,0.1);
 }
 
 .language-selector .lang-toggle svg.globe-icon {
-    width: 20px; /* Slightly smaller globe icon */
+    width: 20px;
     height: 20px;
     stroke: var(--text-color);
     fill: none;
@@ -232,7 +342,57 @@ header nav {
 }
 
 .language-selector .lang-toggle:hover svg.globe-icon {
-    stroke: var(--link-color); /* Accent color on hover */
+    stroke: var(--link-color);
+}
+
+.language-selector .current-lang-text {
+    text-transform: uppercase;
+}
+
+.language-selector .dropdown-arrow-icon {
+    width: 16px;
+    height: 16px;
+    stroke: var(--text-color);
+    transition: transform 0.3s ease, stroke 0.4s ease;
+}
+
+.language-selector.open .dropdown-arrow-icon {
+    transform: rotate(180deg);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--dropdown-background);
+    min-width: 120px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    border: 1px solid var(--dropdown-border);
+    border-radius: 4px;
+    z-index: 1000;
+    top: 100%;
+    right: 0; /* Align to the right of the button */
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.language-selector.open .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: var(--text-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--dropdown-link-hover-bg);
+    color: var(--link-color);
+    text-decoration: none;
 }
 
 
@@ -356,6 +516,8 @@ footer {
     padding: 8rem 1.5rem;
     text-align: center;
     border-bottom: 1px solid var(--section-separator-color);
+    position: relative; /* Needed for CTA carousel positioning */
+    overflow: hidden; /* Hide overflowing carousel items */
 }
 
 .hero h1 {
@@ -369,6 +531,116 @@ footer {
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
+}
+
+/* CTA Carousel specific styles */
+.hero-cta-carousel {
+    display: flex;
+    justify-content: center;
+    overflow: hidden; /* Hide overflowing slides */
+    position: relative;
+    height: 3rem; /* Fixed height for the carousel area */
+}
+
+.hero-cta-slide {
+    position: absolute; /* Stack slides */
+    width: auto; /* Content-based width */
+    opacity: 0;
+    transform: translateY(100%); /* Start off-screen */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.hero-cta-slide.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* "What We Offer" Section */
+.what-we-offer {
+    padding: 4rem 1.5rem;
+    text-align: center;
+}
+
+.what-we-offer h2 {
+    margin-bottom: 1.5rem;
+}
+
+.what-we-offer p {
+    max-width: 800px;
+    margin: 0 auto 2.5rem auto;
+    font-size: 1.1rem;
+}
+
+.offerings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.offering-item {
+    background-color: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow-light);
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.offering-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px 0 rgba(60,64,67,0.3), 0 3px 6px 1px rgba(60,64,67,0.15);
+}
+
+.offering-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.offering-item p {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+
+/* Newsletter Section */
+.newsletter-section {
+    padding: 4rem 1.5rem;
+    text-align: center;
+}
+
+.newsletter-section h2 {
+    margin-bottom: 1rem;
+}
+
+.newsletter-section p {
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+    font-size: 1.1rem;
+}
+
+.newsletter-form-main {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.newsletter-form-main input[type="email"] {
+    flex-grow: 1;
+    max-width: 350px;
+}
+
+.newsletter-form-main button {
+    flex-shrink: 0;
 }
 
 
@@ -481,10 +753,17 @@ footer {
     height: fit-content;
 }
 
+.blog-posts-container {
+    /* Container for dynamically loaded full blog posts */
+    display: flex;
+    flex-direction: column;
+    gap: 3rem; /* Space between full articles */
+}
+
 .blog-post {
     background-color: var(--card-background);
     padding: 2rem;
-    margin-bottom: 3rem;
+    /* margin-bottom handled by gap in container */
     border-radius: 8px;
     border: 1px solid var(--border-color);
     box-shadow: var(--box-shadow-light);
@@ -510,10 +789,12 @@ footer {
     object-fit: cover;
 }
 
-.blog-post .post-excerpt p {
+.blog-post .post-content p {
     margin-bottom: 1.5rem;
     font-size: 1rem;
 }
+/* Ensure general p styling is not overridden */
+
 
 .blog-sidebar .sidebar-section {
     margin-bottom: 2.5rem;
@@ -573,7 +854,7 @@ footer {
     padding: 0.75rem;
     border: 1px solid var(--border-color);
     border-radius: 4px;
-    background-color: var(--background-color);
+    background-color: var(--input-background);
     color: var(--text-color);
     transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
     font-size: 1rem;
@@ -662,7 +943,7 @@ body.dark-mode .resource-icon {
 }
 
 .resource-icon svg {
-    width: 30px; /* Slightly smaller SVG icon */
+    width: 30px;
     height: 30px;
     stroke: var(--link-color);
     fill: none;
@@ -695,6 +976,62 @@ body.dark-mode .resource-icon {
 .resource-meta span {
     margin-right: 1.5rem;
 }
+
+/* Recommended Tools Section */
+.recommended-tools {
+    padding: 4rem 1.5rem;
+    text-align: center;
+}
+
+.recommended-tools h2 {
+    margin-bottom: 2rem;
+}
+
+.recommended-items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+}
+
+.recommended-item {
+    background-color: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow-light);
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recommended-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px 0 rgba(60,64,67,0.3), 0 3px 6px 1px rgba(60,64,67,0.15);
+}
+
+.recommended-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.recommended-item .item-type {
+    font-size: 0.85rem;
+    color: var(--placeholder-color);
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+.recommended-item p {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.recommended-item .item-note {
+    font-size: 0.85rem;
+    color: var(--link-color); /* Highlight affiliate notes */
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
 
 /* Resources Newsletter Section (resources.html) */
 .resources-newsletter {
@@ -730,7 +1067,7 @@ body.dark-mode .resource-icon {
     border-radius: 4px;
     flex-grow: 1;
     max-width: 350px;
-    background-color: var(--background-color);
+    background-color: var(--input-background);
     color: var(--text-color);
     transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
     font-size: 1rem;
@@ -806,6 +1143,34 @@ body.dark-mode .resource-icon {
 
 /* --- 10. Responsive Adjustments --- */
 @media (max-width: 1000px) {
+    /* Header adjustments for smaller screens */
+    header nav {
+        flex-direction: column; /* Stack header items */
+        gap: 1rem; /* Reduce gap when stacked */
+    }
+
+    .logo-container {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 0.8rem; /* Smaller gap for stacked links */
+    }
+
+    .header-search {
+        max-width: 100%; /* Full width search bar */
+    }
+
+    .nav-right {
+        width: 100%;
+        justify-content: center; /* Center language and theme toggles */
+        margin-top: 0.5rem;
+    }
+
     .blog-content {
         flex-direction: column;
     }
@@ -853,34 +1218,6 @@ body.dark-mode .resource-icon {
     h1 { font-size: 2.2rem; }
     h2 { font-size: 1.9rem; }
     h3 { font-size: 1.4rem; }
-
-    header nav {
-        flex-direction: column;
-        gap: 1.5rem;
-        padding: 0 1.5rem;
-    }
-
-    .logo-container {
-         width: 100%;
-         text-align: center;
-    }
-
-    .nav-links {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
-    }
-
-    .nav-links li {
-        padding: 0;
-    }
-
-    .nav-right {
-        width: 100%;
-        justify-content: center;
-        margin-top: 0.5rem;
-    }
-
 
     .page-header {
         padding: 3rem 1.5rem;
@@ -1016,7 +1353,7 @@ body.dark-mode .resource-icon {
     }
 
     .hero p {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
      .blog-preview h2, .resources-preview h2 {
@@ -1106,14 +1443,14 @@ body:not(.dark-mode) .theme-toggle-button .sun-icon {
     display: block;
 }
 
-/* Floating theme toggle button (from main.js) */
+/* Floating theme toggle button (from main.js) - this will not be used with current setup */
 .floating-theme-toggle {
     background-color: var(--button-background) !important;
     color: var(--button-text-color) !important;
-    border-radius: 50% !important; /* Keep it circular */
-    padding: 12px 15px !important; /* Adjust padding */
-    font-size: 1.5rem !important; /* Larger icon/text */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important; /* Subtle shadow */
+    border-radius: 50% !important;
+    padding: 12px 15px !important;
+    font-size: 1.5rem !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
 }
 
 .floating-theme-toggle:hover {

@@ -2,15 +2,59 @@
 const translations = {
     hero: {
         title: {
-            en: "Welcome to EuroPrivacy Hub",
-            it: "Benvenuti su EuroPrivacy Hub",
-            de: "Willkommen bei EuroPrivacy Hub",
+            en: "Your Guide to European Data Protection Law.",
+            it: "La Tua Guida al Diritto Europeo sulla Protezione dei Dati.",
+            de: "Ihr Leitfaden zum europäischen Datenschutzrecht.",
         },
-        description: {
-            en: "Your trusted source for privacy law and data protection resources",
-            it: "La tua fonte affidabile per le leggi sulla privacy e le risorse sulla protezione dei dati",
-            de: "Ihre vertrauenswürdige Quelle für Datenschutzrecht und Datenschutzressourcen",
+        ctaBlog: {
+            en: "Explore Latest Insights",
+            it: "Esplora gli Ultimi Approfondimenti",
+            de: "Neueste Einblicke entdecken",
         },
+        ctaResources: {
+            en: "Discover Privacy Resources",
+            it: "Scopri le Risorse sulla Privacy",
+            de: "Datenschutzressourcen entdecken",
+        }
+    },
+    whatWeOffer: {
+        headline: {
+            en: "Your Privacy Journey, Curated.",
+            it: "Il Tuo Percorso sulla Privacy, Curato.",
+            de: "Ihre Datenschutzreise, Kuratiert.",
+        },
+        intro: {
+            en: "Navigating European data protection can be complex. We've distilled years of insights and practical findings into a central hub, offering you everything we've personally found helpful on this path.",
+            it: "Navigare la protezione dei dati in Europa può essere complesso. Abbiamo distillato anni di approfondimenti e scoperte pratiche in un hub centrale, offrendoti tutto ciò che abbiamo trovato personalmente utile in questo percorso.",
+            de: "Die Navigation im europäischen Datenschutz kann komplex sein. Wir haben jahrelange Erkenntnisse und praktische Ergebnisse in einem zentralen Hub zusammengefasst und bieten Ihnen alles, was wir persönlich auf diesem Weg als hilfreich empfunden haben."
+        },
+        expertGuidance: {
+            title: {en: "Expert Guidance", it: "Guida Esperta", de: "Expertenberatung"},
+            description: {en: "Clear, accessible explanations of complex GDPR articles and EU privacy regulations.", it: "Spiegazioni chiare e accessibili di complessi articoli GDPR e regolamenti sulla privacy dell'UE.", de: "Klare, zugängliche Erklärungen komplexer DSGVO-Artikel und EU-Datenschutzvorschriften."}
+        },
+        practicalTools: {
+            title: {en: "Practical Tools", it: "Strumenti Pratici", de: "Praktische Tools"},
+            description: {en: "Downloadable templates, checklists, and guides to streamline your compliance efforts.", it: "Modelli, checklist e guide scaricabili per semplificare i tuoi sforzi di conformità.", de: "Herunterladbare Vorlagen, Checklisten und Leitfäden zur Rationalisierung Ihrer Compliance-Bemühungen."}
+        },
+        timelyUpdates: {
+            title: {en: "Timely Updates", it: "Aggiornamenti Tempestivi", de: "Rechtzeitige Updates"},
+            description: {en: "Stay informed with analysis of legal developments and landmark rulings.", it: "Rimani informato con l'analisi degli sviluppi legali e delle sentenze di riferimento.", de: "Bleiben Sie mit Analysen von Rechtsentwicklungen und wegweisenden Urteilen auf dem Laufenden."}
+        },
+        ctaAbout: {
+            en: "Learn More About Our Mission",
+            it: "Scopri di Più sulla Nostra Missione",
+            de: "Erfahren Sie mehr über unsere Mission"
+        }
+    },
+    newsletter: {
+        headline: {en: "Stay Informed, Effortlessly.", it: "Resta Informato, Senza Sforzo.", de: "Bleiben Sie mühelos informiert."},
+        description: {en: "Receive a single weekly email with our latest insights, essential resources, and critical privacy news. Your email is for our newsletter only – no spam, ever.", it: "Ricevi una singola email settimanale con i nostri ultimi approfondimenti, risorse essenziali e notizie cruciali sulla privacy. La tua email è solo per la nostra newsletter – mai spam.", de: "Erhalten Sie eine einzige wöchentliche E-Mail mit unseren neuesten Erkenntnissen, wichtigen Ressourcen und kritischen Datenschutz-Nachrichten. Ihre E-Mail ist nur für unseren Newsletter – niemals Spam."}
+    },
+    footer: {
+        privacyPolicy: {en: "Privacy Policy", it: "Informativa sulla Privacy", de: "Datenschutzerklärung"},
+        termsOfService: {en: "Terms of Service", it: "Termini di Servizio", de: "Nutzungsbedingungen"},
+        cookiePolicy: {en: "Cookie Policy", it: "Politica sui Cookie", de: "Cookie-Richtlinie"},
+        contactEmail: "contact@europrivacyhub.com"
     },
     // Add other page-specific translations here if needed, e.g., for blog/resource headings
     blogPage: {
@@ -35,7 +79,8 @@ const translations = {
             en: "Tools, templates, and guides to help you navigate European privacy laws",
             it: "Strumenti, modelli e guide per aiutarti a navigare nelle leggi europee sulla privacy",
             de: "Tools, Vorlagen und Leitfäden zur Navigation durch europäische Datenschutzgesetze",
-        }
+        },
+        recommendedSectionTitle: {en: "Our Privacy Toolkit & Curated Content", it: "Il Nostro Toolkit Privacy e Contenuti Curati", de: "Unser Datenschutz-Toolkit & Kuratierte Inhalte"}
     }
 };
 
@@ -216,6 +261,47 @@ const resourcesData = [
     // Add more resources here following the same structure
 ];
 
+// --- Recommended Items (Tools, Creators, Content) data ---
+const recommendedItems = [
+    {
+        id: "recommended-vpn",
+        type: {en: "VPN Service", it: "Servizio VPN", de: "VPN-Dienst"},
+        title: {en: "Recommended VPN for Privacy", it: "VPN Consigliata per la Privacy", de: "Empfohlener VPN-Dienst für Datenschutz"},
+        description: {
+            en: "Enhance your online privacy and security with a reliable VPN service.",
+            it: "Migliora la tua privacy e sicurezza online con un servizio VPN affidabile.",
+            de: "Verbessern Sie Ihre Online-Privatsphäre und -Sicherheit mit einem zuverlässigen VPN-Dienst."
+        },
+        link: "#", // Replace with actual VPN affiliate link
+        note: {en: "Affiliate link: Get a special discount!", it: "Link affiliato: Ottieni uno sconto speciale!", de: "Affiliate-Link: Erhalten Sie einen Sonderrabatt!"}
+    },
+    {
+        id: "privacy-youtube-channel",
+        type: {en: "YouTube Channel", it: "Canale YouTube", de: "YouTube-Kanal"},
+        title: {en: "Top Privacy Creator Channel", it: "Canale YouTube di un Creatore di Privacy Top", de: "Top Datenschutz-Creator-Kanal"},
+        description: {
+            en: "Explore engaging videos and deep dives into privacy topics from a leading creator.",
+            it: "Esplora video coinvolgenti e approfondimenti su argomenti di privacy da un creatore di spicco.",
+            de: "Entdecken Sie fesselnde Videos und tiefgehende Einblicke in Datenschutzthemen von einem führenden Creator."
+        },
+        link: "#", // Replace with actual YouTube channel link
+        note: {en: "External content", it: "Contenuto esterno", de: "Externer Inhalt"}
+    },
+    {
+        id: "privacy-software-discount",
+        type: {en: "Privacy Software", it: "Software per la Privacy", de: "Datenschutzsoftware"},
+        title: {en: "Essential Privacy Software", it: "Software Essenziale per la Privacy", de: "Essenzielle Datenschutzsoftware"},
+        description: {
+            en: "Discover a powerful tool to manage your digital footprint and protect your data.",
+            it: "Scopri uno strumento potente per gestire la tua impronta digitale e proteggere i tuoi dati.",
+            de: "Entdecken Sie ein leistungsstarkes Tool zur Verwaltung Ihres digitalen Fußabdrucks und zum Schutz Ihrer Daten."
+        },
+        link: "#", // Replace with actual software link
+        note: {en: "Future discount code available!", it: "Futuro codice sconto disponibile!", de: "Zukünftiger Rabattcode verfügbar!"}
+    }
+    // Add more recommended items here
+];
+
 
 // Current language state (default to English)
 let currentLang = 'en';
@@ -227,12 +313,23 @@ const langDisplayNames = {
     'de': 'DE'
 };
 
+// For CTA carousel
+let currentCtaIndex = 0;
+const ctaMessages = [
+    { textKey: 'ctaBlog', link: 'blog.html' },
+    { textKey: 'ctaResources', link: 'resources.html' }
+];
 
 // Initialize the app when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
     setupThemeToggle(); // Setup the theme toggle button and initial theme
     setupLanguageSelector(); // Setup language selector
     updateContent(); // Update content based on current language
+
+    // Start CTA carousel only on the homepage
+    if (document.querySelector('.hero-cta-carousel')) {
+        startCtaCarousel();
+    }
 });
 
 // Function to set the theme (light/dark)
@@ -281,7 +378,8 @@ function setupLanguageSelector() {
         return;
     }
 
-    // Initialize current language display
+    // Attempt to get saved language from local storage, otherwise default to 'en'
+    currentLang = localStorage.getItem('language') || 'en';
     currentLangTextSpan.textContent = langDisplayNames[currentLang].toUpperCase();
 
     // Toggle dropdown visibility on button click
@@ -298,6 +396,7 @@ function setupLanguageSelector() {
 
             currentLang = option.dataset.lang; // Get language from data-lang attribute
             currentLangTextSpan.textContent = langDisplayNames[currentLang].toUpperCase(); // Update displayed text
+            localStorage.setItem('language', currentLang); // Save selected language
 
             updateContent(); // Update all dynamic content
             
@@ -321,29 +420,79 @@ function setupLanguageSelector() {
 function updateContent() {
     // Update Hero Section (index.html)
     const heroTitle = document.querySelector('.hero h1');
-    const heroDesc = document.querySelector('.hero p');
     if (heroTitle && translations.hero.title[currentLang]) {
         heroTitle.textContent = translations.hero.title[currentLang];
     }
-    if (heroDesc && translations.hero.description[currentLang]) {
-        heroDesc.textContent = translations.hero.description[currentLang];
+    // Hero CTA carousel text is updated by updateCtaCarousel function
+
+    // Update "What We Offer" Section (index.html)
+    const whatWeOfferHeadline = document.querySelector('.what-we-offer h2');
+    const whatWeOfferIntro = document.querySelector('.what-we-offer .intro-text');
+    const offeringItems = document.querySelectorAll('.offering-item');
+    const ctaAboutBtn = document.querySelector('.what-we-offer .btn');
+
+    if (whatWeOfferHeadline) whatWeOfferHeadline.textContent = translations.whatWeOffer.headline[currentLang];
+    if (whatWeOfferIntro) whatWeOfferIntro.textContent = translations.whatWeOffer.intro[currentLang];
+
+    if (offeringItems.length >= 3) {
+        offeringItems[0].querySelector('h3').textContent = translations.whatWeOffer.expertGuidance.title[currentLang];
+        offeringItems[0].querySelector('p').textContent = translations.whatWeOffer.expertGuidance.description[currentLang];
+        
+        offeringItems[1].querySelector('h3').textContent = translations.whatWeOffer.practicalTools.title[currentLang];
+        offeringItems[1].querySelector('p').textContent = translations.whatWeOffer.practicalTools.description[currentLang];
+        
+        offeringItems[2].querySelector('h3').textContent = translations.whatWeOffer.timelyUpdates.title[currentLang];
+        offeringItems[2].querySelector('p').textContent = translations.whatWeOffer.timelyUpdates.description[currentLang];
     }
+    if (ctaAboutBtn) ctaAboutBtn.textContent = translations.whatWeOffer.ctaAbout[currentLang];
+
+
+    // Update Newsletter Section (index.html)
+    const newsletterHeadline = document.querySelector('.newsletter-section h2');
+    const newsletterDescription = document.querySelector('.newsletter-section p');
+    if (newsletterHeadline) newsletterHeadline.textContent = translations.newsletter.headline[currentLang];
+    if (newsletterDescription) newsletterDescription.textContent = translations.newsletter.description[currentLang];
+
 
     // Update Page Headers (blog.html, resources.html, about.html)
     const pageHeaderTitle = document.querySelector('.page-header h1');
     const pageHeaderDesc = document.querySelector('.page-header p');
     // Determine current page based on body ID or title if needed
-    const currentPageId = document.body.id || document.title.toLowerCase(); 
+    const currentPageTitle = document.title; 
 
-    if (currentPageId.includes("blog") && pageHeaderTitle && translations.blogPage.title[currentLang]) {
+    if (currentPageTitle.includes("Blog") && pageHeaderTitle && translations.blogPage.title[currentLang]) {
         pageHeaderTitle.textContent = translations.blogPage.title[currentLang];
         pageHeaderDesc.textContent = translations.blogPage.description[currentLang];
-    } else if (currentPageId.includes("resources") && pageHeaderTitle && translations.resourcesPage.title[currentLang]) {
+    } else if (currentPageTitle.includes("Resources") && pageHeaderTitle && translations.resourcesPage.title[currentLang]) {
         pageHeaderTitle.textContent = translations.resourcesPage.title[currentLang];
         pageHeaderDesc.textContent = translations.resourcesPage.description[currentLang];
+
+        // Update Recommended Tools Section on Resources page
+        const recommendedToolsHeadline = document.querySelector('.recommended-tools h2');
+        if (recommendedToolsHeadline) {
+            recommendedToolsHeadline.textContent = translations.resourcesPage.recommendedSectionTitle[currentLang];
+        }
+
     }
     // 'About' page header already has static content in HTML, if you want dynamic update, add similar logic
-    // else if (currentPageId.includes("about") && pageHeaderTitle) { ... }
+    // else if (currentPageTitle.includes("about") && pageHeaderTitle) { ... }
+
+
+    // Update Footer Links
+    const privacyPolicyLink = document.getElementById('privacy-policy-link');
+    const termsOfServiceLink = document.getElementById('terms-of-service-link');
+    const cookiePolicyLink = document.getElementById('cookie-policy-link');
+
+    if (privacyPolicyLink) privacyPolicyLink.textContent = translations.footer.privacyPolicy[currentLang];
+    if (termsOfServiceLink) termsOfServiceLink.textContent = translations.footer.termsOfService[currentLang];
+    if (cookiePolicyLink) cookiePolicyLink.textContent = translations.footer.cookiePolicy[currentLang];
+    
+    const contactEmailLink = document.getElementById('footer-contact-email');
+    if (contactEmailLink) {
+        contactEmailLink.textContent = translations.footer.contactEmail;
+        contactEmailLink.href = `mailto:${translations.footer.contactEmail}`;
+    }
+
 
     // Render Blog Posts for index.html (preview) and blog.html (full list)
     renderBlogPosts();
@@ -351,12 +500,61 @@ function updateContent() {
     // Render Resources for index.html (preview) and resources.html (full list)
     renderResources();
 
+    // Render Recommended Items for resources.html
+    renderRecommendedItems();
+
     // Update the displayed current language text in the header
     const currentLangTextSpan = document.querySelector('.language-selector .current-lang-text');
     if (currentLangTextSpan) {
         currentLangTextSpan.textContent = langDisplayNames[currentLang].toUpperCase();
     }
 }
+
+// Hero CTA Carousel Logic
+function updateCtaCarousel() {
+    const ctaCarousel = document.querySelector('.hero-cta-carousel');
+    if (!ctaCarousel) return;
+
+    // Clear existing slides
+    ctaCarousel.innerHTML = '';
+
+    const currentCta = ctaMessages[currentCtaIndex];
+    const newSlide = document.createElement('a');
+    newSlide.href = currentCta.link;
+    newSlide.classList.add('btn', 'hero-cta-slide'); // Use 'btn' class for styling
+    newSlide.textContent = translations.hero[currentCta.textKey][currentLang];
+    
+    // Add active class immediately for smooth transition on initial load or language switch
+    // This will be handled by the carousel logic itself to ensure only one is active.
+    // We append it first, then let the transition system activate it.
+    ctaCarousel.appendChild(newSlide);
+
+    // After appending, trigger reflow to ensure transition works
+    newSlide.offsetWidth; // Trigger reflow
+    newSlide.classList.add('active'); // Activate the slide
+}
+
+function startCtaCarousel() {
+    updateCtaCarousel(); // Display initial CTA
+
+    setInterval(() => {
+        const activeSlide = document.querySelector('.hero-cta-slide.active');
+        if (activeSlide) {
+            activeSlide.classList.remove('active');
+            activeSlide.classList.add('exit'); // Add an exit class for transition out (if needed)
+
+            // Remove the old slide after its transition
+            activeSlide.addEventListener('transitionend', () => {
+                activeSlide.remove();
+            }, { once: true });
+        }
+
+        currentCtaIndex = (currentCtaIndex + 1) % ctaMessages.length;
+        updateCtaCarousel();
+
+    }, 5000); // Change CTA every 5 seconds
+}
+
 
 // Function to render blog posts dynamically
 function renderBlogPosts() {
@@ -471,4 +669,26 @@ function renderResources() {
             resourcesListing.insertAdjacentHTML('beforeend', itemHtml);
         });
     }
+}
+
+
+// Function to render recommended items dynamically (for resources.html)
+function renderRecommendedItems() {
+    const recommendedItemsGrid = document.querySelector('.recommended-items-grid');
+
+    if (!recommendedItemsGrid) return; // Exit if not on resources page or element not found
+
+    recommendedItemsGrid.innerHTML = ''; // Clear existing content
+
+    recommendedItems.forEach(item => {
+        const itemHtml = `
+            <div class="recommended-item">
+                <h3><a href="${item.link}" target="_blank" rel="noopener noreferrer">${item.title[currentLang]}</a></h3>
+                <span class="item-type">${item.type[currentLang]}</span>
+                <p>${item.description[currentLang]}</p>
+                ${item.note ? `<span class="item-note">${item.note[currentLang]}</span>` : ''}
+            </div>
+        `;
+        recommendedItemsGrid.insertAdjacentHTML('beforeend', itemHtml);
+    });
 }

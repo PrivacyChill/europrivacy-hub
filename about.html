@@ -5,31 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EuroPrivacy Hub - About Us</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts: Roboto for a modern, clean look -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
 </head>
 <body>
+    <!-- HEADER SECTION -->
     <header>
         <nav>
+            <!-- Site logo/title that links to homepage -->
             <a href="index.html" class="logo-container">
                 <span class="logo-text">EuroPrivacy Hub</span>
             </a>
 
+            <!-- Main navigation links -->
             <ul class="nav-links">
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="resources.html">Resources</a></li>
                 <li><a href="about.html" class="active">About</a></li>
             </ul>
 
-            <!-- Right side navigation elements (language selector) -->
+            <!-- Search Bar -->
+            <div class="header-search">
+                <form action="#" method="get">
+                    <input type="text" placeholder="Search..." aria-label="Search the website by keyword">
+                    <button type="submit" aria-label="Perform search">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="currentColor">
+                            <path d="M0 0h24v24H0V0z" fill="none"/>
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Right side navigation elements (language selector and theme toggle) -->
             <div class="nav-right">
-                <div class="language-selector">
-                    <button class="lang-toggle">
+                <!-- Language Selector Dropdown -->
+                <div class="language-selector dropdown">
+                    <button class="lang-toggle" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
                         <svg class="globe-icon" viewBox="0 0 24 24">
                             <circle cx="12" cy="12" r="10"></circle>
                             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
                             <path d="M2 12h20"></path>
                         </svg>
+                        <span class="current-lang-text">EN</span> <!-- Display current language code -->
+                        <svg class="dropdown-arrow-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
                     </button>
+                    <div class="dropdown-content">
+                        <a href="#" data-lang="en">English</a>
+                        <a href="#" data-lang="it">Italiano</a>
+                        <a href="#" data-lang="de">Deutsch</a>
+                    </div>
                 </div>
                 <!-- Theme Toggle Button -->
                 <button class="theme-toggle-button" aria-label="Toggle theme">
@@ -53,6 +81,7 @@
     </header>
 
     <main>
+        <!-- ABOUT HEADER -->
         <section class="page-header">
             <div class="header-content">
                 <h1>About EuroPrivacy Hub</h1>
@@ -60,6 +89,7 @@
             </div>
         </section>
 
+        <!-- ABOUT CONTENT SECTION -->
         <section class="about-content">
             <div class="container">
                 <h2>Our Story</h2>
@@ -78,18 +108,21 @@
                         <p>Founder & Lead Data Protection Expert</p>
                         <p>Passionate about privacy rights and making complex legal topics understandable for everyone.</p>
                     </div>
-                    <!-- Add more team members here following the same structure -->
-                    <!-- <div class="team-member">
-                        <img src="https://placehold.co/200x200" alt="Team Member Name">
+                    <!-- Example of an additional team member. Uncomment and fill to add more. -->
+                    <!--
+                    <div class="team-member">
+                        <img src="https://placehold.co/200x200" alt="Profile picture of a Data Privacy Analyst">
                         <h3>Another Team Member</h3>
-                        <p>Role/Title</p>
-                        <p>Brief description of their expertise or contribution.</p>
-                    </div> -->
+                        <p>Data Privacy Analyst</p>
+                        <p>Specializes in GDPR compliance audits and international data transfers.</p>
+                    </div>
+                    -->
                 </div>
             </div>
         </section>
     </main>
 
+    <!-- FOOTER SECTION -->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -103,11 +136,14 @@
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="resources.html">Resources</a></li>
                     <li><a href="about.html">About</a></li>
+                    <li><a href="#" id="privacy-policy-link">Privacy Policy</a></li>
+                    <li><a href="#" id="terms-of-service-link">Terms of Service</a></li>
+                    <li><a href="#" id="cookie-policy-link">Cookie Policy</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Contact</h3>
-                <p>Email: contact@europrivacyhub.com</p>
+                <p>Email: <a href="mailto:contact@europrivacyhub.com" id="footer-contact-email">contact@europrivacyhub.com</a></p>
                 <div class="social-links">
                     <a href="#" class="social-icon">LinkedIn</a>
                     <a href="#" class="social-icon">Twitter</a>
@@ -119,13 +155,7 @@
         </div>
     </footer>
 
-    <!-- JavaScript for interactive elements -->
-    <script>
-        // Language selector functionality can be added here
-        document.querySelector('.lang-toggle').addEventListener('click', function() {
-            // Add code for language selection later
-            alert('Language selection coming soon!');
-        });
-    </script>
+    <!-- JavaScript for interactive elements and dynamic content -->
+    <script src="js/main.js" defer></script>
 </body>
 </html>
