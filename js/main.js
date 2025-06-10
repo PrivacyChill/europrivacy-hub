@@ -69,7 +69,7 @@ const translations = {
         },
         showingCategory: {en: "Showing posts in category: ", it: "Visualizzazione articoli nella categoria: ", de: "Beiträge in Kategorie anzeigen: "},
         allCategories: {en: "All Categories", it: "Tutte le Categorie", de: "Alle Kategorien"},
-        filterButton: {en: "Filter posts by category", it: "Filtra articoli per categoria", de: "Beiträge nach Kategorie filtern"} // New translation
+        filterButton: {en: "Filter posts by category", it: "Filtra articoli per categoria", de: "Beiträge nach Kategorie filtern"}
     },
     resourcesPage: {
         title: {
@@ -230,6 +230,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Fetch blog index first as it's needed by multiple pages
     const blogIndexUrl = './content/blog/blog-index.json';
+    console.log("Attempting to fetch blog index from:", blogIndexUrl);
     try {
         const response = await fetch(blogIndexUrl);
         if (!response.ok) {
@@ -244,7 +245,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     } catch (error) {
         console.error("Could not fetch blog index (check path and JSON syntax):", error);
-        blogIndex = [];
+        blogIndex = []; // Ensure it's an empty array if fetch fails
+        // Display a user-friendly error message if blogIndex is critical for the page
+        if (currentPage === 'index.html' || currentPage === 'blog.html' || currentPage === 'categories.html') {
+            const mainContentArea = document.querySelector('main .container') || document.querySelector('main');
+            if (mainContentArea) {
+                mainContentArea.innerHTML = `<div style="text-align: center; padding: 50px;">
+                    <h1>Error Loading Content</h1>
+                    <p>We are currently unable to load the blog posts. Please check back later.</p>
+                    <p>If you are the site owner, please check your console for details on blog-index.json loading.</p>
+                </div>`;
+            }
+        }
     }
 
     // Now render content based on the current page
@@ -561,16 +573,15 @@ function renderFullBlogListing() {
     }
 
     // Add "Showing Category" message or "All Categories"
-    // Find the correct element to append the message to
-    const pageHeaderDesc = document.querySelector('.page-header p'); // The main description under the H1
+    const pageHeaderDesc = document.querySelector('.page-header p');
     let categoryMessageElement = document.getElementById('category-filter-message');
     if (!categoryMessageElement) {
         categoryMessageElement = document.createElement('p');
         categoryMessageElement.id = 'category-filter-message';
+        // Insert it after the main page description, or at the top of blogMainContent
         if (pageHeaderDesc) {
             pageHeaderDesc.insertAdjacentElement('afterend', categoryMessageElement);
-        } else {
-            // Fallback if .page-header p is not found (unlikely with current HTML)
+        } else if (blogMainContent) { // Fallback if no page header desc
             blogMainContent.prepend(categoryMessageElement);
         }
     }
@@ -584,9 +595,12 @@ function renderFullBlogListing() {
     }
 
     // Render filtered posts
-    if (filteredPosts.length === 0) {
-        blogPostsContainer.innerHTML = `<p style="text-align: center; padding: 2rem;">No articles found for the selected categories.</p>`;
-    } else {
+    if (filteredPosts.length === 0 && currentFilters.length > 0) { // If filters are active but no posts match
+        blogPostsContainer.innerHTML = `<p style="text-align: center; padding: 2rem;">No articles found for the selected categories: "${currentFilters.join(', ')}".</p>`;
+    } else if (filteredPosts.length === 0 && currentFilters.length === 0) { // If no filters and no posts at all
+        blogPostsContainer.innerHTML = `<p style="text-align: center; padding: 2rem;">No blog posts available.</p>`;
+    }
+    else {
         filteredPosts.forEach(post => {
             const fullPostHtml = `
                 <article class="blog-post" id="${post.id}">
@@ -630,8 +644,10 @@ async function renderIndividualBlogPost() {
         contactEmailLink.href = `mailto:${translations.footer.contactEmail}`;
     }
 
+
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');
+    console.log("Post ID from URL:", postId);
 
     if (!postId) {
         postContentArea.innerHTML = `
@@ -772,7 +788,7 @@ function renderRecommendedItems() {
     });
 }
 
-// Function to render categories page
+// New function to render categories page
 function renderCategoriesPage() {
     const categoriesContainer = document.getElementById('category-tags-container');
     const viewFilteredBtn = document.getElementById('view-filtered-posts-btn');
@@ -833,7 +849,6 @@ function renderCategoriesPage() {
     clearFiltersBtn.onclick = () => {
         selectedCategories.clear();
         renderCategoriesPage(); // Re-render to clear active states visually
-        // No redirect here, just clear the visual selection. User clicks 'View Filtered' to go to blog.html with no filters.
     };
 
     // Update page header for categories.html
@@ -841,4 +856,16 @@ function renderCategoriesPage() {
     const pageHeaderDesc = document.getElementById('categories-page-description');
     if (pageHeaderTitle) pageHeaderTitle.textContent = translations.categoriesPage.title[currentLang];
     if (pageHeaderDesc) pageHeaderDesc.textContent = translations.categoriesPage.description[currentLang];
+}
+
+// Function to collect all unique categories from blogIndex
+function collectAllCategories() {
+    const categoriesSet = new Set();
+    blogIndex.forEach(post => {
+        if (post.tags && Array.isArray(post.tags)) { // Ensure tags exist and are an array
+            post.tags.forEach(tag => categoriesSet.add(tag));
+        }
+    });
+    allUniqueCategories = Array.from(categoriesSet).sort(); // Sort alphabetically
+    console.log("All unique categories collected:", allUniqueCategories);
 }
