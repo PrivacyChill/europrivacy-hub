@@ -90,128 +90,7 @@ const translations = {
     }
 };
 
-// --- Blog posts data ---
-const blogPosts = [
-    {
-        id: "gdpr-article-17-erasure",
-        title: {
-            en: "Understanding GDPR Article 17: The Right to Erasure",
-            it: "Comprendere l'articolo 17 del GDPR: Il Diritto alla Cancellazione",
-            de: "DSGVO Artikel 17 verstehen: Das Recht auf Löschung"
-        },
-        excerpt: {
-            en: "Explore the nuances of the 'right to be forgotten' and its implications for data controllers.",
-            it: "Esplora le sfumature del 'diritto all'oblio' e le sue implicazioni per i titolari del trattamento dei dati.",
-            de: "Entdecken Sie die Nuancen des 'Rechts auf Vergessenwerden' und seine Auswirkungen auf Datenverantwortliche."
-        },
-        content: {
-            en: `
-                <p>GDPR's Article 17 grants individuals the 'right to erasure', often known as the 'right to be forgotten'. This means individuals have the right to request the deletion or removal of personal data where there is no compelling reason for its continued processing. Understanding this right is crucial for organizations handling personal data.</p>
-                <p>This right is not absolute and only applies in certain circumstances. For example, it does not apply if the processing is necessary for compliance with a legal obligation or for the establishment, exercise, or defense of legal claims.</p>
-                <p>For businesses, implementing this right effectively requires robust data mapping and clear procedures for handling deletion requests. It's not just about deleting data from one system, but ensuring its removal across all connected databases and backups, within a reasonable timeframe.</p>
-            `,
-            it: `
-                <p>L'articolo 17 del GDPR riconosce agli individui il 'diritto alla cancellazione', spesso conosciuto come 'diritto all'oblio'. Ciò significa che gli individui hanno il diritto di richiedere la cancellazione o la rimozione dei dati personali quando non esiste un motivo legittimo per la loro conservazione. Comprendere questo diritto è fondamentale per le organizzazioni che trattano dati personali.</p>
-                <p>Questo diritto non è assoluto e si applica solo in determinate circostanze. Ad esempio, non si applica se il trattamento è necessario per l'adempimento di un obbligo legale o per l'accertamento, l'esercizio o la difesa di un diritto in sede giudiziaria.</p>
-                <p>Per le aziende, implementare efficacemente questo diritto richiede una mappatura dei dati robusta e procedure chiare per la gestione delle richieste di cancellazione. Non si tratta solo di eliminare i dati da un sistema, ma di garantirne la rimozione da tutti i database e backup collegati, entro un termine ragionevole.</p>
-            `,
-            de: `
-                <p>Artikel 17 der DSGVO gewährt Einzelpersonen das „Recht auf Löschung“, oft als „Recht auf Vergessenwerden“ bekannt. Dies bedeutet, dass Einzelpersonen das Recht haben, die Löschung oder Entfernung personenbezogener Daten zu verlangen, wenn kein zwingender Grund für deren weitere Verarbeitung vorliegt. Das Verständnis dieses Rechts ist für Organisationen, die personenbezogene Daten verarbeiten, von entscheidender Bedeutung.</p>
-                <p>Dieses Recht ist nicht absolut und gilt nur unter bestimmten Umständen. Es gilt beispielsweise nicht, wenn die Verarbeitung zur Erfüllung einer rechtlichen Verpflichtung oder zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen erforderlich ist.</p>
-                <p>Für Unternehmen erfordert die effektive Umsetzung dieses Rechts eine robuste Datenkartierung und klare Verfahren für die Bearbeitung von Löschanfragen. Es geht nicht nur darum, Daten aus einem System zu löschen, sondern deren Entfernung aus allen verbundenen Datenbanken und Backups innerhalb eines angemessenen Zeitraums sicherzustellen.</p>
-            `
-        },
-        imageUrl: "https://placehold.co/800x400/1a73e8/ffffff?text=GDPR+Article+17",
-        imageAlt: {
-            en: "Abstract image illustrating data deletion, with particles fading away.",
-            it: "Immagine astratta che illustra la cancellazione dei dati, con particelle che svaniscono.",
-            de: "Abstrakte Darstellung der Datenlöschung, mit verblassenden Partikeln."
-        },
-        date: "April 20, 2025",
-        author: "EuroPrivacy Hub Team",
-        tags: ["GDPR", "Data Subject Rights", "Compliance"]
-    },
-    {
-        id: "role-of-dpo",
-        title: {
-            en: "The Role of the Data Protection Officer (DPO)",
-            it: "Il Ruolo del Responsabile della Protezione dei Dati (RPD)",
-            de: "Die Rolle des Datenschutzbeauftragten (DSB)"
-        },
-        excerpt: {
-            en: "An in-depth look at the responsibilities and importance of a DPO in modern data governance.",
-            it: "Uno sguardo approfondito alle responsabilità e all'importanza di un RPD nella moderna governance dei dati.",
-            de: "Ein detaillierter Blick auf die Verantwortlichkeiten und die Bedeutung eines DSB in der modernen Daten-Governance."
-        },
-        content: {
-            en: `
-                <p>The Data Protection Officer (DPO) plays a pivotal role in ensuring an organization's compliance with data protection laws like the GDPR. Their responsibilities are broad, ranging from informing and advising on data protection obligations to monitoring internal compliance and acting as a contact point for supervisory authorities and data subjects.</p>
-                <p>A DPO must be independent, an expert in data protection law and practices, and have the ability to fulfill their tasks without conflict of interest. Their appointment demonstrates an organization's commitment to data privacy.</p>
-                <p>This role is particularly critical for public authorities and bodies, or organizations whose core activities involve large-scale regular and systematic monitoring of data subjects or large-scale processing of special categories of data.</p>
-            `,
-            it: `
-                <p>Il Responsabile della Protezione dei Dati (RPD) svolge un ruolo fondamentale nel garantire la conformità di un'organizzazione alle leggi sulla protezione dei dati come il GDPR. Le sue responsabilità sono ampie, dall'informazione e consulenza sugli obblighi di protezione dei dati al monitoraggio della conformità interna e all'agire come punto di contatto per le autorità di controllo e gli interessati.</p>
-                <p>Un RPD deve essere indipendente, un esperto in diritto e pratiche di protezione dei dati, e avere la capacità di svolgere i propri compiti senza conflitti di interesse. La sua nomina dimostra l'impegno di un'organizzazione per la privacy dei dati.</p>
-                <p>Questo ruolo è particolarmente critico per le autorità e gli organismi pubblici, o per le organizzazioni le cui attività principali comportano il monitoraggio regolare e sistematico su larga scala degli interessati o il trattamento su larga scala di categorie speciali di dati.</p>
-            `,
-            de: `
-                <p>Der Datenschutzbeauftragte (DSB) spielt eine zentrale Rolle bei der Sicherstellung der Einhaltung von Datenschutzgesetzen wie der DSGVO in einer Organisation. Seine Aufgaben sind vielfältig und reichen von der Information und Beratung über Datenschutzpflichten bis zur Überwachung der internen Einhaltung und der Funktion als Ansprechpartner für Aufsichtsbehörden und betroffene Personen.</p>
-                <p>Diese Rolle ist besonders kritisch für öffentliche Behörden und Stellen oder Organisationen, deren Kerntätigkeiten die umfangreiche regelmäßige und systematische Überwachung von betroffenen Personen oder die umfangreiche Verarbeitung besonderer Datenkategorien umfassen.</p>
-            `
-        },
-        imageUrl: "https://placehold.co/800x400/1a73e8/ffffff?text=Data+Protection+Officer",
-        imageAlt: {
-            en: "Image of a data protection officer's badge or a related professional icon.",
-            it: "Immagine di un badge di responsabile della protezione dei dati o di un'icona professionale correlata.",
-            de: "Bild eines Ausweises für Datenschutzbeauftragte oder eines verwandten Berufszeichens."
-        },
-        date: "March 8, 2025",
-        author: "EuroPrivacy Hub Team",
-        tags: ["DPO", "GDPR", "Compliance"]
-    },
-    {
-        id: "international-transfers-guide",
-        title: {
-            en: "Navigating International Data Transfers",
-            it: "Navigare i Trasferimenti Internazionali di Dati",
-            de: "Umgang mit internationalen Datenübermittlungen"
-        },
-        excerpt: {
-            en: "A breakdown of mechanisms and considerations for compliant cross-border data flows.",
-            it: "Una disamina dei meccanismi e delle considerazioni per flussi di dati transfrontalieri conformi.",
-            de: "Eine Aufschlüsselung der Mechanismen und Überlegungen für konforme grenzüberschreitende Datenflüsse."
-        },
-        content: {
-            en: `
-                <p>International data transfers remain a complex area under GDPR, especially after recent rulings like Schrems II. This post breaks down the key mechanisms and considerations for ensuring compliance when data leaves the EU/EEA.</p>
-                <p>From Standard Contractual Clauses (SCCs) to Transfer Impact Assessments (TIAs), we cover the essentials for secure and lawful international data flows. Understanding the adequacy decisions and the need for supplementary measures is vital for organizations.</p>
-                <p>We'll explore the current landscape, common pitfalls, and best practices for establishing and maintaining legal international data transfer arrangements.</p>
-            `,
-            it: `
-                <p>I trasferimenti internazionali di dati rimangono un'area complessa ai sensi del GDPR, soprattutto dopo recenti sentenze come Schrems II. Questo post analizza i meccanismi chiave e le considerazioni per garantire la conformità quando i dati lasciano l'UE/SEE.</p>
-                <p>Dalle Clausole Contrattuali Standard (SCC) alle Valutazioni d'Impatto sui Trasferimenti (TIA), trattiamo gli elementi essenziali per flussi di dati internazionali sicuri e leciti. Comprendere le decisioni di adeguatezza e la necessità di misure supplementari è fondamentale per le organizzazioni.</p>
-                <p>Esploreremo il panorama attuale, le insidie comuni e le migliori pratiche per stabilire e mantenere accordi legali per il trasferimento internazionale di dati.</p>
-            `,
-            de: `
-                <p>Internationale Datenübermittlungen bleiben ein komplexes Feld unter der DSGVO, insbesondere nach jüngsten Urteilen wie Schrems II. Dieser Beitrag schlüsselt die Schlüsselmechanismen und Überlegungen zur Sicherstellung der Konformität bei Datenübermittlungen außerhalb der EU/EWR auf.</p>
-                <p>Von Standardvertragsklauseln (SCC) bis zu Transfer Impact Assessments (TIAs) behandeln wir die Grundlagen für sichere und rechtmäßige internationale Datenflüsse. Das Verständnis der Angemessenheitsbeschlüsse und die Notwendigkeit ergänzender Maßnahmen ist für Organisationen von entscheidender Bedeutung.</p>
-                <p>Wir werden die aktuelle Landschaft, häufige Fallstricke und Best Practices für die Einrichtung und Aufrechterhaltung legaler internationaler Datenübertragungsvereinbarungen untersuchen.</p>
-            `
-        },
-        imageUrl: "https://placehold.co/800x400/1a73e8/ffffff?text=Data+Transfers",
-        imageAlt: {
-            en: "Image depicting data flow across continents with security icons.",
-            it: "Immagine che rappresenta il flusso di dati tra i continenti con icone di sicurezza.",
-            de: "Bild, das den Datenfluss über Kontinente mit Sicherheitssymbolen darstellt."
-        },
-        date: "April 15, 2025",
-        author: "EuroPrivacy Hub Team",
-        tags: ["International Transfers", "GDPR", "Schrems II"]
-    }
-    // Add more articles here following the same structure
-];
-
-// --- Resources data ---
+// --- Resources data (still in main.js, as requested) ---
 const resourcesData = [
     {
         id: "gdpr-checklist",
@@ -326,23 +205,46 @@ const ctaMessages = [
     { textKey: 'ctaResources', link: 'resources.html' }
 ];
 
+// Stores the fetched blog index (list of posts with excerpts)
+let blogIndex = [];
+
 // Initialize the app when the DOM is fully loaded
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     // Determine current page to run specific rendering functions
     const currentPage = window.location.pathname.split('/').pop();
 
     setupThemeToggle(); // Setup theme toggle and initial theme
     setupLanguageSelector(); // Setup language selector
 
+    // Fetch blog index first as it's needed by multiple pages
+    try {
+        const response = await fetch('content/blog/blog-index.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        blogIndex = await response.json();
+    } catch (error) {
+        console.error("Could not fetch blog index:", error);
+        // Fallback or display error message on the site
+        blogIndex = []; // Ensure it's an empty array if fetch fails
+    }
+
+
     if (currentPage === 'post.html') {
         renderIndividualBlogPost(); // Render only the specific blog post
     } else {
-        updateContent(); // Update general page content (hero, blog previews, resources previews)
-    }
-
-    // Start CTA carousel only on the homepage (index.html)
-    if (currentPage === 'index.html' && document.querySelector('.hero-cta-carousel')) {
-        startCtaCarousel();
+        // These run on all pages *except* post.html
+        updateContent(); // Update general page content (hero, page headers, etc.)
+        if (currentPage === 'index.html') {
+            renderBlogPreviews(); // Renders previews for index.html
+            renderResourcePreviews(); // Renders resource previews for index.html
+            startCtaCarousel(); // Start CTA carousel only on index.html
+        } else if (currentPage === 'blog.html') {
+            renderFullBlogListing(); // Renders full blog list for blog.html
+        } else if (currentPage === 'resources.html') {
+            renderFullResourceListing(); // Renders full resource list for resources.html
+            renderRecommendedItems(); // Renders recommended items for resources.html
+        }
     }
 });
 
@@ -476,12 +378,13 @@ function updateContent() {
         const pageHeaderDesc = pageHeader.querySelector('p');
         const currentPageTitle = document.title; // Get title from HTML
 
+        // Check if the current page title contains specific keywords to determine which header translations to use
         if (currentPageTitle.includes("Blog") && translations.blogPage.title[currentLang]) {
-            pageHeaderTitle.textContent = translations.blogPage.title[currentLang];
-            pageHeaderDesc.textContent = translations.blogPage.description[currentLang];
+            if (pageHeaderTitle) pageHeaderTitle.textContent = translations.blogPage.title[currentLang];
+            if (pageHeaderDesc) pageHeaderDesc.textContent = translations.blogPage.description[currentLang];
         } else if (currentPageTitle.includes("Resources") && translations.resourcesPage.title[currentLang]) {
-            pageHeaderTitle.textContent = translations.resourcesPage.title[currentLang];
-            pageHeaderDesc.textContent = translations.resourcesPage.description[currentLang];
+            if (pageHeaderTitle) pageHeaderTitle.textContent = translations.resourcesPage.title[currentLang];
+            if (pageHeaderDesc) pageHeaderDesc.textContent = translations.resourcesPage.description[currentLang];
 
             // Update Recommended Tools Section on Resources page
             const recommendedToolsHeadline = document.querySelector('.recommended-tools h2');
@@ -505,20 +408,6 @@ function updateContent() {
         contactEmailLink.textContent = translations.footer.contactEmail;
         contactEmailLink.href = `mailto:${translations.footer.contactEmail}`;
     }
-
-
-    // Render dynamically loaded sections based on current page
-    const currentPage = window.location.pathname.split('/').pop();
-    if (currentPage === 'index.html') {
-        renderBlogPreviews(); // Renders previews for index.html
-        renderResourcePreviews(); // Renders resource previews for index.html
-    } else if (currentPage === 'blog.html') {
-        renderFullBlogListing(); // Renders full blog list for blog.html
-    } else if (currentPage === 'resources.html') {
-        renderFullResourceListing(); // Renders full resource list for resources.html
-        renderRecommendedItems(); // Renders recommended items for resources.html
-    }
-    // No specific rendering needed for about.html as its content is static.
 
     // Update the displayed current language text in the header
     const currentLangTextSpan = document.querySelector('.language-selector .current-lang-text');
@@ -544,22 +433,28 @@ function updateCtaCarousel() {
     ctaCarousel.appendChild(newSlide);
 
     // Trigger reflow to ensure transition works for the new slide
-    newSlide.offsetWidth;
+    newSlide.offsetWidth; // Force reflow
     newSlide.classList.add('active');
 }
 
+let ctaInterval; // Declare interval variable to clear it
 function startCtaCarousel() {
+    // Clear any existing interval to prevent multiple carousels running
+    if (ctaInterval) {
+        clearInterval(ctaInterval);
+    }
+
     updateCtaCarousel(); // Display initial CTA
 
-    setInterval(() => {
-        const activeSlide = document.querySelector('.hero-cta-slide.active');
+    ctaInterval = setInterval(() => {
+        const activeSlide = document.querySelector('.hero-cta-carousel .hero-cta-slide.active');
         if (activeSlide) {
             activeSlide.classList.remove('active');
             // Adding a class for exit transition if needed, then remove
             activeSlide.addEventListener('transitionend', function handler() {
                 activeSlide.removeEventListener('transitionend', handler);
                 activeSlide.remove();
-            });
+            }, { once: true });
         }
 
         currentCtaIndex = (currentCtaIndex + 1) % ctaMessages.length;
@@ -576,7 +471,8 @@ function renderBlogPreviews() {
 
     blogPreviewGrid.innerHTML = ''; // Clear existing content
 
-    blogPosts.slice(0, 2).forEach(post => { // Display first 2 posts for preview
+    // Use blogIndex (fetched from JSON) for previews
+    blogIndex.slice(0, 2).forEach(post => { // Display first 2 posts for preview
         const articleHtml = `
             <div class="blog-card">
                 <img src="${post.imageUrl}" alt="${post.imageAlt[currentLang]}">
@@ -609,7 +505,8 @@ function renderFullBlogListing() {
     }
     blogPostsContainer.innerHTML = ''; // Clear container for full posts
 
-    blogPosts.forEach(post => {
+    // Use blogIndex for full listing previews
+    blogIndex.forEach(post => {
         const fullPostHtml = `
             <article class="blog-post" id="${post.id}">
                 <h2>${post.title[currentLang]}</h2>
@@ -632,16 +529,70 @@ function renderFullBlogListing() {
 }
 
 // Function to render an individual blog post on post.html
-function renderIndividualBlogPost() {
+async function renderIndividualBlogPost() {
     const postContentArea = document.getElementById('post-content-area');
     if (!postContentArea) return;
 
+    // Reset language for post.html page header for consistency
+    const pageHeaderTitle = document.querySelector('.page-header h1');
+    const pageHeaderDesc = document.querySelector('.page-header p');
+    if (pageHeaderTitle) pageHeaderTitle.textContent = "Blog Post"; // Default title for post page
+    if (pageHeaderDesc) pageHeaderDesc.textContent = "Detailed article on data protection"; // Default description
+
+    // Update footer links specific to post.html (these are static elements in HTML, so update their text)
+    const privacyPolicyLink = document.getElementById('privacy-policy-link');
+    const termsOfServiceLink = document.getElementById('terms-of-service-link');
+    const cookiePolicyLink = document.getElementById('cookie-policy-link');
+
+    if (privacyPolicyLink) privacyPolicyLink.textContent = translations.footer.privacyPolicy[currentLang];
+    if (termsOfServiceLink) termsOfServiceLink.textContent = translations.footer.termsOfService[currentLang];
+    if (cookiePolicyLink) cookiePolicyLink.textContent = translations.footer.cookiePolicy[currentLang];
+    
+    const contactEmailLink = document.getElementById('footer-contact-email');
+    if (contactEmailLink) {
+        contactEmailLink.textContent = translations.footer.contactEmail;
+        contactEmailLink.href = `mailto:${translations.footer.contactEmail}`;
+    }
+
+
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');
-    const post = blogPosts.find(p => p.id === postId);
 
-    if (post) {
-        document.title = `EuroPrivacy Hub - ${post.title[currentLang]}`; // Update page title
+    if (!postId) {
+        postContentArea.innerHTML = `
+            <div class="not-found-message" style="text-align: center; padding: 4rem 0;">
+                <h1>${translations.postPage.notFound.title[currentLang]}</h1>
+                <p>${translations.postPage.notFound.message[currentLang]}</p>
+                <a href="blog.html" class="btn">${translations.postPage.backToBlog[currentLang]}</a>
+            </div>
+        `;
+        document.title = `EuroPrivacy Hub - ${translations.postPage.notFound.title[currentLang]}`;
+        return;
+    }
+
+    try {
+        // Fetch the individual blog post JSON file
+        const response = await fetch(`content/blog/${postId}.json`);
+        if (!response.ok) {
+            if (response.status === 404) {
+                // Post not found
+                postContentArea.innerHTML = `
+                    <div class="not-found-message" style="text-align: center; padding: 4rem 0;">
+                        <h1>${translations.postPage.notFound.title[currentLang]}</h1>
+                        <p>${translations.postPage.notFound.message[currentLang]}</p>
+                        <a href="blog.html" class="btn">${translations.postPage.backToBlog[currentLang]}</a>
+                    </div>
+                `;
+                document.title = `EuroPrivacy Hub - ${translations.postPage.notFound.title[currentLang]}`;
+                return;
+            }
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const post = await response.json();
+
+        // Update page title based on the fetched post
+        document.title = `EuroPrivacy Hub - ${post.title[currentLang]}`;
+
         postContentArea.innerHTML = `
             <article class="full-blog-post">
                 <h1>${post.title[currentLang]}</h1>
@@ -661,7 +612,8 @@ function renderIndividualBlogPost() {
                 </div>
             </article>
         `;
-    } else {
+    } catch (error) {
+        console.error("Error fetching individual blog post:", error);
         postContentArea.innerHTML = `
             <div class="not-found-message" style="text-align: center; padding: 4rem 0;">
                 <h1>${translations.postPage.notFound.title[currentLang]}</h1>

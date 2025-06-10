@@ -1,0 +1,28 @@
+{
+    "id": "gdpr-article-17-erasure",
+    "title": {
+      "en": "Understanding GDPR Article 17: The Right to Erasure",
+      "it": "Comprendere l'articolo 17 del GDPR: Il Diritto alla Cancellazione",
+      "de": "DSGVO Artikel 17 verstehen: Das Recht auf Löschung"
+    },
+    "excerpt": {
+      "en": "Explore the nuances of the 'right to be forgotten' and its implications for data controllers.",
+      "it": "Esplora le sfumature del 'diritto all'oblio' e le sue implicazioni per i titolari del trattamento dei dati.",
+      "de": "Entdecken Sie die Nuancen des 'Rechts auf Vergessenwerden' und seine Auswirkungen auf Datenverantwortliche."
+    },
+    "content": {
+      "en": "<p>GDPR's Article 17 grants individuals the 'right to erasure', often known as the 'right to be forgotten'. This means individuals have the right to request the deletion or removal of personal data where there is no compelling reason for its continued processing. Understanding this right is crucial for organizations handling personal data.</p><p>This right is not absolute and only applies in certain circumstances. For example, it does not apply if the processing is necessary for compliance with a legal obligation or for the establishment, exercise, or defense of legal claims.</p><p>For businesses, implementing this right effectively requires robust data mapping and clear procedures for handling deletion requests. It's not just about deleting data from one system, but ensuring its removal across all connected databases and backups, within a reasonable timeframe.</p>",
+      "it": "<p>L'articolo 17 del GDPR riconosce agli individui il 'diritto alla cancellazione', spesso conosciuto come 'diritto all'oblio'. Ciò significa che gli individui hanno il diritto di richiedere la cancellazione o la rimozione dei dati personali quando non esiste un motivo legittimo per la loro conservazione. Comprendere questo diritto è fondamentale per le organizzazioni che trattano dati personali.</p><p>Questo diritto non è assoluto e si applica solo in determinate circostanze. Ad esempio, non si applica se il trattamento è necessario per l'adempimento di un obbligo legale o per l'accertamento, l'esercizio o la difesa di un diritto in sede giudiziaria.</p><p>Per le aziende, implementare efficacemente questo diritto richiede una mappatura dei dati robusta e procedure chiare per la gestione delle richieste di cancellazione. Non si tratta solo di eliminare i dati da un sistema, ma di garantirne la rimozione da tutti i database e backup collegati, entro un termine ragionevole.</p>",
+      "de": "<p>Artikel 17 der DSGVO gewährt Einzelpersonen das „Recht auf Löschung“, oft als „Recht auf Vergessenwerden“ bekannt. Dies bedeutet, dass Einzelpersonen das Recht haben, die Löschung oder Entfernung personenbezogener Daten zu verlangen, wenn kein zwingender Grund für deren weitere Verarbeitung vorliegt. Das Verständnis dieses Rechts ist für Organisationen, die personenbezogene Daten verarbeiten, von entscheidender Bedeutung.</p><p>Dieses Recht ist nicht absolut und gilt nur unter bestimmten Umständen. Es gilt beispielsweise nicht, wenn die Verarbeitung zur Erfüllung einer rechtlichen Verpflichtung oder zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen erforderlich ist.</p><p>Für Unternehmen erfordert die effektive Umsetzung dieses Rechts eine robuste Datenkartierung und klare Verfahren für die Bearbeitung von Löschanfragen. Es geht nicht nur darum, Daten aus einem System zu löschen, sondern deren Entfernung aus allen verbundenen Datenbanken und Backups innerhalb eines angemessenen Zeitraums sicherzustellen.</p>"
+    },
+    "imageUrl": "https://placehold.co/800x400/1a73e8/ffffff?text=GDPR+Article+17",
+    "imageAlt": {
+      "en": "Abstract image illustrating data deletion, with particles fading away.",
+      "it": "Immagine astratta che illustra la cancellazione dei dati, con particelle che svaniscono.",
+      "de": "Abstrakte Darstellung der Datenlöschung, mit verblassenden Partikeln."
+    },
+    "date": "April 20, 2025",
+    "author": "EuroPrivacy Hub Team",
+    "tags": ["GDPR", "Data Subject Rights", "Compliance"]
+  }
+  

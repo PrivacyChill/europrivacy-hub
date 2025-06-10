@@ -784,12 +784,13 @@ footer {
 .blog-post .post-image {
     width: 100%;
     height: auto;
+    max-height: 400px;
+    object-fit: cover;
     margin-bottom: 2rem;
     border-radius: 6px;
-    object-fit: cover;
 }
 
-.blog-post .post-content p {
+.blog-post .post-excerpt p {
     margin-bottom: 1.5rem;
     font-size: 1rem;
 }
@@ -854,7 +855,7 @@ footer {
     padding: 0.75rem;
     border: 1px solid var(--border-color);
     border-radius: 4px;
-    background-color: var(--input-background);
+    background-color: var(--input-background); /* Use input background variable */
     color: var(--text-color);
     transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
     font-size: 1rem;
@@ -1457,6 +1458,7 @@ body:not(.dark-mode) .theme-toggle-button .sun-icon {
     background-color: var(--button-hover-background) !important;
     box-shadow: 0 6px 12px rgba(0,0,0,0.3) !important;
 }
+
 /* --- Individual Blog Post Page Styling (post.html) --- */
 .blog-post-detail {
     padding: 3rem 1.5rem;
