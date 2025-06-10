@@ -5,28 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EuroPrivacy Hub - Home</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- Google Fonts: Roboto for a modern, clean look -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- You can add your favicon here later -->
     <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
 </head>
 <body>
-    <!-- HEADER SECTION - Same across all pages -->
     <header>
         <nav>
-            <!-- Site logo/title that links to homepage -->
             <a href="index.html" class="logo-container">
                 <span class="logo-text">EuroPrivacy Hub</span>
             </a>
 
-            <!-- Main navigation links -->
             <ul class="nav-links">
                 <li><a href="blog.html">Blog</a></li>
                 <li><a href="resources.html">Resources</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
 
-            <!-- Right side navigation elements (language selector and theme toggle) -->
+            <!-- Right side navigation elements (language selector) -->
             <div class="nav-right">
                 <div class="language-selector">
                     <button class="lang-toggle" aria-label="Select language">
@@ -58,6 +53,8 @@
         </nav>
     </header>
     
+    <script src="js/your-js-file.js" defer></script>
+
     <main>
         <!-- HERO SECTION - Main banner -->
         <section class="hero">
@@ -69,23 +66,58 @@
         </section>
 
         <!-- Blog Preview Section -->
-        <section class="blog-preview alt-background">
+        <section class="blog-preview">
             <h2>Latest from the Blog</h2>
             <div class="blog-articles-grid">
-                <!-- Blog articles will be dynamically loaded here by JavaScript -->
+                <!-- Blog Article 1 -->
+                <div class="blog-card">
+                    <img src="https://placehold.co/600x400" alt="Blog Post Image 1">
+                    <div class="card-content">
+                        <h3>Understanding GDPR Article 17: The Right to Erasure</h3>
+                        <p>Explore the nuances of the 'right to be forgotten' and its implications for data controllers.</p>
+                        <a href="blog.html" class="read-more">Read More</a>
+                    </div>
+                </div>
+
+                <!-- Blog Article 2 -->
+                <div class="blog-card">
+                     <img src="https://placehold.co/600x400" alt="Blog Post Image 2">
+                    <div class="card-content">
+                        <h3>The Role of the Data Protection Officer (DPO)</h3>
+                        <p>An in-depth look at the responsibilities and importance of a DPO in modern data governance.</p>
+                        <a href="blog.html" class="read-more">Read More</a>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Resources Preview Section -->
         <section class="resources-preview">
             <h2>Privacy Resources</h2>
             <div class="resources-grid">
-                <!-- Resources will be dynamically loaded here by JavaScript -->
+                <!-- Resource Card 1 -->
+                <div class="resource-card">
+                    <h3>GDPR Compliance Checklist</h3>
+                    <p>Step-by-step guide to ensure your organization follows GDPR guidelines.</p>
+                    <a href="resources.html" class="btn">Download</a>
+                </div>
+
+                <!-- Resource Card 2 -->
+                <div class="resource-card">
+                    <h3>Privacy Policy Templates</h3>
+                    <p>Customizable templates for your website or application.</p>
+                    <a href="resources.html" class="btn">Access Templates</a>
+                </div>
+
+                <!-- Resource Card 3 -->
+                <div class="resource-card">
+                    <h3>Data Protection Impact Assessment</h3>
+                    <p>Tools and guidance for conducting effective DPIAs.</p>
+                    <a href="resources.html" class="btn">Learn More</a>
+                </div>
             </div>
         </section>
     </main>
 
-    <!-- FOOTER SECTION -->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -105,7 +137,6 @@
                 <h3>Contact</h3>
                 <p>Email: contact@europrivacyhub.com</p>
                 <div class="social-links">
-                    <!-- Add your social media links here -->
                     <a href="#" class="social-icon">LinkedIn</a>
                     <a href="#" class="social-icon">Twitter</a>
                 </div>
@@ -117,6 +148,12 @@
     </footer>
 
     <!-- JavaScript for interactive elements -->
-    <script src="js/main.js" defer></script>
+    <script>
+        // Language selector functionality can be added here
+        document.querySelector('.lang-toggle').addEventListener('click', function() {
+            // Add code for language selection later
+            alert('Language selection coming soon!');
+        });
+    </script>
 </body>
 </html>
