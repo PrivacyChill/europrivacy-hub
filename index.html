@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EuroPrivacy Hub - Home</title>
     <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts: Roboto for a modern, clean look -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- You can add your favicon here later -->
     <!-- <link rel="icon" type="image/png" href="images/favicon.png"> -->
 </head>
@@ -24,10 +26,10 @@
                 <li><a href="about.html">About</a></li>
             </ul>
 
-            <!-- Right side navigation elements (language selector) -->
+            <!-- Right side navigation elements (language selector and theme toggle) -->
             <div class="nav-right">
                 <div class="language-selector">
-                    <button class="lang-toggle">
+                    <button class="lang-toggle" aria-label="Select language">
                         <svg class="globe-icon" viewBox="0 0 24 24">
                             <circle cx="12" cy="12" r="10"></circle>
                             <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
@@ -35,12 +37,27 @@
                         </svg>
                     </button>
                 </div>
+                <!-- Theme Toggle Button -->
+                <button class="theme-toggle-button" aria-label="Toggle theme">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
             </div>
         </nav>
     </header>
     
-    <script src="js/your-js-file.js" defer></script>
-
     <main>
         <!-- HERO SECTION - Main banner -->
         <section class="hero">
@@ -52,28 +69,10 @@
         </section>
 
         <!-- Blog Preview Section -->
-        <section class="blog-preview">
+        <section class="blog-preview alt-background">
             <h2>Latest from the Blog</h2>
             <div class="blog-articles-grid">
-                <!-- Blog Article 1 -->
-                <div class="blog-card">
-                    <img src="https://placehold.co/600x400" alt="Blog Post Image 1">
-                    <div class="card-content">
-                        <h3>Understanding GDPR Article 17: The Right to Erasure</h3>
-                        <p>Explore the nuances of the 'right to be forgotten' and its implications for data controllers.</p>
-                        <a href="blog.html" class="read-more">Read More</a>
-                    </div>
-                </div>
-
-                <!-- Blog Article 2 -->
-                <div class="blog-card">
-                     <img src="https://placehold.co/600x400" alt="Blog Post Image 2">
-                    <div class="card-content">
-                        <h3>The Role of the Data Protection Officer (DPO)</h3>
-                        <p>An in-depth look at the responsibilities and importance of a DPO in modern data governance.</p>
-                        <a href="blog.html" class="read-more">Read More</a>
-                    </div>
-                </div>
+                <!-- Blog articles will be dynamically loaded here by JavaScript -->
             </div>
         </section>
 
@@ -81,26 +80,7 @@
         <section class="resources-preview">
             <h2>Privacy Resources</h2>
             <div class="resources-grid">
-                <!-- Resource Card 1 -->
-                <div class="resource-card">
-                    <h3>GDPR Compliance Checklist</h3>
-                    <p>Step-by-step guide to ensure your organization follows GDPR guidelines.</p>
-                    <a href="resources.html" class="btn">Download</a>
-                </div>
-
-                <!-- Resource Card 2 -->
-                <div class="resource-card">
-                    <h3>Privacy Policy Templates</h3>
-                    <p>Customizable templates for your website or application.</p>
-                    <a href="resources.html" class="btn">Access Templates</a>
-                </div>
-
-                <!-- Resource Card 3 -->
-                <div class="resource-card">
-                    <h3>Data Protection Impact Assessment</h3>
-                    <p>Tools and guidance for conducting effective DPIAs.</p>
-                    <a href="resources.html" class="btn">Learn More</a>
-                </div>
+                <!-- Resources will be dynamically loaded here by JavaScript -->
             </div>
         </section>
     </main>
@@ -137,12 +117,6 @@
     </footer>
 
     <!-- JavaScript for interactive elements -->
-    <script>
-        // Language selector functionality can be added here
-        document.querySelector('.lang-toggle').addEventListener('click', function() {
-            // Add code for language selection later
-            alert('Language selection coming soon!');
-        });
-    </script>
+    <script src="js/main.js" defer></script>
 </body>
 </html>

@@ -1,8 +1,9 @@
 /*
-  EuroPrivacy Hub Stylesheet
+  EuroPrivacy Hub Stylesheet - Google-Inspired Design
 
-  This stylesheet provides the core visual design for the EuroPrivacy Hub website,
-  including typography, layout, colors, and a responsive minimal dark mode.
+  This stylesheet provides a fresh, clean, and user-friendly visual design
+  inspired by Google's modern aesthetic, focusing on clarity, vibrant accents,
+  and subtle depth.
 */
 
 /* --- 1. Basic Reset and Box-Sizing --- */
@@ -15,68 +16,75 @@
 }
 
 /* --- 2. Font Import and Global Typography --- */
-/* Importing a clean, readable font - Lato from Google Fonts */
-/* Ensure you link this font in your HTML head tag:
-   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+/* For a true Google-inspired look, consider importing 'Roboto' font from Google Fonts:
+   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 */
 body {
-    font-family: 'Lato', sans-serif;
-    line-height: 1.6; /* Improved readability */
-    min-height: 100vh; /* Ensure body takes at least viewport height */
+    font-family: 'Roboto', Arial, sans-serif; /* Google's primary typeface */
+    line-height: 1.6;
+    min-height: 100vh;
     display: flex;
-    flex-direction: column; /* Stack content and footer vertically */
+    flex-direction: column;
 }
 
 main {
-    flex: 1; /* Allow main content to grow and push footer down */
-    width: 100%; /* Ensure main takes full width */
+    flex: 1;
+    width: 100%;
 }
 
 
-/* --- 3. CSS Variables for Themes --- */
+/* --- 3. CSS Variables for Themes (Google-Inspired Palette) --- */
 :root {
-    /* Light Mode Colors */
-    --background-color: #ffffff;
-    --text-color: #333333;
-    --link-color: #007bff; /* Standard blue for links */
-    --link-hover-color: #0056b3;
-    --header-background: #f8f9fa; /* Light header background */
-    --footer-background: #343a40; /* Dark footer background in light mode */
-    --footer-text-color: #e9ecef;
-    --button-background: #007bff;
+    /* Light Mode Colors - Clean, Bright, with Google Accents */
+    --background-color: #f8f9fa; /* Very light gray */
+    --text-color: #202124; /* Dark charcoal for primary text */
+    --link-color: #1a73e8; /* Google Blue */
+    --link-hover-color: #174ea6; /* Darker Google Blue */
+    --header-background: #ffffff;
+    --footer-background: #f8f9fa; /* Light footer background */
+    --footer-text-color: #5f6368; /* Google's muted gray */
+    --button-background: #1a73e8;
     --button-text-color: #ffffff;
-    --button-hover-background: #0056b3;
-    --border-color: #dddddd;
+    --button-hover-background: #174ea6;
+    --border-color: #dadce0; /* Light gray border */
     --card-background: #ffffff;
-    --heading-color: #212529; /* Dark headings */
-    --placeholder-color: #6c757d; /* Muted text for placeholders/meta */
-    --section-separator-color: #eeeeee;
+    --heading-color: #202124;
+    --placeholder-color: #70757a; /* Muted text for placeholders/meta */
+    --section-separator-color: #e8eaed; /* Very light separator */
+    --box-shadow-light: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15); /* Subtle elevation */
+    --dropdown-background: #ffffff;
+    --dropdown-border: #dadce0;
+    --dropdown-link-hover-bg: #e8f0fe; /* Light blue hover for dropdown links */
 }
 
 /* Dark Mode Colors (Activated when body has class="dark-mode") */
 body.dark-mode {
-    --background-color: #121212; /* Rich Dark Background */
-    --text-color: #e0e0e0; /* Light Text Color */
-    --link-color: #bb86fc; /* Accent color for links (e.g., from Material Design dark theme) */
-    --link-hover-color: #a070d8;
-    --header-background: #1e1e1e; /* Slightly lighter dark for header */
-    --footer-background: #0a0a0a; /* Slightly darker dark for footer */
-    --footer-text-color: #b0b0b0;
-    --button-background: #bb86fc; /* Accent color for buttons */
-    --button-text-color: #121212; /* Dark text on accent buttons */
-    --button-hover-background: #a070d8;
-    --border-color: #3a3a3a; /* Darker borders */
-    --card-background: #1e1e1e; /* Card background matches header */
-    --heading-color: #ffffff; /* White headings in dark mode */
-    --placeholder-color: #a0a0a0; /* Lighter muted text */
-     --section-separator-color: #2a2a2a;
+    --background-color: #202124; /* Dark charcoal */
+    --text-color: #e8eaed; /* Light text */
+    --link-color: #8ab4f8; /* Lighter Google Blue for dark mode */
+    --link-hover-color: #c5d0f6;
+    --header-background: #292a2d; /* Darker header */
+    --footer-background: #171717; /* Very dark footer */
+    --footer-text-color: #bdc1c6;
+    --button-background: #8ab4f8;
+    --button-text-color: #202124; /* Dark text on light button */
+    --button-hover-background: #c5d0f6;
+    --border-color: #5f6368; /* Muted dark border */
+    --card-background: #292a2d; /* Dark card background */
+    --heading-color: #e8eaed;
+    --placeholder-color: #9aa0a6;
+    --section-separator-color: #3c4043;
+    --box-shadow-light: none; /* Dark mode often relies less on strong shadows */
+    --dropdown-background: #292a2d;
+    --dropdown-border: #5f6368;
+    --dropdown-link-hover-bg: #3c4043; /* Darker hover for dropdown links */
 }
 
 /* Apply theme variables to body */
 body {
     color: var(--text-color);
     background-color: var(--background-color);
-    transition: background-color 0.5s ease, color 0.5s ease; /* Smooth theme transition */
+    transition: background-color 0.4s ease, color 0.4s ease; /* Smooth theme transition */
 }
 
 /* --- 4. Global Element Styling using Variables --- */
@@ -84,12 +92,13 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--heading-color);
     margin-bottom: 1rem;
     line-height: 1.2;
+    font-weight: 700;
 }
 
-h1 { font-size: 2.5rem; } /* Adjusted for better hierarchy */
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
-h4 { font-size: 1.25rem; }
+h1 { font-size: 2.75rem; }
+h2 { font-size: 2.25rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.35rem; }
 
 p {
     margin-bottom: 1rem;
@@ -113,28 +122,29 @@ a:hover {
     background-color: var(--button-background);
     color: var(--button-text-color);
     padding: 0.75rem 1.5rem;
-    border-radius: 5px;
+    border-radius: 4px; /* Slightly rounded corners */
     text-decoration: none;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
     border: none;
     cursor: pointer;
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 500; /* Medium weight */
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Subtle button shadow */
 }
 
 .btn:hover {
     background-color: var(--button-hover-background);
-    color: var(--button-text-color);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* More pronounced shadow on hover */
     text-decoration: none;
 }
 
 /* Container for centering content */
 .container {
-    max-width: 1200px;
+    max-width: 1280px; /* Slightly wider container */
     margin: 0 auto;
-    padding: 0 1rem; /* Add padding on smaller screens */
-    width: 100%; /* Ensure container takes full width */
+    padding: 0 1.5rem;
+    width: 100%;
 }
 
 
@@ -142,37 +152,37 @@ a:hover {
 header {
     background-color: var(--header-background);
     color: var(--text-color);
-    padding: 1rem 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    transition: background-color 0.5s ease, color 0.5s ease, box-shadow 0.5s ease;
+    padding: 1.2rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle header shadow */
+    transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
 }
 
 header nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 0 1rem;
-    flex-wrap: wrap; /* Allow wrapping on small screens */
+    padding: 0 1.5rem;
+    flex-wrap: wrap;
 }
 
 .logo-container .logo-text {
-    font-size: 1.6rem; /* Slightly larger logo */
-    font-weight: 700;
-    color: var(--heading-color); /* Use heading color for logo */
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--heading-color);
     text-decoration: none;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 2rem; /* Increased space between links */
+    gap: 2rem;
     align-items: center;
 }
 
 .nav-links li {
-    padding: 0.5rem 0; /* Add padding for clickable area */
+    padding: 0.5rem 0;
 }
 
 .nav-links a {
@@ -180,14 +190,14 @@ header nav {
      text-decoration: none;
      font-weight: 500;
      position: relative;
-     padding-bottom: 5px; /* Space for underline */
+     padding-bottom: 5px;
 }
 
 .nav-links a::after {
     content: '';
     position: absolute;
     width: 0;
-    height: 2px;
+    height: 3px; /* Slightly thicker underline */
     bottom: 0;
     left: 0;
     background-color: var(--link-color);
@@ -205,66 +215,135 @@ header nav {
     gap: 1rem;
 }
 
-/* Language Selector Icon Styling */
+/* Language Selector Dropdown Styling */
+.language-selector {
+    position: relative;
+    display: inline-block; /* Allows dropdown to be positioned relative to this */
+}
+
 .language-selector .lang-toggle {
     background: none;
-    border: none;
+    border: 1px solid var(--border-color); /* Add a border for clarity */
     cursor: pointer;
-    padding: 0; /* Remove padding if icon button */
+    padding: 0.5rem 0.75rem; /* Adjust padding for better look with text */
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 4px; /* Slightly rounded corners for the button */
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    color: var(--text-color); /* Ensure text color is set */
+    font-weight: 500;
+    font-size: 0.95rem;
+    gap: 0.5rem; /* Space between icon, text, and arrow */
+}
+
+.language-selector .lang-toggle:hover {
+    background-color: rgba(0,0,0,0.05); /* Light hover effect */
+    border-color: var(--link-color); /* Highlight border on hover */
+}
+
+body.dark-mode .language-selector .lang-toggle:hover {
+    background-color: rgba(255,255,255,0.1);
 }
 
 .language-selector .lang-toggle svg.globe-icon {
-    width: 24px;
-    height: 24px;
+    width: 20px; /* Slightly smaller globe icon */
+    height: 20px;
     stroke: var(--text-color);
     fill: none;
-    transition: stroke 0.5s ease;
+    transition: stroke 0.4s ease;
 }
 
 .language-selector .lang-toggle:hover svg.globe-icon {
-    stroke: var(--link-color); /* Accent color on hover */
+    stroke: var(--link-color);
+}
+
+.language-selector .current-lang-text {
+    text-transform: uppercase;
+}
+
+.language-selector .dropdown-arrow-icon {
+    width: 16px;
+    height: 16px;
+    stroke: var(--text-color);
+    transition: transform 0.3s ease, stroke 0.4s ease;
+}
+
+.language-selector.open .dropdown-arrow-icon {
+    transform: rotate(180deg); /* Rotate arrow when dropdown is open */
+}
+
+
+.dropdown-content {
+    display: none; /* Hidden by default */
+    position: absolute;
+    background-color: var(--dropdown-background);
+    min-width: 120px; /* Minimum width for dropdown items */
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    border: 1px solid var(--dropdown-border);
+    border-radius: 4px;
+    z-index: 1000; /* Ensure it appears above other content */
+    top: 100%; /* Position below the button */
+    left: 0; /* Align left */
+    margin-top: 8px; /* Space below button */
+    overflow: hidden; /* For border-radius on items */
+}
+
+.language-selector.open .dropdown-content {
+    display: block; /* Show when 'open' class is applied */
+}
+
+.dropdown-content a {
+    color: var(--text-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.95rem;
+    white-space: nowrap; /* Prevent text wrapping */
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--dropdown-link-hover-bg);
+    color: var(--link-color); /* Highlight text on hover */
+    text-decoration: none; /* No underline on hover in dropdown */
 }
 
 
 /* --- 6. Page Header Section Styling --- */
 .page-header {
     background-color: var(--card-background);
-    padding: 5rem 1rem; /* More vertical padding */
+    padding: 5rem 1.5rem;
     text-align: center;
     border-bottom: 1px solid var(--section-separator-color);
-    transition: background-color 0.5s ease, border-color 0.5s ease;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
 .page-header h1 {
-    font-size: 3rem; /* Larger main heading */
+    font-size: 3rem;
     margin-bottom: 0.75rem;
     color: var(--heading-color);
 }
 
 .page-header p {
-    font-size: 1.25rem; /* Larger subtext */
+    font-size: 1.25rem;
     color: var(--text-color);
-    max-width: 800px; /* Limit width for readability */
+    max-width: 800px;
     margin: 0.5rem auto 0;
 }
 
 /* --- 7. Content Sections (General Layout) --- */
 section {
-    padding: 4rem 1rem; /* Consistent vertical padding for sections */
-    max-width: 1200px;
+    padding: 4rem 1.5rem;
+    max-width: 1280px;
     margin: 0 auto;
-    width: 100%; /* Ensure section takes full width */
+    width: 100%;
 }
 
-/* Style for alternating section backgrounds (optional but nice for visual breaks) */
-/* For example, apply a class like .alt-background to some sections in HTML */
 .alt-background {
-    background-color: var(--card-background);
-    border-bottom: 1px solid var(--section-separator-color);
-    transition: background-color 0.5s ease, border-color 0.5s ease;
+    background-color: var(--section-separator-color); /* Use a subtle separator color for alt sections */
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
 
@@ -272,9 +351,9 @@ section {
 footer {
     background-color: var(--footer-background);
     color: var(--footer-text-color);
-    padding: 2.5rem 1rem 1.5rem; /* Adjusted padding */
+    padding: 2.5rem 1.5rem 1.5rem;
     margin-top: auto;
-    transition: background-color 0.5s ease, color 0.5s ease;
+    transition: background-color 0.4s ease, color 0.4s ease;
     width: 100%;
 }
 
@@ -282,7 +361,7 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
     gap: 2rem;
 }
@@ -294,8 +373,12 @@ footer {
 
 .footer-section h3 {
     color: var(--footer-text-color);
-    margin-bottom: 1.2rem; /* More space below heading */
+    margin-bottom: 1.2rem;
     font-size: 1.1rem;
+}
+
+.footer-section p {
+    font-size: 0.95rem;
 }
 
 .footer-section ul {
@@ -304,7 +387,7 @@ footer {
 }
 
 .footer-section ul li {
-    margin-bottom: 0.75rem; /* More space between list items */
+    margin-bottom: 0.75rem;
 }
 
 .footer-section a {
@@ -314,24 +397,24 @@ footer {
 }
 
 .footer-section a:hover {
-    color: var(--link-color); /* Hover using accent color */
+    color: var(--link-color);
     text-decoration: underline;
 }
 
 .social-links a {
-    margin-right: 15px; /* More space between social links */
-    font-size: 1.1rem;
+    margin-right: 15px;
+    font-size: 1rem;
     color: var(--footer-text-color);
     transition: color 0.3s ease;
 }
 
 .social-links a:hover {
-    color: var(--link-color); /* Accent color on hover */
+    color: var(--link-color);
 }
 
 .footer-bottom {
     text-align: center;
-    margin-top: 3rem; /* More space above copyright */
+    margin-top: 3rem;
     padding-top: 1.5rem;
     border-top: 1px solid var(--section-separator-color);
     color: var(--footer-text-color);
@@ -344,18 +427,18 @@ footer {
 /* Hero Section (index.html) */
 .hero {
     background-color: var(--background-color);
-    padding: 8rem 1rem; /* Generous padding for a strong intro */
+    padding: 8rem 1.5rem;
     text-align: center;
     border-bottom: 1px solid var(--section-separator-color);
 }
 
 .hero h1 {
-    font-size: 3.5rem; /* Larger hero heading */
+    font-size: 3.5rem;
     margin-bottom: 1.5rem;
 }
 
 .hero p {
-    font-size: 1.4rem; /* Larger hero subtext */
+    font-size: 1.4rem;
     margin-bottom: 2.5rem;
     max-width: 900px;
     margin-left: auto;
@@ -365,42 +448,41 @@ footer {
 
 /* Blog Preview & Resources Preview Sections (index.html) */
 .blog-preview, .resources-preview {
-    /* These sections will likely have .alt-background class in HTML */
-    padding: 4rem 1rem;
-    text-align: center; /* Center content */
+    padding: 4rem 1.5rem;
+    text-align: center;
 }
 
 .blog-preview h2, .resources-preview h2 {
-    margin-bottom: 3rem; /* More space below section title */
+    margin-bottom: 3rem;
     font-size: 2.2rem;
 }
 
 .blog-articles-grid, .resources-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Allow slightly smaller cards */
-    gap: 2.5rem; /* Increased gap */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
 }
 
 .blog-card, .resource-card {
-    background-color: var(--background-color);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color); /* Subtle border */
+    border-radius: 8px; /* Rounded corners */
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    transition: background-color 0.5s ease, border-color 0.5s ease, transform 0.3s ease; /* Added transform */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle card shadow */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: var(--box-shadow-light); /* Apply subtle shadow */
 }
 
 .blog-card:hover, .resource-card:hover {
-    transform: translateY(-5px); /* Slight lift effect on hover */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* More pronounced shadow on hover */
+    transform: translateY(-4px); /* Slight lift effect on hover */
+    box-shadow: 0 4px 8px 0 rgba(60,64,67,0.3), 0 6px 12px 3px rgba(60,64,67,0.15); /* More pronounced shadow on hover */
 }
 
 
 .blog-card img {
     width: 100%;
-    height: 220px; /* Slightly increased height */
+    height: 220px;
     object-fit: cover;
 }
 
@@ -409,7 +491,7 @@ footer {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    text-align: left; /* Align text left within card */
+    text-align: left;
 }
 
 .card-content h3 {
@@ -428,8 +510,8 @@ footer {
 .read-more {
     display: inline-block;
     margin-top: auto;
-    font-weight: 700;
-    text-decoration: none; /* Ensure no underline on initial state */
+    font-weight: 500;
+    text-decoration: none;
 }
 
 /* Resources Preview specifics */
@@ -449,11 +531,11 @@ footer {
 /* Blog Content Section (blog.html) */
 .blog-content {
     display: flex;
-    gap: 3rem; /* Increased gap between main content and sidebar */
-    padding: 3rem 1rem;
-    max-width: 1200px;
+    gap: 3rem;
+    padding: 3rem 1.5rem;
+    max-width: 1280px;
     margin: 0 auto;
-    flex-wrap: wrap; /* Allow wrapping */
+    flex-wrap: wrap;
 }
 
 .blog-main {
@@ -463,22 +545,24 @@ footer {
 
 .blog-sidebar {
     flex: 1;
-    min-width: 280px; /* Slightly wider sidebar */
+    min-width: 280px;
     background-color: var(--card-background);
-    padding: 2rem; /* Increased padding */
+    padding: 2rem;
     border-radius: 8px;
     border: 1px solid var(--border-color);
-    transition: background-color 0.5s ease, border-color 0.5s ease;
-    height: fit-content; /* Adjust height to content */
+    box-shadow: var(--box-shadow-light);
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    height: fit-content;
 }
 
 .blog-post {
     background-color: var(--card-background);
-    padding: 2rem; /* Increased padding */
-    margin-bottom: 3rem; /* More space between posts */
+    padding: 2rem;
+    margin-bottom: 3rem;
     border-radius: 8px;
     border: 1px solid var(--border-color);
-    transition: background-color 0.5s ease, border-color 0.5s ease;
+    box-shadow: var(--box-shadow-light);
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .blog-post h2 {
@@ -495,7 +579,7 @@ footer {
 .blog-post .post-image {
     width: 100%;
     height: auto;
-    margin-bottom: 2rem; /* More space below image */
+    margin-bottom: 2rem;
     border-radius: 6px;
     object-fit: cover;
 }
@@ -506,7 +590,7 @@ footer {
 }
 
 .blog-sidebar .sidebar-section {
-    margin-bottom: 2.5rem; /* More space between sidebar sections */
+    margin-bottom: 2.5rem;
 }
 
 .blog-sidebar .sidebar-section h3 {
@@ -514,7 +598,7 @@ footer {
     font-size: 1.2rem;
     color: var(--heading-color);
     border-bottom: 1px solid var(--border-color);
-    padding-bottom: 0.75rem; /* More padding below border */
+    padding-bottom: 0.75rem;
 }
 
 .blog-sidebar ul {
@@ -523,7 +607,7 @@ footer {
 }
 
 .blog-sidebar ul li {
-    margin-bottom: 1rem; /* More space between list items */
+    margin-bottom: 1rem;
 }
 
 .blog-sidebar a {
@@ -553,19 +637,19 @@ footer {
 /* Sidebar form */
 .sidebar-section form {
     display: flex;
-    flex-direction: column; /* Stack form elements */
+    flex-direction: column;
     gap: 10px;
 }
 
 .sidebar-section form input[type="text"],
 .sidebar-section form input[type="email"] {
-    width: 100%; /* Full width */
-    padding: 0.75rem; /* Increased padding */
+    width: 100%;
+    padding: 0.75rem;
     border: 1px solid var(--border-color);
     border-radius: 4px;
     background-color: var(--background-color);
     color: var(--text-color);
-    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
     font-size: 1rem;
 }
 
@@ -575,7 +659,7 @@ footer {
 }
 
 .sidebar-section form button {
-    width: 100%; /* Full width button */
+    width: 100%;
     padding: 0.75rem 1rem;
     font-size: 1rem;
 }
@@ -612,7 +696,7 @@ footer {
 
 /* Resources Listing Section (resources.html) */
 .resources-listing {
-    padding: 3rem 1rem;
+    padding: 3rem 1.5rem;
     max-width: 900px;
     margin: 0 auto;
 }
@@ -621,35 +705,47 @@ footer {
     background-color: var(--card-background);
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    padding: 2rem; /* Increased padding */
-    margin-bottom: 2rem; /* More space between items */
+    padding: 2rem;
+    margin-bottom: 2rem;
     display: flex;
     align-items: flex-start;
-    gap: 2rem; /* Increased gap */
-    transition: background-color 0.5s ease, border-color 0.5s ease;
-    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 2rem;
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: var(--box-shadow-light);
+    flex-wrap: wrap;
+}
+
+.resource-item:hover {
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 2px 4px 0 rgba(60,64,67,0.3), 0 3px 6px 1px rgba(60,64,67,0.15); /* Slightly more pronounced shadow */
 }
 
 .resource-icon {
     flex-shrink: 0;
-    width: 50px; /* Larger icon area */
+    width: 50px;
     height: 50px;
-    display: flex; /* Center icon */
+    display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 50%; /* Rounded icons */
+    background-color: rgba(26,115,232,0.1); /* Light tint of link color */
+}
+
+body.dark-mode .resource-icon {
+    background-color: rgba(138,180,248,0.15);
 }
 
 .resource-icon svg {
-    width: 40px; /* Larger SVG icon */
-    height: 40px;
+    width: 30px; /* Slightly smaller SVG icon */
+    height: 30px;
     stroke: var(--link-color);
     fill: none;
-    transition: stroke 0.5s ease;
+    transition: stroke 0.4s ease;
 }
 
 .resource-content {
     flex-grow: 1;
-    min-width: 250px; /* Ensure content has minimum width before wrapping */
+    min-width: 250px;
 }
 
 .resource-content h3 {
@@ -671,18 +767,17 @@ footer {
 }
 
 .resource-meta span {
-    margin-right: 1.5rem; /* More space between meta info */
+    margin-right: 1.5rem;
 }
 
 /* Resources Newsletter Section (resources.html) */
 .resources-newsletter {
-     /* This section will likely have .alt-background class in HTML */
-    padding: 4rem 1rem;
+    padding: 4rem 1.5rem;
     text-align: center;
 }
 
 .newsletter-container {
-    max-width: 700px; /* Wider container */
+    max-width: 700px;
     margin: 0 auto;
 }
 
@@ -692,15 +787,15 @@ footer {
 }
 
 .newsletter-container p {
-    font-size: 1.25rem; /* Larger text */
+    font-size: 1.25rem;
     margin-bottom: 2.5rem;
 }
 
 .newsletter-form {
     display: flex;
-    gap: 15px; /* Increased gap */
+    gap: 15px;
     justify-content: center;
-    flex-wrap: wrap; /* Allow wrapping */
+    flex-wrap: wrap;
 }
 
 .newsletter-form input[type="email"] {
@@ -708,10 +803,10 @@ footer {
     border: 1px solid var(--border-color);
     border-radius: 4px;
     flex-grow: 1;
-    max-width: 350px; /* Slightly wider input */
+    max-width: 350px;
     background-color: var(--background-color);
     color: var(--text-color);
-    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
     font-size: 1rem;
 }
 
@@ -720,21 +815,21 @@ footer {
 }
 
 .newsletter-form button {
-    padding: 0.75rem 2rem; /* More padding */
+    padding: 0.75rem 2rem;
     font-size: 1rem;
 }
 
 
 /* About Content Section (about.html) */
 .about-content {
-    padding: 3rem 1rem;
+    padding: 3rem 1.5rem;
     max-width: 900px;
     margin: 0 auto;
 }
 
 .about-content h2 {
-    font-size: 2rem; /* Adjusted size */
-    margin-top: 2.5rem; /* More space above section headings */
+    font-size: 2rem;
+    margin-top: 2.5rem;
     margin-bottom: 1.2rem;
     border-bottom: 1px solid var(--section-separator-color);
     padding-bottom: 0.75rem;
@@ -748,31 +843,32 @@ footer {
 .team-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 3rem; /* Increased gap */
+    gap: 3rem;
     margin-top: 3rem;
 }
 
 .team-member {
     text-align: center;
     background-color: var(--card-background);
-    padding: 2rem; /* Increased padding */
+    padding: 2rem;
     border-radius: 8px;
     border: 1px solid var(--border-color);
-    transition: background-color 0.5s ease, border-color 0.5s ease;
+    box-shadow: var(--box-shadow-light);
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
 .team-member img {
-    width: 160px; /* Slightly larger image */
+    width: 160px;
     height: 160px;
     object-fit: cover;
     border-radius: 50%;
     margin-bottom: 1.5rem;
-    border: 4px solid var(--link-color); /* Thicker accent border */
-    transition: border-color 0.5s ease;
+    border: 4px solid var(--link-color);
+    transition: border-color 0.4s ease;
 }
 
 .team-member h3 {
-    font-size: 1.4rem; /* Adjusted size */
+    font-size: 1.4rem;
     margin-bottom: 0.5rem;
 }
 
@@ -789,11 +885,11 @@ footer {
     }
 
     .blog-main {
-        flex: auto; /* Allow main content to take full width */
+        flex: auto;
     }
 
     .blog-sidebar {
-        flex: auto; /* Allow sidebar to take full width */
+        flex: auto;
         min-width: auto;
     }
 
@@ -822,20 +918,20 @@ footer {
      }
 
      .newsletter-form button {
-         width: auto; /* Button width fits content or stays full width if desired */
+         width: auto;
      }
 }
 
 
 @media (max-width: 768px) {
-    h1 { font-size: 2rem; }
-    h2 { font-size: 1.75rem; }
-    h3 { font-size: 1.3rem; }
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.9rem; }
+    h3 { font-size: 1.4rem; }
 
     header nav {
         flex-direction: column;
-        gap: 1.5rem; /* Space between logo/nav/right */
-        padding: 0 1rem;
+        gap: 1.5rem;
+        padding: 0 1.5rem;
     }
 
     .logo-container {
@@ -850,7 +946,7 @@ footer {
     }
 
     .nav-links li {
-        padding: 0; /* Remove padding if stacked vertically */
+        padding: 0;
     }
 
     .nav-right {
@@ -861,7 +957,7 @@ footer {
 
 
     .page-header {
-        padding: 3rem 1rem;
+        padding: 3rem 1.5rem;
     }
 
     .page-header h1 {
@@ -873,7 +969,7 @@ footer {
     }
 
     .hero {
-        padding: 5rem 1rem;
+        padding: 5rem 1.5rem;
     }
 
     .hero h1 {
@@ -889,7 +985,7 @@ footer {
     }
 
     .blog-articles-grid, .resources-grid {
-         grid-template-columns: 1fr; /* Stack cards */
+         grid-template-columns: 1fr;
     }
 
     .blog-card, .resource-card {
@@ -897,7 +993,7 @@ footer {
     }
 
     .resource-item {
-        text-align: left; /* Back to left align for list items */
+        text-align: left;
         align-items: flex-start;
     }
 
@@ -908,8 +1004,8 @@ footer {
      }
 
      .resource-item {
-        flex-direction: row; /* Back to row layout if space allows */
-        flex-wrap: wrap; /* Allow wrap if content is too wide */
+        flex-direction: row;
+        flex-wrap: wrap;
      }
 
      .resource-content {
@@ -926,7 +1022,7 @@ footer {
     .footer-section {
         min-width: auto;
         width: 100%;
-        margin-bottom: 2rem; /* Add space between stacked footer sections */
+        margin-bottom: 2rem;
     }
 
     .footer-section ul {
@@ -938,17 +1034,17 @@ footer {
     }
 
     .social-links a {
-        margin: 0 10px; /* Adjust spacing for centered icons */
+        margin: 0 10px;
     }
 
      .sidebar-section form input[type="text"],
     .sidebar-section form input[type="email"] {
-        width: 100%; /* Full width input even with button */
+        width: 100%;
         margin-right: 0;
     }
 
     .sidebar-section form button {
-        width: auto; /* Button width fits content */
+        width: auto;
     }
 
     .newsletter-form {
@@ -967,14 +1063,14 @@ footer {
     }
 
     .team-grid {
-         grid-template-columns: 1fr; /* Stack team members */
+         grid-template-columns: 1fr;
     }
 }
 
 @media (max-width: 480px) {
-    h1 { font-size: 1.8rem; }
-    h2 { font-size: 1.5rem; }
-    h3 { font-size: 1.2rem; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.7rem; }
+    h3 { font-size: 1.3rem; }
     p { font-size: 0.95rem; }
 
     .logo-container .logo-text {
@@ -982,7 +1078,7 @@ footer {
     }
 
      .page-header h1 {
-        font-size: 2rem;
+        font-size: 2.3rem;
     }
 
     .page-header p {
@@ -1046,54 +1142,55 @@ footer {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0; /* Adjust if you want clickable area larger than icon */
+    padding: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-color); /* Icon color follows text color */
-    transition: color 0.5s ease;
+    color: var(--text-color);
+    transition: color 0.4s ease, background-color 0.3s ease;
+    border-radius: 50%;
 }
 
 .theme-toggle-button:hover {
-     color: var(--link-color); /* Accent color on hover */
+     color: var(--link-color);
+     background-color: rgba(0,0,0,0.05);
+}
+
+body.dark-mode .theme-toggle-button:hover {
+    background-color: rgba(255,255,255,0.1);
 }
 
 .theme-toggle-button svg {
      width: 24px;
      height: 24px;
-     fill: currentColor; /* Fills the SVG with the current text color */
+     fill: currentColor;
 }
 
 /* Hide one icon based on body class */
 .theme-toggle-button .sun-icon,
 .theme-toggle-button .moon-icon {
-    display: none; /* Hide by default */
+    display: none;
 }
 
 body.dark-mode .theme-toggle-button .moon-icon {
-    display: block; /* Show moon icon in dark mode */
+    display: block;
 }
 
 body:not(.dark-mode) .theme-toggle-button .sun-icon {
-    display: block; /* Show sun icon in light mode */
+    display: block;
 }
 
-/* Optional: Add styles for a simple moon/sun SVG if you don't have icons */
-/* Example SVG (place directly in your HTML button):
-   <button class="theme-toggle-button">
-       <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-           <circle cx="12" cy="12" r="5"/>
-           <line x1="12" y1="1" x2="12" y2="3"/>
-           <line x1="12" y1="21" x2="12" y2="23"/>
-           <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-           <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-           <line x1="1" y1="12" x2="3" y2="12"/>
-           <line x1="21" y1="12" x2="23" y2="12"/>
-           <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-           <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-       </svg>
-       <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-       </svg>
-   </button>
-*/
+/* Floating theme toggle button (from main.js) */
+.floating-theme-toggle {
+    background-color: var(--button-background) !important;
+    color: var(--button-text-color) !important;
+    border-radius: 50% !important; /* Keep it circular */
+    padding: 12px 15px !important; /* Adjust padding */
+    font-size: 1.5rem !important; /* Larger icon/text */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important; /* Subtle shadow */
+}
+
+.floating-theme-toggle:hover {
+    background-color: var(--button-hover-background) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3) !important;
+}
