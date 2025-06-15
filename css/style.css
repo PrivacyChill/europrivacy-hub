@@ -33,51 +33,51 @@ main {
 
 /* --- 3. CSS Variables for Themes (Google-Inspired Palette) --- */
 :root {
-    /* Light Mode Colors - Clean, Bright, with Google Accents */
-    --background-color: #f8f9fa; /* Very light gray */
-    --text-color: #202124; /* Dark charcoal for primary text */
-    --link-color: #1a73e8; /* Google Blue */
-    --link-hover-color: #174ea6; /* Darker Google Blue */
-    --header-background: #ffffff;
-    --footer-background: #f8f9fa; /* Light footer background */
-    --footer-text-color: #5f6368; /* Google's muted gray */
-    --button-background: #1a73e8;
-    --button-text-color: #ffffff;
-    --button-hover-background: #174ea6;
-    --border-color: #dadce0; /* Light gray border */
-    --card-background: #ffffff;
-    --heading-color: #202124;
-    --placeholder-color: #70757a; /* Muted text for placeholders/meta */
-    --section-separator-color: #e8eaed; /* Very light separator */
-    --box-shadow-light: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15); /* Subtle elevation */
-    --dropdown-background: #ffffff;
-    --dropdown-border: #dadce0;
-    --dropdown-link-hover-bg: #e8f0fe; /* Light blue hover for dropdown links */
-    --input-background: #ffffff;
+    /* New EU-Inspired Light Mode Colors */
+    --background-color: #eaeaea; /* Very light gray from EU palette */
+    --text-color: #1a2634; /* Dark blue/grey from EU palette */
+    --link-color: #203e5f; /* Medium blue from EU palette */
+    --link-hover-color: #16304d; /* Derived darker blue from EU palette (#203e5f darkened) */
+    --header-background: #ffffff; /* Keep white for strong contrast */
+    --footer-background: #eaeaea; /* Very light gray from EU palette */
+    --footer-text-color: #5f6368; /* Keeping existing muted grey for readability, as no direct dark/muted grey in new palette */
+    --button-background: #203e5f; /* Medium blue from EU palette */
+    --button-text-color: #ffffff; /* White text on buttons */
+    --button-hover-background: #16304d; /* Derived darker blue for hover */
+    --border-color: #d1d1d1; /* Slightly darker than #eaeaea for clear borders */
+    --card-background: #ffffff; /* Keep white for card background for content readability */
+    --heading-color: #1a2634; /* Dark blue/grey from EU palette */
+    --placeholder-color: #70757a; /* Keeping existing muted grey for readability, as no direct dark/muted grey in new palette */
+    --section-separator-color: #d1d1d1; /* Consistent with border color */
+    --box-shadow-light: 0 1px 2px 0 rgba(26,38,52,0.1), 0 1px 3px 1px rgba(26,38,52,0.08); /* Adjusted shadow with new dark color */
+    --dropdown-background: #ffffff; /* Keep white */
+    --dropdown-border: #d1d1d1; /* Consistent with border color */
+    --dropdown-link-hover-bg: #fee5b1; /* Light yellow from EU palette for hover accent */
+    --input-background: #ffffff; /* Keep white */
 }
 
 /* Dark Mode Colors (Activated when body has class="dark-mode") */
 body.dark-mode {
-    --background-color: #202124; /* Dark charcoal */
-    --text-color: #e8eaed; /* Light text */
-    --link-color: #8ab4f8; /* Lighter Google Blue for dark mode */
-    --link-hover-color: #c5d0f6;
-    --header-background: #292a2d; /* Darker header */
-    --footer-background: #171717; /* Very dark footer */
-    --footer-text-color: #bdc1c6;
-    --button-background: #8ab4f8;
-    --button-text-color: #202124; /* Dark text on light button */
-    --button-hover-background: #c5d0f6;
-    --border-color: #5f6368; /* Muted dark border */
-    --card-background: #292a2d; /* Dark card background */
-    --heading-color: #e8eaed;
-    --placeholder-color: #9aa0a6;
-    --section-separator-color: #3c4043;
+    --background-color: #1a2634; /* Dark blue/grey from EU palette */
+    --text-color: #eaeaea; /* Light gray from EU palette */
+    --link-color: #ffcc00; /* Yellow from EU palette */
+    --link-hover-color: #fee5b1; /* Light yellow from EU palette */
+    --header-background: #121b25; /* Darker than #1a2634 */
+    --footer-background: #0f151c; /* Even darker */
+    --footer-text-color: #d1d1d1; /* Slightly darker grey than #eaeaea */
+    --button-background: #ffcc00; /* Yellow from EU palette */
+    --button-text-color: #1a2634; /* Dark text on yellow button */
+    --button-hover-background: #fee5b1; /* Light yellow for hover */
+    --border-color: #324e6c; /* A mid-tone blue/grey, derived from #203e5f */
+    --card-background: #1a2634; /* Same as background for a cohesive look */
+    --heading-color: #eaeaea; /* Light gray */
+    --placeholder-color: #8d9ba8; /* A muted light grey/blue, derived from EU palette */
+    --section-separator-color: #324e6c; /* Consistent with border */
     --box-shadow-light: none; /* Dark mode often relies less on strong shadows */
-    --dropdown-background: #292a2d;
-    --dropdown-border: #5f6368;
-    --dropdown-link-hover-bg: #3c4043; /* Darker hover for dropdown links */
-    --input-background: #3c4043;
+    --dropdown-background: #121b25; /* Consistent with header background */
+    --dropdown-border: #324e6c; /* Consistent with border */
+    --dropdown-link-hover-bg: #203e5f; /* Medium blue for hover, contrasting */
+    --input-background: #121b25; /* Consistent with header background */
 }
 
 /* Apply theme variables to body */
@@ -187,15 +187,34 @@ header nav {
 }
 
 .logo-container {
-    flex-shrink: 0; /* Don't shrink logo */
+    flex-shrink: 0;
+    position: relative; /* Needed for ::after positioning */
+    padding-bottom: 5px; /* Create space for the underline */
+    text-decoration: none; /* Explicitly remove default underline */
 }
 
 .logo-container .logo-text {
     font-size: 1.7rem;
     font-weight: 500;
     color: var(--heading-color);
-    text-decoration: none;
 }
+
+/* New: Underline animation for logo */
+.logo-container::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--link-color);
+    transition: width 0.3s ease;
+}
+
+.logo-container:hover::after {
+    display: none; /* Modified to hide the line on hover */
+}
+
 
 .nav-links {
     list-style: none;
@@ -292,6 +311,8 @@ body.dark-mode .header-search button:hover {
     width: 20px;
     height: 20px;
     fill: currentColor; /* Use current text color */
+    stroke: currentColor; /* For icons that use stroke */
+    stroke-width: 2; /* Default stroke width for icons */
 }
 
 
@@ -723,6 +744,12 @@ footer {
     margin-bottom: 1.5rem;
     font-size: 0.95rem;
     color: var(--text-color);
+    flex-grow: 1; /* ADDED: Makes paragraph take available space */
+}
+
+/* ADDED: Rule to push the button to the bottom of the card */
+.resources-grid .resource-card .btn {
+    margin-top: auto;
 }
 
 
@@ -1346,7 +1373,7 @@ body.dark-mode .resource-icon {
     }
 
     .page-header p {
-        font-size: 1rem;
+        font-size: 1.0rem;
     }
 
     .hero h1 {
@@ -1428,19 +1455,21 @@ body.dark-mode .theme-toggle-button:hover {
      width: 24px;
      height: 24px;
      fill: currentColor;
+     stroke: currentColor; /* Ensure lines are drawn for sun icon */
+     stroke-width: 2; /* Adjust if rays appear too thin */
 }
 
-/* Hide one icon based on body class */
+/* Hide one icon based on body class, show the *opposite* theme icon */
 .theme-toggle-button .sun-icon,
 .theme-toggle-button .moon-icon {
-    display: none;
+    display: none; /* Hide both by default */
 }
 
-body.dark-mode .theme-toggle-button .moon-icon {
+body.dark-mode .theme-toggle-button .sun-icon { /* In dark mode, show sun to suggest light mode */
     display: block;
 }
 
-body:not(.dark-mode) .theme-toggle-button .sun-icon {
+body:not(.dark-mode) .theme-toggle-button .moon-icon { /* In light mode, show moon to suggest dark mode */
     display: block;
 }
 
@@ -1489,7 +1518,7 @@ body:not(.dark-mode) .theme-toggle-button .sun-icon {
 .full-blog-post .post-image {
     width: 100%;
     height: auto;
-    max-height: 400px; /* Cap image height */
+    max-height: 400px;
     object-fit: cover;
     margin-bottom: 2.5rem;
     border-radius: 8px;
@@ -1646,14 +1675,5 @@ body:not(.dark-mode) .theme-toggle-button .sun-icon {
     font-size: 1.1rem;
     color: var(--placeholder-color);
     margin-bottom: 2rem; /* Space below message */
-    font-weight: 500;
-}
-/* Styling for the category filter message on blog.html */
-#category-filter-message {
-    text-align: center;
-    font-size: 1.1rem;
-    color: var(--placeholder-color); /* Muted color */
-    margin-top: -1.5rem; /* Pull it up slightly below the header description */
-    margin-bottom: 2rem; /* Space before blog posts */
     font-weight: 500;
 }
