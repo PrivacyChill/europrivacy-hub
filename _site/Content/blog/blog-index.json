@@ -1,0 +1,69 @@
+[
+    {
+      "id": "gdpr-article-17-erasure",
+      "title": {
+        "en": "Understanding GDPR Article 17: The Right to Erasure",
+        "it": "Comprendere l'articolo 17 del GDPR: Il Diritto alla Cancellazione",
+        "de": "DSGVO Artikel 17 verstehen: Das Recht auf Löschung"
+      },
+      "excerpt": {
+        "en": "Explore the nuances of the 'right to be forgotten' and its implications for data controllers.",
+        "it": "Esplora le sfumature del 'diritto all'oblio' e le sue implicazioni per i titolari del trattamento dei dati.",
+        "de": "Entdecken Sie die Nuancen des 'Rechts auf Vergessenwerden' und seine Auswirkungen auf Datenverantwortliche."
+      },
+      "imageUrl": "https://placehold.co/800x400/1a73e8/ffffff?text=GDPR+Article+17",
+      "imageAlt": {
+        "en": "Abstract image illustrating data deletion, with particles fading away.",
+        "it": "Immagine astratta che illustra la cancellazione dei dati, con particelle che svaniscono.",
+        "de": "Abstrakte Darstellung der Datenlöschung, mit verblassenden Partikeln."
+      },
+      "date": "April 20, 2025",
+      "author": "EuroPrivacy Hub Team",
+      "tags": ["GDPR", "Data Subject Rights", "Compliance"]
+    },
+    {
+      "id": "role-of-dpo",
+      "title": {
+        "en": "The Role of the Data Protection Officer (DPO)",
+        "it": "Il Ruolo del Responsabile della Protezione dei Dati (RPD)",
+        "de": "Die Rolle des Datenschutzbeauftragten (DSB)"
+      },
+      "excerpt": {
+        "en": "An in-depth look at the responsibilities and importance of a DPO in modern data governance.",
+        "it": "Uno sguardo approfondito alle responsabilità e all'importanza di un RPD nella moderna governance dei dati.",
+        "de": "Ein detaillierter Blick auf die Verantwortlichkeiten und die Bedeutung eines DSB in der modernen Daten-Governance."
+      },
+      "imageUrl": "https://placehold.co/800x400/1a73e8/ffffff?text=Data+Protection+Officer",
+      "imageAlt": {
+        "en": "Image of a data protection officer's badge or a related professional icon.",
+        "it": "Immagine di un badge di responsabile della protezione dei dati o di un'icona professionale correlata.",
+        "de": "Bild eines Ausweises für Datenschutzbeauftragte oder eines verwandten Berufszeichens."
+      },
+      "date": "March 8, 2025",
+      "author": "EuroPrivacy Hub Team",
+      "tags": ["DPO", "GDPR", "Compliance"]
+    },
+    {
+      "id": "international-transfers-guide",
+      "title": {
+        "en": "Navigating International Data Transfers",
+        "it": "Navigare i Trasferimenti Internazionali di Dati",
+        "de": "Umgang mit internationalen Datenübermittlungen"
+      },
+      "excerpt": {
+        "en": "A breakdown of mechanisms and considerations for compliant cross-border data flows.",
+        "it": "Una disamina dei meccanismi e delle considerazioni per flussi di dati transfrontalieri conformi.",
+        "de": "Eine Aufschlüsselung der Mechanismen und Überlegungen für konforme grenzüberschreitende Datenflüsse."
+      },
+      "imageUrl": "https://placehold.co/800x400/1a73e8/ffffff?text=Data+Transfers",
+      "imageAlt": {
+        "en": "Image depicting data flow across continents with security icons.",
+        "it": "Immagine che rappresenta il flusso di dati tra i continenti con icone di sicurezza.",
+        "de": "Bild, das den Datenfluss über Kontinenti con icone di sicurezza darstellt."
+      },
+      "date": "April 15, 2025",
+      "author": "EuroPrivacy Hub Team",
+      "tags": ["International Transfers", "GDPR", "Schrems II"]
+    }
+  ]
+  

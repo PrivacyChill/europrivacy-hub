@@ -1,0 +1,1679 @@
+/*
+  EuroPrivacy Hub Stylesheet - Google-Inspired Design
+
+  This stylesheet provides a fresh, clean, and user-friendly visual design
+  inspired by Google's modern aesthetic, focusing on clarity, vibrant accents,
+  and subtle depth.
+*/
+
+/* --- 1. Basic Reset and Box-Sizing --- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- 2. Font Import and Global Typography --- */
+/* Roboto font is imported directly in HTML head now. */
+body {
+    font-family: 'Roboto', Arial, sans-serif; /* Google's primary typeface */
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+    width: 100%;
+}
+
+
+/* --- 3. CSS Variables for Themes (Google-Inspired Palette) --- */
+:root {
+    /* New EU-Inspired Light Mode Colors */
+    --background-color: #eaeaea; /* Very light gray from EU palette */
+    --text-color: #1a2634; /* Dark blue/grey from EU palette */
+    --link-color: #203e5f; /* Medium blue from EU palette */
+    --link-hover-color: #16304d; /* Derived darker blue from EU palette (#203e5f darkened) */
+    --header-background: #ffffff; /* Keep white for strong contrast */
+    --footer-background: #eaeaea; /* Very light gray from EU palette */
+    --footer-text-color: #5f6368; /* Keeping existing muted grey for readability, as no direct dark/muted grey in new palette */
+    --button-background: #203e5f; /* Medium blue from EU palette */
+    --button-text-color: #ffffff; /* White text on buttons */
+    --button-hover-background: #16304d; /* Derived darker blue for hover */
+    --border-color: #d1d1d1; /* Slightly darker than #eaeaea for clear borders */
+    --card-background: #ffffff; /* Keep white for card background for content readability */
+    --heading-color: #1a2634; /* Dark blue/grey from EU palette */
+    --placeholder-color: #70757a; /* Keeping existing muted grey for readability, as no direct dark/muted grey in new palette */
+    --section-separator-color: #d1d1d1; /* Consistent with border color */
+    --box-shadow-light: 0 1px 2px 0 rgba(26,38,52,0.1), 0 1px 3px 1px rgba(26,38,52,0.08); /* Adjusted shadow with new dark color */
+    --dropdown-background: #ffffff; /* Keep white */
+    --dropdown-border: #d1d1d1; /* Consistent with border color */
+    --dropdown-link-hover-bg: #fee5b1; /* Light yellow from EU palette for hover accent */
+    --input-background: #ffffff; /* Keep white */
+}
+
+/* Dark Mode Colors (Activated when body has class="dark-mode") */
+body.dark-mode {
+    --background-color: #1a2634; /* Dark blue/grey from EU palette */
+    --text-color: #eaeaea; /* Light gray from EU palette */
+    --link-color: #ffcc00; /* Yellow from EU palette */
+    --link-hover-color: #fee5b1; /* Light yellow from EU palette */
+    --header-background: #121b25; /* Darker than #1a2634 */
+    --footer-background: #0f151c; /* Even darker */
+    --footer-text-color: #d1d1d1; /* Slightly darker grey than #eaeaea */
+    --button-background: #ffcc00; /* Yellow from EU palette */
+    --button-text-color: #1a2634; /* Dark text on yellow button */
+    --button-hover-background: #fee5b1; /* Light yellow for hover */
+    --border-color: #324e6c; /* A mid-tone blue/grey, derived from #203e5f */
+    --card-background: #1a2634; /* Same as background for a cohesive look */
+    --heading-color: #eaeaea; /* Light gray */
+    --placeholder-color: #8d9ba8; /* A muted light grey/blue, derived from EU palette */
+    --section-separator-color: #324e6c; /* Consistent with border */
+    --box-shadow-light: none; /* Dark mode often relies less on strong shadows */
+    --dropdown-background: #121b25; /* Consistent with header background */
+    --dropdown-border: #324e6c; /* Consistent with border */
+    --dropdown-link-hover-bg: #203e5f; /* Medium blue for hover, contrasting */
+    --input-background: #121b25; /* Consistent with header background */
+}
+
+/* Apply theme variables to body */
+body {
+    color: var(--text-color);
+    background-color: var(--background-color);
+    transition: background-color 0.4s ease, color 0.4s ease; /* Smooth theme transition */
+}
+
+/* --- 4. Global Element Styling using Variables --- */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--heading-color);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+h1 { font-size: 2.75rem; }
+h2 { font-size: 2.25rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.35rem; }
+
+p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+
+/* Consistent Button Styling */
+.btn {
+    display: inline-block;
+    background-color: var(--button-background);
+    color: var(--button-text-color);
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px; /* Slightly rounded corners */
+    text-decoration: none;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500; /* Medium weight */
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Subtle button shadow */
+}
+
+.btn:hover {
+    background-color: var(--button-hover-background);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* More pronounced shadow on hover */
+    text-decoration: none;
+}
+
+/* Form input styling */
+input[type="text"],
+input[type="email"] {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--input-background);
+    color: var(--text-color);
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+    font-size: 1rem;
+}
+
+input[type="text"]::placeholder,
+input[type="email"]::placeholder {
+    color: var(--placeholder-color);
+}
+
+/* Container for centering content */
+.container {
+    max-width: 1280px; /* Slightly wider container */
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    width: 100%;
+}
+
+
+/* --- 5. Header and Navigation Styling --- */
+header {
+    background-color: var(--header-background);
+    color: var(--text-color);
+    padding: 1.2rem 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05); /* Subtle header shadow */
+    transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+}
+
+header nav {
+    display: flex;
+    /* Use flex-wrap: wrap; and align-items: center; to handle responsiveness */
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between; /* Space out items */
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    gap: 1.5rem; /* Gap between main nav elements */
+}
+
+.logo-container {
+    flex-shrink: 0;
+    position: relative; /* Needed for ::after positioning */
+    padding-bottom: 5px; /* Create space for the underline */
+    text-decoration: none; /* Explicitly remove default underline */
+}
+
+.logo-container .logo-text {
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--heading-color);
+}
+
+/* New: Underline animation for logo */
+.logo-container::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--link-color);
+    transition: width 0.3s ease;
+}
+
+.logo-container:hover::after {
+    display: none; /* Modified to hide the line on hover */
+}
+
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    flex-grow: 1; /* Allow navigation links to grow and push other elements */
+    justify-content: flex-start; /* Align links to the start */
+    /* On smaller screens, they will wrap below */
+}
+
+.nav-links li {
+    padding: 0.5rem 0;
+}
+
+.nav-links a {
+     color: var(--text-color);
+     text-decoration: none;
+     font-weight: 500;
+     position: relative;
+     padding-bottom: 5px;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px; /* Slightly thicker underline */
+    bottom: 0;
+    left: 0;
+    background-color: var(--link-color);
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+}
+
+/* Search Bar Styling */
+.header-search {
+    flex-grow: 2; /* Allow search bar to take up more space */
+    max-width: 400px; /* Limit max width */
+    position: relative;
+}
+
+.header-search form {
+    display: flex;
+    width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 24px; /* Pill shape for search bar */
+    overflow: hidden; /* Ensures content stays within border-radius */
+    background-color: var(--input-background);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.header-search form:focus-within {
+    box-shadow: 0 1px 3px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15); /* More pronounced shadow on focus */
+    border-color: var(--link-color); /* Highlight border on focus */
+}
+
+.header-search input[type="text"] {
+    border: none; /* Remove default input border */
+    padding: 0.75rem 1rem;
+    flex-grow: 1;
+    background-color: transparent; /* Transparent background to show form's background */
+    color: var(--text-color);
+    outline: none; /* Remove outline on focus */
+}
+
+.header-search button {
+    background-color: transparent;
+    border: none;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color); /* Icon color */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.header-search button:hover {
+    background-color: rgba(0,0,0,0.05); /* Subtle hover for button */
+    color: var(--link-color); /* Highlight icon on hover */
+}
+
+body.dark-mode .header-search button:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+.header-search button svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor; /* Use current text color */
+    stroke: currentColor; /* For icons that use stroke */
+    stroke-width: 2; /* Default stroke width for icons */
+}
+
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0; /* Don't shrink to ensure visible */
+}
+
+/* Language Selector Dropdown Styling */
+.language-selector {
+    position: relative;
+    display: inline-block;
+}
+
+.language-selector .lang-toggle {
+    background: none;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    padding: 0.5rem 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 0.95rem;
+    gap: 0.5rem;
+}
+
+.language-selector .lang-toggle:hover {
+    background-color: rgba(0,0,0,0.05);
+    border-color: var(--link-color);
+}
+
+body.dark-mode .language-selector .lang-toggle:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+.language-selector .lang-toggle svg.globe-icon {
+    width: 20px;
+    height: 20px;
+    stroke: var(--text-color);
+    fill: none;
+    transition: stroke 0.4s ease;
+}
+
+.language-selector .lang-toggle:hover svg.globe-icon {
+    stroke: var(--link-color);
+}
+
+.language-selector .current-lang-text {
+    text-transform: uppercase;
+}
+
+.language-selector .dropdown-arrow-icon {
+    width: 16px;
+    height: 16px;
+    stroke: var(--text-color);
+    transition: transform 0.3s ease, stroke 0.4s ease;
+}
+
+.language-selector.open .dropdown-arrow-icon {
+    transform: rotate(180deg);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--dropdown-background);
+    min-width: 120px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    border: 1px solid var(--dropdown-border);
+    border-radius: 4px;
+    z-index: 1000;
+    top: 100%;
+    right: 0; /* Align to the right of the button */
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.language-selector.open .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: var(--text-color);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--dropdown-link-hover-bg);
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+
+/* --- 6. Page Header Section Styling --- */
+.page-header {
+    background-color: var(--card-background);
+    padding: 5rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--section-separator-color);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+    color: var(--heading-color);
+}
+
+.page-header p {
+    font-size: 1.25rem;
+    color: var(--text-color);
+    max-width: 800px;
+    margin: 0.5rem auto 0;
+}
+
+/* --- 7. Content Sections (General Layout) --- */
+section {
+    padding: 4rem 1.5rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.alt-background {
+    background-color: var(--section-separator-color); /* Use a subtle separator color for alt sections */
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+
+/* --- 8. Footer Styling --- */
+footer {
+    background-color: var(--footer-background);
+    color: var(--footer-text-color);
+    padding: 2.5rem 1.5rem 1.5rem;
+    margin-top: auto;
+    transition: background-color 0.4s ease, color 0.4s ease;
+    width: 100%;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1280px;
+    margin: 0 auto;
+    gap: 2rem;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-section h3 {
+    color: var(--footer-text-color);
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+}
+
+.footer-section p {
+    font-size: 0.95rem;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.75rem;
+}
+
+.footer-section a {
+    color: var(--footer-text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: var(--link-color);
+    text-decoration: underline;
+}
+
+.social-links a {
+    margin-right: 15px;
+    font-size: 1rem;
+    color: var(--footer-text-color);
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--link-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--section-separator-color);
+    color: var(--footer-text-color);
+    font-size: 0.9rem;
+}
+
+
+/* --- 9. Specific Section Styles (Based on your HTML Structure) --- */
+
+/* Hero Section (index.html) */
+.hero {
+    background-color: var(--background-color);
+    padding: 8rem 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--section-separator-color);
+    position: relative; /* Needed for CTA carousel positioning */
+    overflow: hidden; /* Hide overflowing carousel items */
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.hero p {
+    font-size: 1.4rem;
+    margin-bottom: 2.5rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* CTA Carousel specific styles */
+.hero-cta-carousel {
+    display: flex;
+    justify-content: center;
+    overflow: hidden; /* Hide overflowing slides */
+    position: relative;
+    height: 3rem; /* Fixed height for the carousel area */
+}
+
+.hero-cta-slide {
+    position: absolute; /* Stack slides */
+    width: auto; /* Content-based width */
+    opacity: 0;
+    transform: translateY(100%); /* Start off-screen */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.hero-cta-slide.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* "What We Offer" Section */
+.what-we-offer {
+    padding: 4rem 1.5rem;
+    text-align: center;
+}
+
+.what-we-offer h2 {
+    margin-bottom: 1.5rem;
+}
+
+.what-we-offer p {
+    max-width: 800px;
+    margin: 0 auto 2.5rem auto;
+    font-size: 1.1rem;
+}
+
+.offerings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.offering-item {
+    background-color: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow-light);
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.offering-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px 0 rgba(60,64,67,0.3), 0 3px 6px 1px rgba(60,64,67,0.15);
+}
+
+.offering-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.offering-item p {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+
+/* Newsletter Section */
+.newsletter-section {
+    padding: 4rem 1.5rem;
+    text-align: center;
+}
+
+.newsletter-section h2 {
+    margin-bottom: 1rem;
+}
+
+.newsletter-section p {
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+    font-size: 1.1rem;
+}
+
+.newsletter-form-main {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.newsletter-form-main input[type="email"] {
+    flex-grow: 1;
+    max-width: 350px;
+}
+
+.newsletter-form-main button {
+    flex-shrink: 0;
+}
+
+
+/* Blog Preview & Resources Preview Sections (index.html) */
+.blog-preview, .resources-preview {
+    padding: 4rem 1.5rem;
+    text-align: center;
+}
+
+.blog-preview h2, .resources-preview h2 {
+    margin-bottom: 3rem;
+    font-size: 2.2rem;
+}
+
+.blog-articles-grid, .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+}
+
+.blog-card, .resource-card {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color); /* Subtle border */
+    border-radius: 8px; /* Rounded corners */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: var(--box-shadow-light); /* Apply subtle shadow */
+}
+
+.blog-card:hover, .resource-card:hover {
+    transform: translateY(-4px); /* Slight lift effect on hover */
+    box-shadow: 0 4px 8px 0 rgba(60,64,67,0.3), 0 6px 12px 3px rgba(60,64,67,0.15); /* More pronounced shadow on hover */
+}
+
+
+.blog-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    text-align: left;
+}
+
+.card-content h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.3rem;
+}
+
+.card-content p {
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+.read-more {
+    display: inline-block;
+    margin-top: auto;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+/* Resources Preview specifics */
+.resource-card h3 {
+     margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.3rem;
+}
+
+.resource-card p {
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    color: var(--text-color);
+    flex-grow: 1; /* ADDED: Makes paragraph take available space */
+}
+
+/* ADDED: Rule to push the button to the bottom of the card */
+.resources-grid .resource-card .btn {
+    margin-top: auto;
+}
+
+
+/* Blog Content Section (blog.html) */
+.blog-content {
+    display: flex;
+    gap: 3rem;
+    padding: 3rem 1.5rem;
+    max-width: 1280px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.blog-main {
+    flex: 3;
+    min-width: 300px;
+}
+
+.blog-sidebar {
+    flex: 1;
+    min-width: 280px;
+    background-color: var(--card-background);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow-light);
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    height: fit-content;
+}
+
+.blog-posts-container {
+    /* Container for dynamically loaded full blog posts */
+    display: flex;
+    flex-direction: column;
+    gap: 3rem; /* Space between full articles */
+}
+
+.blog-post {
+    background-color: var(--card-background);
+    padding: 2rem;
+    /* margin-bottom handled by gap in container */
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow-light);
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.blog-post h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.blog-post .post-meta {
+    font-size: 0.95rem;
+    color: var(--placeholder-color);
+    margin-bottom: 1.5rem;
+}
+
+.blog-post .post-image {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    margin-bottom: 2rem;
+    border-radius: 6px;
+}
+
+.blog-post .post-excerpt p {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+/* Ensure general p styling is not overridden */
+
+
+.blog-sidebar .sidebar-section {
+    margin-bottom: 2.5rem;
+}
+
+.blog-sidebar .sidebar-section h3 {
+    margin-bottom: 1.2rem;
+    font-size: 1.2rem;
+    color: var(--heading-color);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.75rem;
+}
+
+.blog-sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.blog-sidebar ul li {
+    margin-bottom: 1rem;
+}
+
+.blog-sidebar a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: block;
+    font-size: 0.95rem;
+}
+
+.blog-sidebar a:hover {
+    color: var(--link-color);
+}
+
+.blog-sidebar .recent-posts .post-title {
+    display: block;
+    font-weight: 500;
+}
+
+.blog-sidebar .recent-posts .post-date {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--placeholder-color);
+    margin-top: 3px;
+}
+
+/* Sidebar form */
+.sidebar-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sidebar-section form input[type="text"],
+.sidebar-section form input[type="email"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--input-background); /* Use input background variable */
+    color: var(--text-color);
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+    font-size: 1rem;
+}
+
+.sidebar-section form input[type="text"]::placeholder,
+.sidebar-section form input[type="email"]::placeholder {
+    color: var(--placeholder-color);
+}
+
+.sidebar-section form button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+}
+
+/* Pagination (Blog page) */
+.pagination {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 0.75rem 1rem;
+    margin: 0 5px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.pagination a.active {
+    background-color: var(--link-color);
+    color: var(--button-text-color);
+    border-color: var(--link-color);
+}
+
+.pagination a:hover:not(.active) {
+    background-color: var(--card-background);
+    color: var(--link-color);
+    border-color: var(--link-color);
+}
+
+
+/* Resources Listing Section (resources.html) */
+.resources-listing {
+    padding: 3rem 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.resource-item {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: var(--box-shadow-light);
+    flex-wrap: wrap;
+}
+
+.resource-item:hover {
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 2px 4px 0 rgba(60,64,67,0.3), 0 3px 6px 1px rgba(60,64,67,0.15); /* Slightly more pronounced shadow */
+}
+
+.resource-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Rounded icons */
+    background-color: rgba(26,115,232,0.1); /* Light tint of link color */
+}
+
+body.dark-mode .resource-icon {
+    background-color: rgba(138,180,248,0.15);
+}
+
+.resource-icon svg {
+    width: 30px;
+    height: 30px;
+    stroke: var(--link-color);
+    fill: none;
+    transition: stroke 0.4s ease;
+}
+
+.resource-content {
+    flex-grow: 1;
+    min-width: 250px;
+}
+
+.resource-content h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.3rem;
+}
+
+.resource-content p {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+.resource-meta {
+    font-size: 0.95rem;
+    color: var(--placeholder-color);
+    margin-bottom: 1.5rem;
+}
+
+.resource-meta span {
+    margin-right: 1.5rem;
+}
+
+/* Recommended Tools Section */
+.recommended-tools {
+    padding: 4rem 1.5rem;
+    text-align: center;
+}
+
+.recommended-tools h2 {
+    margin-bottom: 2rem;
+}
+
+.recommended-items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+}
+
+.recommended-item {
+    background-color: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow-light);
+    text-align: left;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recommended-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px 0 rgba(60,64,67,0.3), 0 3px 6px 1px rgba(60,64,67,0.15);
+}
+
+.recommended-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.recommended-item .item-type {
+    font-size: 0.85rem;
+    color: var(--placeholder-color);
+    margin-bottom: 0.75rem;
+    display: block;
+}
+
+.recommended-item p {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.recommended-item .item-note {
+    font-size: 0.85rem;
+    color: var(--link-color); /* Highlight affiliate notes */
+    margin-top: 0.5rem;
+    font-weight: 500;
+}
+
+
+/* Resources Newsletter Section (resources.html) */
+.resources-newsletter {
+    padding: 4rem 1.5rem;
+    text-align: center;
+}
+
+.newsletter-container {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.newsletter-container h2 {
+     font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.newsletter-container p {
+    font-size: 1.25rem;
+    margin-bottom: 2.5rem;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.newsletter-form input[type="email"] {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    flex-grow: 1;
+    max-width: 350px;
+    background-color: var(--input-background);
+    color: var(--text-color);
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+    font-size: 1rem;
+}
+
+.newsletter-form input[type="email"]::placeholder {
+    color: var(--placeholder-color);
+}
+
+.newsletter-form button {
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+}
+
+
+/* About Content Section (about.html) */
+.about-content {
+    padding: 3rem 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about-content h2 {
+    font-size: 2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.2rem;
+    border-bottom: 1px solid var(--section-separator-color);
+    padding-bottom: 0.75rem;
+}
+
+.about-content p {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.team-member {
+    text-align: center;
+    background-color: var(--card-background);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow-light);
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.team-member img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    border: 4px solid var(--link-color);
+    transition: border-color 0.4s ease;
+}
+
+.team-member h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.team-member p {
+    font-size: 1rem;
+    color: var(--text-color);
+}
+
+
+/* --- 10. Responsive Adjustments --- */
+@media (max-width: 1000px) {
+    /* Header adjustments for smaller screens */
+    header nav {
+        flex-direction: column; /* Stack header items */
+        gap: 1rem; /* Reduce gap when stacked */
+    }
+
+    .logo-container {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 0.8rem; /* Smaller gap for stacked links */
+    }
+
+    .header-search {
+        max-width: 100%; /* Full width search bar */
+    }
+
+    .nav-right {
+        width: 100%;
+        justify-content: center; /* Center language and theme toggles */
+        margin-top: 0.5rem;
+    }
+
+    .blog-content {
+        flex-direction: column;
+    }
+
+    .blog-main {
+        flex: auto;
+    }
+
+    .blog-sidebar {
+        flex: auto;
+        min-width: auto;
+    }
+
+    .resource-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .resource-icon {
+        margin-bottom: 1rem;
+    }
+
+    .resource-content {
+        min-width: auto;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+     .newsletter-form input[type="email"] {
+        width: 100%;
+        max-width: none;
+     }
+
+     .newsletter-form button {
+         width: auto;
+     }
+}
+
+
+@media (max-width: 768px) {
+    h1 { font-size: 2.2rem; }
+    h2 { font-size: 1.9rem; }
+    h3 { font-size: 1.4rem; }
+
+    .page-header {
+        padding: 3rem 1.5rem;
+    }
+
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+
+    .page-header p {
+        font-size: 1.1rem;
+    }
+
+    .hero {
+        padding: 5rem 1.5rem;
+    }
+
+    .hero h1 {
+        font-size: 2.8rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+    .blog-preview h2, .resources-preview h2 {
+        font-size: 2rem;
+    }
+
+    .blog-articles-grid, .resources-grid {
+         grid-template-columns: 1fr;
+    }
+
+    .blog-card, .resource-card {
+        text-align: left;
+    }
+
+    .resource-item {
+        text-align: left;
+        align-items: flex-start;
+    }
+
+     .resource-icon {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 0;
+     }
+
+     .resource-item {
+        flex-direction: row;
+        flex-wrap: wrap;
+     }
+
+     .resource-content {
+         flex-grow: 1;
+     }
+
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-section {
+        min-width: auto;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .footer-section ul {
+        padding: 0;
+    }
+
+    .social-links {
+        text-align: center;
+    }
+
+    .social-links a {
+        margin: 0 10px;
+    }
+
+     .sidebar-section form input[type="text"],
+    .sidebar-section form input[type="email"] {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .sidebar-section form button {
+        width: auto;
+    }
+
+    .newsletter-form {
+         flex-direction: column;
+         align-items: center;
+         gap: 1rem;
+    }
+
+    .newsletter-form input[type="email"] {
+         width: 100%;
+         max-width: none;
+    }
+
+    .newsletter-form button {
+         width: auto;
+    }
+
+    .team-grid {
+         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.7rem; }
+    h3 { font-size: 1.3rem; }
+    p { font-size: 0.95rem; }
+
+    .logo-container .logo-text {
+        font-size: 1.4rem;
+    }
+
+     .page-header h1 {
+        font-size: 2.3rem;
+    }
+
+    .page-header p {
+        font-size: 1.0rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+    }
+
+     .blog-preview h2, .resources-preview h2 {
+        font-size: 1.8rem;
+    }
+
+    .blog-post h2 {
+        font-size: 1.5rem;
+    }
+
+    .resource-item {
+        padding: 1.5rem;
+    }
+
+    .resource-icon svg {
+        width: 30px;
+        height: 30px;
+    }
+
+    .resource-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .newsletter-container h2 {
+        font-size: 1.8rem;
+    }
+
+    .newsletter-container p {
+        font-size: 1rem;
+    }
+
+    .team-member h3 {
+        font-size: 1.2rem;
+    }
+
+    .team-member img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .footer-content {
+        gap: 1.5rem;
+    }
+}
+
+/* --- 11. Theme Toggle Button Styling --- */
+/* Add this button to your HTML header, e.g., near the language selector */
+.theme-toggle-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color);
+    transition: color 0.4s ease, background-color 0.3s ease;
+    border-radius: 50%;
+}
+
+.theme-toggle-button:hover {
+     color: var(--link-color);
+     background-color: rgba(0,0,0,0.05);
+}
+
+body.dark-mode .theme-toggle-button:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+.theme-toggle-button svg {
+     width: 24px;
+     height: 24px;
+     fill: currentColor;
+     stroke: currentColor; /* Ensure lines are drawn for sun icon */
+     stroke-width: 2; /* Adjust if rays appear too thin */
+}
+
+/* Hide one icon based on body class, show the *opposite* theme icon */
+.theme-toggle-button .sun-icon,
+.theme-toggle-button .moon-icon {
+    display: none; /* Hide both by default */
+}
+
+body.dark-mode .theme-toggle-button .sun-icon { /* In dark mode, show sun to suggest light mode */
+    display: block;
+}
+
+body:not(.dark-mode) .theme-toggle-button .moon-icon { /* In light mode, show moon to suggest dark mode */
+    display: block;
+}
+
+/* Floating theme toggle button (from main.js) - this will not be used with current setup */
+.floating-theme-toggle {
+    background-color: var(--button-background) !important;
+    color: var(--button-text-color) !important;
+    border-radius: 50% !important;
+    padding: 12px 15px !important;
+    font-size: 1.5rem !important;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2) !important;
+}
+
+.floating-theme-toggle:hover {
+    background-color: var(--button-hover-background) !important;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3) !important;
+}
+
+/* --- Individual Blog Post Page Styling (post.html) --- */
+.blog-post-detail {
+    padding: 3rem 1.5rem;
+    max-width: 900px; /* Max width for readability of long content */
+    margin: 0 auto;
+}
+
+.full-blog-post {
+    background-color: var(--card-background);
+    padding: 2.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow-light);
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.full-blog-post h1 {
+    font-size: 2.5rem; /* Larger heading for main post */
+    margin-bottom: 1.5rem;
+}
+
+.full-blog-post .post-meta {
+    font-size: 1rem;
+    color: var(--placeholder-color);
+    margin-bottom: 2rem;
+}
+
+.full-blog-post .post-image {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    margin-bottom: 2.5rem;
+    border-radius: 8px;
+}
+
+.full-blog-post .post-content p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8; /* Improved readability for main content */
+}
+
+/* Styles for lists within post content */
+.full-blog-post .post-content ul,
+.full-blog-post .post-content ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+}
+
+.full-blog-post .post-content ul li,
+.full-blog-post .post-content ol li {
+    margin-bottom: 0.5rem;
+}
+
+/* Styles for strong/em within post content */
+.full-blog-post .post-content strong {
+    font-weight: 700;
+}
+
+.full-blog-post .post-content em {
+    font-style: italic;
+}
+
+/* Styling for tags within post-meta or separately */
+.full-blog-post .tags {
+    display: inline-flex; /* Use flex to align tags */
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px; /* Space from date/author */
+}
+
+.full-blog-post .tags .tag {
+    background-color: var(--section-separator-color);
+    color: var(--text-color);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Error message for post not found */
+.not-found-message {
+    padding: 5rem 1.5rem;
+    text-align: center;
+    background-color: var(--card-background);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--box-shadow-light);
+}
+
+.not-found-message h1 {
+    font-size: 2.5rem;
+    color: var(--heading-color);
+}
+
+.not-found-message p {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+}
+/* Blog Category Active State */
+.blog-sidebar .categories a.active {
+    background-color: var(--link-color); /* Highlight background */
+    color: var(--button-text-color); /* White text on highlight */
+    border-radius: 4px; /* Soft corners */
+    padding: 5px 10px; /* Some padding */
+    margin-left: -10px; /* Adjust slightly for visual alignment */
+    font-weight: 700;
+}
+
+.blog-sidebar .categories a.active:hover {
+    background-color: var(--link-hover-color); /* Darker on hover */
+    color: var(--button-text-color);
+}
+/* --- Categories Selection Page Styling (categories.html) --- */
+.categories-selection {
+    padding: 4rem 1.5rem;
+    text-align: center;
+}
+
+.category-tags-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem; /* Space between tags */
+    margin-bottom: 3rem; /* Space before buttons */
+}
+
+.category-tag {
+    display: inline-block;
+    padding: 0.8rem 1.2rem;
+    background-color: var(--card-background); /* Use card background for default tag */
+    border: 1px solid var(--border-color);
+    border-radius: 20px; /* Pill shape for tags */
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.category-tag:hover {
+    background-color: var(--section-separator-color); /* Lighter hover */
+    border-color: var(--link-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+
+.category-tag.active {
+    background-color: var(--link-color); /* Active background */
+    color: var(--button-text-color); /* White text on active */
+    border-color: var(--link-color);
+    font-weight: 700;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.category-tag.active:hover {
+    background-color: var(--link-hover-color); /* Darker active hover */
+    border-color: var(--link-hover-color);
+}
+
+.category-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* Space between buttons */
+}
+
+/* Secondary button style for Clear Filters */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    box-shadow: none;
+}
+
+.btn-secondary:hover {
+    background-color: var(--section-separator-color);
+    color: var(--link-color);
+    border-color: var(--link-color);
+    box-shadow: none;
+}
+
+/* Ensure the category message on blog.html is styled */
+#category-filter-message {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--placeholder-color);
+    margin-bottom: 2rem; /* Space below message */
+    font-weight: 500;
+}
