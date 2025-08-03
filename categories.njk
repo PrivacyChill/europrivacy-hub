@@ -1,0 +1,26 @@
+---
+layout: base.njk
+lang: en
+title: Categories
+permalink: /{{ lang }}/categories/index.html
+---
+
+<section class="page-header">
+    <div class="header-content">
+        <h1 id="categories-page-title">Blog Categories</h1>
+        <p id="categories-page-description">Select one or more categories to filter articles.</p>
+    </div>
+</section>
+
+<section class="categories-selection">
+    <div class="container">
+        <div class="category-tags-grid" id="category-tags-container">
+            <!-- Category tags will be dynamically loaded here -->
+            <p>Loading categories...</p>
+        </div>
+        <div class="category-actions">
+            <button class="btn" id="view-filtered-posts-btn">View Filtered Posts</button>
+            <button class="btn btn-secondary" id="clear-filters-btn">Clear Filters</button>
+        </div>
+    </div>
+</section>
