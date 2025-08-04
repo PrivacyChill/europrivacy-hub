@@ -1,0 +1,27 @@
+{
+    "id": "general-data-right",
+    "title": {
+      "en": "Understanding General Data Rights",
+      "it": "Comprendere i Diritti Generali sui Dati",
+      "de": "Allgemeine Datenrechte verstehen"
+    },
+    "excerpt": {
+      "en": "A general overview of fundamental data rights that individuals possess in the digital age.",
+      "it": "Una panoramica generale dei diritti fondamentali sui dati che gli individui possiedono nell'era digitale.",
+      "de": "Ein allgemeiner Überblick über grundlegende Datenrechte, die Einzelpersonen im digitalen Zeitalter besitzen."
+    },
+    "content": {
+      "en": "<p>In today's digital world, understanding your data rights is more important than ever. These rights empower individuals to have more control over their personal information.</p><p>Key data rights often include the right to access your data, the right to correct inaccurate data, the right to erase data (the 'right to be forgotten'), and the right to restrict processing. Depending on your jurisdiction, you might also have rights related to data portability and the right to object to certain types of data processing.</p><p>Exercising these rights typically involves making a request to the organization that holds your data. It's crucial for organizations to have clear procedures in place to handle such requests efficiently and transparently.</p>",
+      "it": "<p>Nel mondo digitale di oggi, comprendere i tuoi diritti sui dati è più importante che mai. Questi diritti consentono agli individui di avere un maggiore controllo sulle proprie informazioni personali.</p><p>I diritti fondamentali sui dati includono spesso il diritto di accedere ai propri dati, il diritto di correggere dati inesatti, il diritto di cancellare i dati (il 'diritto all'oblio') e il diritto di limitare il trattamento. A seconda della tua giurisdizione, potresti anche avere diritti relativi alla portabilità dei dati e il diritto di opporti a determinati tipi di trattamento dei dati.</p><p>L'esercizio di questi diritti comporta in genere una richiesta all'organizzazione che detiene i tuoi dati. È fondamentale che le organizzazioni abbongano procedure chiare per gestire tali richieste in modo efficiente e trasparente.</p>",
+      "de": "<p>In der heutigen digitalen Welt ist es wichtiger denn je, Ihre Datenrechte zu verstehen. Diese Rechte ermöglichen es Einzelpersonen, mehr Kontrolle über ihre persönlichen Informationen zu haben.</p><p>Zu den wichtigsten Datenrechten gehören oft das Recht auf Zugang zu Ihren Daten, das Recht auf Berichtigung ungenauer Daten, das Recht auf Löschung von Daten (das „Recht auf Vergessenwerden“) und das Recht auf Einschränkung der Verarbeitung. Je nach Gerichtsbarkeit haben Sie möglicherweise auch Rechte in Bezug auf die Datenübertragbarkeit und das Recht, bestimmten Arten der Datenverarbeitung zu widersprechen.</p><p>Die Ausübung dieser Rechte beinhaltet in der Regel eine Anfrage an die Organisation, die Ihre Daten besitzt. Es ist für Organisationen von entscheidender Bedeutung, klare Verfahren zur effizienten und transparenten Bearbeitung solcher Anfragen zu haben.</p>"
+    },
+    "imageUrl": "https://placehold.co/800x400/007bff/ffffff?text=General+Data+Rights",
+    "imageAlt": {
+      "en": "Abstract image representing data privacy and individual control over information.",
+      "it": "Immagine astratta che rappresenta la privacy dei dati e il controllo individuale sulle informazioni.",
+      "de": "Abstrakte Darstellung von Datenschutz und individueller Kontrolle über Informationen."
+    },
+    "date": "August 3, 2025",
+    "author": "EuroPrivacy Hub Team",
+    "tags": ["Data Rights", "Privacy", "Digital Rights"]
+  }
