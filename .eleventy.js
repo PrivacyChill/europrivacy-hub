@@ -1,25 +1,22 @@
 module.exports = function(eleventyConfig) {
-    // Set input and output directories
-    eleventyConfig.addPassthroughCopy("css");
-    eleventyConfig.addPassthroughCopy("js");
-    eleventyConfig.addPassthroughCopy("downloads");
-    eleventyConfig.addPassthroughCopy("Content"); // Copy content data as well
-    eleventyConfig.addPassthroughCopy("img"); // Copy images
-
-    // Add a collection for each language
+    // This will copy these folders to the output directory
+    eleventyConfig.addPassthroughCopy("./css");
+    eleventyConfig.addPassthroughCopy("./js");
+    eleventyConfig.addPassthroughCopy("./Content");
+    
+    // Add collections for each language
     eleventyConfig.addCollection("en", function(collectionApi) {
-        return collectionApi.getFilteredByGlob("*.njk");
+        return collectionApi.getFilteredByGlob("en/**/*.md");
     });
 
     eleventyConfig.addCollection("de", function(collectionApi) {
-        return collectionApi.getFilteredByGlob("*.njk");
+        return collectionApi.getFilteredByGlob("de/**/*.md");
     });
 
     eleventyConfig.addCollection("it", function(collectionApi) {
-        return collectionApi.getFilteredByGlob("*.njk");
+        return collectionApi.getFilteredByGlob("it/**/*.md");
     });
 
-    // Configure Eleventy to use Nunjucks for HTML and Markdown
     return {
         dir: {
             input: ".",
@@ -27,9 +24,9 @@ module.exports = function(eleventyConfig) {
             data: "_data",
             output: "_site"
         },
+        passthroughFileCopy: true,
         templateFormats: ["html", "njk", "md"],
         htmlTemplateEngine: "njk",
         markdownTemplateEngine: "njk",
-        pathPrefix: "/"
     };
 };
