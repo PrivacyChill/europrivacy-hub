@@ -1,18 +1,19 @@
 module.exports = function(eleventyConfig) {
-    // This will copy these folders to the output directory
-    eleventyConfig.addPassthroughCopy("./css");
-    eleventyConfig.addPassthroughCopy("./js");
-    eleventyConfig.addPassthroughCopy("./Content");
+    // Pass through files
+    eleventyConfig.addPassthroughCopy("css");
+    eleventyConfig.addPassthroughCopy("js");
+    eleventyConfig.addPassthroughCopy("Content");
+    eleventyConfig.addPassthroughCopy("*.ico");
+    eleventyConfig.addPassthroughCopy("*.png");
+    eleventyConfig.addPassthroughCopy("site.webmanifest");
     
-    // Add collections for each language
+    // Language collections
     eleventyConfig.addCollection("en", function(collectionApi) {
         return collectionApi.getFilteredByGlob("en/**/*.md");
     });
-
     eleventyConfig.addCollection("de", function(collectionApi) {
         return collectionApi.getFilteredByGlob("de/**/*.md");
     });
-
     eleventyConfig.addCollection("it", function(collectionApi) {
         return collectionApi.getFilteredByGlob("it/**/*.md");
     });
@@ -24,9 +25,9 @@ module.exports = function(eleventyConfig) {
             data: "_data",
             output: "_site"
         },
-        passthroughFileCopy: true,
+        pathPrefix: "/europrivacy-hub/",
         templateFormats: ["html", "njk", "md"],
         htmlTemplateEngine: "njk",
-        markdownTemplateEngine: "njk",
+        markdownTemplateEngine: "njk"
     };
 };
