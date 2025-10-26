@@ -1,0 +1,13 @@
+{
+  "name": "europrivacy-hub",
+  "version": "1.0.0",
+  "description": "Your Guide to European Data Protection Law",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "dev": "eleventy --serve"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}
