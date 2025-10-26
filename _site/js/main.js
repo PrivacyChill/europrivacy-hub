@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     setupLanguageSelector();
 
     // Fetch blog index first as it's needed by multiple pages
-    const blogIndexUrl = './content/blog/blog-index.json';
+    const blogIndexUrl = '/Content/blog/blog-index.json';
     console.log("Attempting to fetch blog index from:", blogIndexUrl);
     try {
         const response = await fetch(blogIndexUrl);
@@ -264,7 +264,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderIndividualBlogPost();
     } else {
         updateContent(); // Update general page content (hero, page headers, etc.)
-        if (currentPage === 'index.html') {
+        if (currentPage === 'index.html' || currentPage === '') {
             renderBlogPreviews();
             renderResourcePreviews();
             startCtaCarousel();
@@ -349,7 +349,7 @@ function setupLanguageSelector() {
             // Re-render only necessary parts based on current page
             if (currentPage === 'post.html') {
                 renderIndividualBlogPost();
-            } else if (currentPage === 'index.html') {
+            } else if (currentPage === 'index.html' || currentPage === '') {
                 updateContent(); // Updates hero, offers, newsletter
                 renderBlogPreviews(); // Re-renders blog previews
                 renderResourcePreviews(); // Re-renders resource previews
@@ -662,7 +662,7 @@ async function renderIndividualBlogPost() {
     }
 
     try {
-        const postJsonUrl = `./content/blog/${postId}.json`;
+        const postJsonUrl = `/Content/blog/${postId}.json`;
         console.log("Attempting to fetch individual post from:", postJsonUrl);
         const response = await fetch(postJsonUrl);
 
