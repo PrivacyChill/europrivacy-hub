@@ -1,25 +1,13 @@
 {
   "name": "europrivacy-hub",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Your Guide to European Data Protection Law",
   "scripts": {
-    "test": "echo 'Error: no test specified' && exit 1",
-    "build": "npx @11ty/eleventy",
-    "start": "npx @11ty/eleventy --serve"
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "dev": "eleventy --serve"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/PrivacyChill/europrivacy-hub.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/PrivacyChill/europrivacy-hub/issues"
-  },
-  "homepage": "https://github.com/PrivacyChill/europrivacy-hub#readme",
-  "devDependencies": {
-    "@11ty/eleventy": "^3.1.2"
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1"
   }
 }
