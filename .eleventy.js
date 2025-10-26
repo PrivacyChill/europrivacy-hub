@@ -6,6 +6,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("*.ico");
     eleventyConfig.addPassthroughCopy("*.png");
     eleventyConfig.addPassthroughCopy("site.webmanifest");
+    eleventyConfig.addPassthroughCopy("CNAME");
     
     // Language collections
     eleventyConfig.addCollection("en", function(collectionApi) {
